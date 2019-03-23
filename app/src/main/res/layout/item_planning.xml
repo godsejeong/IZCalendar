@@ -3,7 +3,7 @@
     <data>
         <variable
                 name="item"
-                type="com.jjmin.izcalender.PlanningData"/>
+                type="com.jjmin.izcalender.data.PlanningData"/>
     </data>
     <android.support.constraint.ConstraintLayout
             xmlns:android="http://schemas.android.com/apk/res/android"

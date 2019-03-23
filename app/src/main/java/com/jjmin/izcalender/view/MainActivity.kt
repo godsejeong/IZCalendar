@@ -1,13 +1,16 @@
-package com.jjmin.izcalender
+package com.jjmin.izcalender.view
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.RecyclerView.LayoutManager
 import android.util.Log
 import android.widget.Toast
 import com.github.nitrico.lastadapter.LastAdapter
+import com.jjmin.izcalender.BR
+import com.jjmin.izcalender.data.PlanningData
+import com.jjmin.izcalender.model.PlanningModel
+import com.jjmin.izcalender.R
+import com.jjmin.izcalender.util.Utils
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         mainRecycler.layoutManager = LinearLayoutManager(this)
 
-        LastAdapter(list,BR.item)
+        LastAdapter(list, BR.item)
             .map<PlanningData, com.jjmin.izcalender.databinding.ItemPlanningBinding>(R.layout.item_planning)
             {
                 onClick {
@@ -34,7 +37,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun planInfo(){
-        planningInfo.execute()
+        planningInfo.start()
+        planningInfo.join()
         list.addAll(planningInfo.infoList)
     }
 
