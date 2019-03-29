@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 
 
 object Utils{
-    var url = "http://10.0.2.2:5000"
+    var url = "http://aws.soylatte.kr:5000"
     var retrofit = Retrofit.Builder()
         .baseUrl(url)
         .addConverterFactory(GsonConverterFactory.create())

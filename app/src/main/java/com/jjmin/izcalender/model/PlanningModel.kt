@@ -21,13 +21,14 @@ class PlanningModel : Thread() {
         var planJson = res.clone().execute().body()!!.plan
 
         planJson.forEach{
+            infoList.add(PlanningData(null,null,null,it.day,true))
             Log.e("day",it.day)
             if(it.title.size >= 2){
                 for (i in 0 until it.title.size){
-                    infoList.add(PlanningData(it.title[i],it.subTitle[i],it.time[i]))
+                    infoList.add(PlanningData(it.title[i],it.subTitle[i],it.time[i],null,false))
                 }
             }else{
-                infoList.add(PlanningData(it.title[0],it.subTitle[0],it.time[0]))
+                infoList.add(PlanningData(it.title[0],it.subTitle[0],it.time[0],null,false))
             }
         }
     }
