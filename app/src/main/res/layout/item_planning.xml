@@ -8,11 +8,11 @@
     <android.support.constraint.ConstraintLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
-            android:paddingRight="13dp"
-            android:paddingLeft="13dp"
-            android:layout_height="70dp">
+            android:layout_marginTop="2.4dp"
+            android:paddingBottom="2.4dp"
+            android:paddingRight="7.5dp"
+            android:paddingLeft="7.5dp"
+            android:layout_height="73dp">
 
         <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -21,47 +21,97 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:background="@drawable/bg_planning_item">
+                android:background="@drawable/bg_planning_item_title">
 
-            <TextView
-                    android:id="@+id/planTime"
+            <android.support.constraint.ConstraintLayout
+                    android:id="@+id/planDayLayiut"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="8dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="13dp"
-                    android:textSize="13sp"
-                    android:textColor="@android:color/white"
-                    android:paddingLeft="13dp"
-                    android:text="@{item.time}"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/planTitleLayout"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    tools:text="20:00"
-            />
+                    android:background="@drawable/bg_planning_item_day"
+                    android:layout_height="match_parent">
+
+                <TextView
+                        android:id="@+id/planDate"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/planTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="13dp"
+                        android:textSize="10sp"
+                        android:paddingTop="11dp"
+                        android:lineSpacingExtra="6sp"
+                        android:textColor="@android:color/white"
+                        android:paddingLeft="13dp"
+                        android:text="@{item.day}"
+                        tools:text="03/03"/>
+
+                <TextView
+                        android:id="@+id/planTime"
+                        app:layout_constraintTop_toBottomOf="@+id/planDate"
+                        app:layout_constraintBottom_toTopOf="@+id/planDow"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="13dp"
+                        android:textSize="17sp"
+                        android:lineSpacingExtra="6sp"
+                        android:textColor="@android:color/white"
+                        android:paddingLeft="13dp"
+                        android:text="@{item.time}"
+                        tools:text="2:00"
+                        app:layout_constraintHorizontal_bias="0.0"/>
+
+                <TextView
+                        android:id="@+id/planDow"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/planTime"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="13dp"
+                        android:textSize="10sp"
+                        android:lineSpacingExtra="3sp"
+                        android:textColor="@android:color/white"
+                        android:paddingLeft="13dp"
+                        android:text="@{item.dow}"
+                        tools:text="Sat"
+                />
+
+            </android.support.constraint.ConstraintLayout>
+
 
             <android.support.constraint.ConstraintLayout
                     android:id="@+id/planTitleLayout"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:paddingLeft="14dp"
+                    android:layout_height="match_parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/planTime">
+                    android:background="@drawable/bg_planning_item_title"
+                    app:layout_constraintStart_toEndOf="@id/planDayLayiut">
 
                 <TextView
                         android:id="@+id/planTitle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        tools:text="MBC 복면가왕"
+                        tools:text="Olive 모두의 주방 (사쿠라)"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         app:layout_constraintTop_toTopOf="parent"
                         android:textSize="15sp"
                         android:text="@{item.title}"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintBottom_toTopOf="@id/planSubTitle"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/colorMain"
                 />
 
                 <TextView
@@ -74,7 +124,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/planTitle"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:textSize="8sp"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/colorMain"
                 />
             </android.support.constraint.ConstraintLayout>
         </android.support.constraint.ConstraintLayout>

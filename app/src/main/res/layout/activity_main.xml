@@ -7,10 +7,27 @@
         android:layout_height="match_parent"
         tools:context=".view.MainActivity">
 
+    <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbarLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            app:layout_constraintBottom_toTopOf="@id/mainRecycler"
+            android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                app:title="Today Plan"
+                app:titleTextColor="@android:color/white"
+                android:layout_height="?attr/actionBarSize">
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
     <android.support.v7.widget.RecyclerView
             android:id="@+id/mainRecycler"
+            app:layout_constraintTop_toBottomOf="@+id/appbarLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp">
     </android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>
