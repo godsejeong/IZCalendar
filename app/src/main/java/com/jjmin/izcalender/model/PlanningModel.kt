@@ -24,10 +24,10 @@ class PlanningModel : Thread() {
             Log.e("day",it.day)
             if(it.title.size >= 2){
                 for (i in 0 until it.title.size){
-                    infoList.add(PlanningData(it.title[i],it.subTitle[i],timeCheck(it.time[i]),it.day,Dowchange(it.dow),false))
+                    infoList.add(PlanningData(it.title[i],it.subTitle[i],timeCheck(it.time[i]),it.day,Dowchange(it.dow)))
                 }
             }else{
-                infoList.add(PlanningData(it.title[0],it.subTitle[0],timeCheck(it.time[0]),it.day,Dowchange(it.dow),false))
+                infoList.add(PlanningData(it.title[0],it.subTitle[0],timeCheck(it.time[0]),it.day,Dowchange(it.dow)))
             }
         }
     }

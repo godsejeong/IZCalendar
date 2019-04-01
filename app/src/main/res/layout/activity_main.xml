@@ -11,6 +11,7 @@
             android:id="@+id/appbarLayout"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_width="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/mainRecycler"
             android:layout_height="wrap_content">
 
@@ -25,6 +26,7 @@
 
     <android.support.v7.widget.RecyclerView
             android:id="@+id/mainRecycler"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appbarLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp">

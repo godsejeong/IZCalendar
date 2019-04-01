@@ -34,41 +34,27 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         Log.e("Oncreate", "T")
-
         planInfo()
 
 
         mainRecycler.layoutManager = LinearLayoutManager(this)
 
-        var dayType = Type<ItemPlanningDayBinding>(R.layout.item_planning_day)
-        var planType = Type<ItemPlanningBinding>(R.layout.item_planning)
-            .onClick {
-                Toast.makeText(applicationContext,"Click",Toast.LENGTH_SHORT).show()
-            }
-
-        var  inflate = LayoutInflater.from(this)
-        var  view = inflate.inflate( R.layout.item_planning,null)
-
         LastAdapter(list,BR.item)
-            .layout{item, position ->
-                var  inflate = LayoutInflater.from(this)
-                var  view = inflate.inflate( R.layout.item_planning,null)
-
-            }
-            .handler(object : TypeHandler {
-                override fun getItemType(item: Any, position: Int): BaseType? {
-                    return if (item is PlanningData)
-                        if (item.time!!.length >= 6) {
-                            view.planTime.setTextSize(TypedValue.COMPLEX_UNIT_DIP,10F)
-                            Log.e("size", view.planTime.textSize.toString())
-                            planType
+            .map<PlanningData,ItemPlanningBinding>(R.layout.item_planning)
+            {
+                onBind {
+                    it.binding.run {
+                        item?.let { data ->
+                            if(data.time!!.length >= 6){
+                                planTime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13.72F)
+                            }
                         }
-                        else
-                            planType
-                    else
-                        null
+                    }
                 }
-            })
+                onClick {
+                    Toast.makeText(applicationContext,"Click",Toast.LENGTH_SHORT).show()
+                }
+            }
             .into(mainRecycler)
     }
 
@@ -76,5 +62,9 @@ class MainActivity : AppCompatActivity() {
         planningInfo.start()
         planningInfo.join()
         list.addAll(planningInfo.infoList)
+//        list.add(PlanningData("title","subTitle","Always","day","dow"))
+//        list.add(PlanningData("title","subTitle","03:30","day","dow"))
+
+
     }
 }

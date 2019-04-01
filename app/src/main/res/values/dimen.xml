@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <dimen name="day_alwayls">15sp</dimen>
+    <dimen name="day_basic">17sp</dimen>
+</resources>
