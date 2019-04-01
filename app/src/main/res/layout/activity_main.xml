@@ -12,7 +12,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_width="match_parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/mainRecycler"
+            app:layout_constraintBottom_toTopOf="@id/calendLayout"
             android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
@@ -24,12 +24,157 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/mainRecycler"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appbarLayout"
+    <android.support.constraint.ConstraintLayout
+            android:id="@+id/calendLayout"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
-    </android.support.v7.widget.RecyclerView>
+            app:layout_constraintVertical_bias="0.2"
+            app:layout_constraintDimensionRatio="H,5:3"
+            app:layout_constraintTop_toBottomOf="@+id/appbarLayout"
+            app:layout_constraintBottom_toTopOf="@+id/mainRecycler"
+            android:layout_height="0dp"
+            android:background="@android:color/white">
 
+    </android.support.constraint.ConstraintLayout>
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/mainRecycler"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/calendLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+        </android.support.v7.widget.RecyclerView>
+
+            <android.support.constraint.ConstraintLayout
+                    android:id="@+id/todayView"
+                    android:layout_width="match_parent"
+                    app:layout_constraintTop_toTopOf="@id/mainRecycler"
+                    android:background="@drawable/bg_main_todayplan"
+                    android:layout_height="90dp">
+
+                <android.support.constraint.ConstraintLayout
+                        android:id="@+id/todayLayout"
+                        android:layout_width="match_parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/todayScrollbar"
+                        android:layout_height="0dp">
+
+                    <android.support.constraint.ConstraintLayout
+                            android:id="@+id/toyDayTimeLayout"
+                            android:layout_width="wrap_content"
+                            android:paddingLeft="12dp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/planTitleLayout"
+                            android:background="@drawable/bg_planning_item_day"
+                            android:layout_height="match_parent">
+
+                        <TextView
+                                android:id="@+id/todayDate"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintBottom_toTopOf="@+id/todayTime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="13dp"
+                                android:textSize="10sp"
+                                android:paddingTop="11dp"
+                                android:lineSpacingExtra="6sp"
+                                android:textColor="@android:color/white"
+                                android:paddingLeft="13dp"
+                                android:text="03/03"/>
+
+                        <TextView
+                                android:id="@+id/todayTime"
+                                app:layout_constraintTop_toBottomOf="@+id/todayDate"
+                                app:layout_constraintBottom_toTopOf="@+id/todayDow"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="13dp"
+                                android:textSize="17sp"
+                                android:lineSpacingExtra="6sp"
+                                android:textColor="@android:color/white"
+                                android:paddingLeft="13dp"
+                                android:text="2:00"
+                                app:layout_constraintHorizontal_bias="0.0"/>
+
+                        <TextView
+                                android:id="@+id/todayDow"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/todayTime"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="13dp"
+                                android:textSize="10sp"
+                                android:lineSpacingExtra="3sp"
+                                android:textColor="@android:color/white"
+                                android:paddingLeft="13dp"
+                                android:text="Sat"
+                        />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                    <android.support.constraint.ConstraintLayout
+                            android:id="@+id/todayTitleLayout"
+                            android:layout_width="0dp"
+                            android:paddingLeft="14dp"
+                            android:layout_height="match_parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:background="@color/colorMain"
+                            app:layout_constraintStart_toEndOf="@id/toyDayTimeLayout">
+
+                        <TextView
+                                android:id="@+id/todayTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Olive 모두의 주방 (사쿠라)"
+                                android:singleLine="true"
+                                android:ellipsize="end"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:textSize="15sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintBottom_toTopOf="@id/todaySubTitle"
+                                android:textColor="@android:color/white"
+                        />
+
+                        <TextView
+                                android:id="@+id/todaySubTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="방송"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/todayTitle"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:textSize="8sp"
+                                android:textColor="@android:color/white"
+                        />
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                        android:id="@+id/todayScrollbar"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/todayLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp">
+
+                    <ImageView
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/ic_drag_handle_black_24dp"
+                    />
+                </android.support.constraint.ConstraintLayout>
+            </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
