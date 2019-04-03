@@ -3,7 +3,6 @@ package com.jjmin.izcalender.view
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.util.TypedValue
 import android.view.*
 import android.widget.Toast
@@ -13,71 +12,63 @@ import com.jjmin.izcalender.data.PlanningData
 import com.jjmin.izcalender.model.PlanningModel
 import kotlinx.android.synthetic.main.activity_main.*
 import com.jjmin.izcalender.databinding.ItemPlanningBinding
-import android.view.View.MeasureSpec
-import android.util.DisplayMetrics
 import com.jjmin.izcalender.R
-import android.graphics.Rect
+import android.support.constraint.ConstraintLayout
+import android.os.Handler
+import android.support.constraint.ConstraintSet
 
 
 class MainActivity : AppCompatActivity() {
+    lateinit var detector: GestureDetector
     var list = ArrayList<Any>()
     var planningInfo = PlanningModel()
-    var MAXHEIGHT = 90
+    var set: ConstraintSet = ConstraintSet()
+    var scrollBl = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        Log.e("Oncreate", "T")
+        calendLayout.bringToFront()
         planInfo()
-        todayView.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED)
+
+        detector = GestureDetector(applicationContext, object : GestureDetector.OnGestureListener {
+            override fun onShowPress(e: MotionEvent?) {
+            }
+
+            override fun onSingleTapUp(e: MotionEvent?): Boolean {
+                return true
+            }
+
+            override fun onDown(e: MotionEvent?): Boolean {
+                return true
+            }
+
+            override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
+                return true
+            }
+
+            override fun onLongPress(e: MotionEvent?) {
+            }
 
 
+            override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
+                val params = mainRecycler.layoutParams as ConstraintLayout.LayoutParams
+                if (e1!!.y > e2!!.y && scrollBl) {
+                    slideToTop(todayView)
+                    animate(params.topMargin, todayScrollbar.height)
+                    scrollBl = false
 
-//        var detector = GestureDetector(this, object : GestureDetector.OnGestureListener {
-//            override fun onShowPress(e: MotionEvent?) {
-//            }
-//
-//            override fun onSingleTapUp(e: MotionEvent?): Boolean {
-//                return true
-//            }
-//
-//            override fun onDown(e: MotionEvent?): Boolean {
-//                return true
-//            }
-//
-//            override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
-//
-//                return true
-//            }
-//
-//            override fun onLongPress(e: MotionEvent?) {
-//            }
-//
-//
-//            override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
-//                Log.e("onScroll 호출됨", "${pxToDp(todayView.height)},${todayView.height - (distanceY)}")
-//
-//
-//                val params = todayView.layoutParams
-////                when {
-////                    pxToDp(todayView.height) in 12..MAXHEIGHT -> {
-////                        Log.e("todayView", pxToDp(todayView.height).toString())
-////                        params.height = (todayView.height - (distanceY).toInt())
-////                    }
-////
-////                    pxToDp(todayView.height) == 11 -> {
-////                        params.height = (todayView.height - (distanceY).toInt())
-////                    }
-////                }
-//
-//                todayView.layoutParams = params
-//                return true
-//            }
-//        })
-//
-//        todayScrollbar.setOnTouchListener { v, event ->
-//            detector.onTouchEvent(event)
-//        }
+                } else if (e1!!.y < e2!!.y && !scrollBl) {
+                    slideToBottom(todayView)
+                    animate(params.topMargin, 0)
+                    scrollBl = true
+                }
+                return true
+            }
+        })
+
+        todayView.setOnTouchListener { v, event ->
+            detector.onTouchEvent(event)
+        }
 
         mainRecycler.layoutManager = LinearLayoutManager(this)
 
@@ -100,18 +91,32 @@ class MainActivity : AppCompatActivity() {
             .into(mainRecycler)
     }
 
-    fun pxToDp(px: Int): Int {
-        val displayMetrics = application.resources.displayMetrics
-        return Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT))
+    fun animate(start: Int, end: Int) {
+        val params = mainRecycler.layoutParams as ConstraintLayout.LayoutParams
+        (1..10).forEach {
+            Handler().postDelayed({
+                params.topMargin = start - (start - end) * it / 10
+                mainRecycler.requestLayout()
+            }, it * 10L)
+        }
+    }
+
+    fun slideToTop(view: View) {
+        view.animate()
+            .translationY((view.height.toFloat() * -1) + todayScrollbar.height)
+            .withLayer()
+    }
+
+    fun slideToBottom(view: View) {
+        view.visibility = View.VISIBLE
+        view.animate()
+            .translationY(0f)
+            .withLayer()
     }
 
     fun planInfo() {
         planningInfo.start()
         planningInfo.join()
         list.addAll(planningInfo.infoList)
-//        list.add(PlanningData("title","subTitle","Always","day","dow"))
-//        list.add(PlanningData("title","subTitle","03:30","day","dow"))
-
-
     }
 }
