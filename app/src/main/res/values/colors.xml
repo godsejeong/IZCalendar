@@ -4,4 +4,17 @@
     <color name="colorPrimaryDark">@color/colorMain</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorMain">#292f3b</color>
+    <color name="colorOneYoung">#e84a8a</color>
+    <color name="colorSakura">#faafbf</color>
+    <color name="colorYuRi">#f68e43</color>
+    <color name="colorYeNa">#fdf692</color>
+    <color name="colorYuJin">#5578cd</color>
+    <color name="colorNaco">#b7d2e9</color>
+    <color name="colorEunBi">#bbb0db</color>
+    <color name="colorHyeWon">#e96766</color>
+    <color name="colorHitomi">#f8c0a3</color>
+    <color name="colorChaeWon">#cce3d1</color>
+    <color name="colorMinJu">#fefefc</color>
+    <color name="colorChaeYeon">#96e0e1</color>
+
 </resources>

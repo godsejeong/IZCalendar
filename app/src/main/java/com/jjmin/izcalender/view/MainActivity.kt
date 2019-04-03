@@ -16,18 +16,26 @@ import com.jjmin.izcalender.R
 import android.support.constraint.ConstraintLayout
 import android.os.Handler
 import android.support.constraint.ConstraintSet
+import android.util.Log
+import com.jjmin.izcalender.data.TodayData
+import com.jjmin.izcalender.databinding.ItemPlanningTodayBinding
+import android.support.v7.widget.RecyclerView
+import android.view.MotionEvent
+import java.security.AccessController.getContext
 
 
 class MainActivity : AppCompatActivity() {
+    var y = 0
     lateinit var detector: GestureDetector
-    var list = ArrayList<Any>()
+    var alllist = ArrayList<Any>()
+    var todaylist = ArrayList<Any>()
     var planningInfo = PlanningModel()
     var set: ConstraintSet = ConstraintSet()
     var scrollBl = true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        calendLayout.bringToFront()
+        calenderLayout.bringToFront()
         planInfo()
 
         detector = GestureDetector(applicationContext, object : GestureDetector.OnGestureListener {
@@ -52,6 +60,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
                 val params = mainRecycler.layoutParams as ConstraintLayout.LayoutParams
+                Log.e("af", "Af")
                 if (e1!!.y > e2!!.y && scrollBl) {
                     slideToTop(todayView)
                     animate(params.topMargin, todayScrollbar.height)
@@ -69,10 +78,28 @@ class MainActivity : AppCompatActivity() {
         todayView.setOnTouchListener { v, event ->
             detector.onTouchEvent(event)
         }
+        todayRecycler.setOnTouchListener {  v, event ->
+            val params = mainRecycler.layoutParams as ConstraintLayout.LayoutParams
+            if(event.action == MotionEvent.ACTION_DOWN){
+                y = event.y.toInt()
+            }else if(event.action == MotionEvent.ACTION_UP){
+                if(y < event.y){
+                    Log.e("Down","d1")
+                    slideToBottom(todayView)
+                    animate(params.topMargin, 0)
+                }else if(y > event.y){
+                    Log.e("Up","u1")
+                    slideToTop(todayView)
+                    animate(params.topMargin, todayScrollbar.height)
+                }
+            }
+            return@setOnTouchListener true
+        }
 
         mainRecycler.layoutManager = LinearLayoutManager(this)
+        todayRecycler.layoutManager = LinearLayoutManager(this)
 
-        LastAdapter(list, BR.item)
+        LastAdapter(alllist, BR.item)
             .map<PlanningData, ItemPlanningBinding>(R.layout.item_planning)
             {
                 onBind {
@@ -89,6 +116,23 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             .into(mainRecycler)
+
+        LastAdapter(todaylist, BR.item)
+            .map<TodayData, ItemPlanningTodayBinding>(R.layout.item_planning_today) {
+                onBind {
+                    it.binding.run {
+                        item?.let { data ->
+                            if (data.time!!.length >= 6) {
+                                todayTime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13.72F)
+                            }
+                        }
+                    }
+                }
+                onClick {
+                    Toast.makeText(applicationContext, "Click", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .into(todayRecycler)
     }
 
     fun animate(start: Int, end: Int) {
@@ -117,6 +161,7 @@ class MainActivity : AppCompatActivity() {
     fun planInfo() {
         planningInfo.start()
         planningInfo.join()
-        list.addAll(planningInfo.infoList)
+        alllist.addAll(planningInfo.infoList)
+        todaylist.addAll(planningInfo.todayList)
     }
 }
