@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        calenderLayout.bringToFront()
+        calendarLayout.bringToFront()
         planInfo()
 
         detector = GestureDetector(applicationContext, object : GestureDetector.OnGestureListener {
@@ -130,6 +130,9 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
+                    .onClick {
+                        Toast.makeText(applicationContext,it.binding.item!!.title,Toast.LENGTH_SHORT).show()
+                    }
             }
             .into(mainRecycler)
 

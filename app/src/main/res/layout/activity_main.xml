@@ -12,7 +12,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_width="match_parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/calenderLayout"
+            app:layout_constraintBottom_toTopOf="@id/calendarLayout"
             android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
@@ -25,7 +25,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.constraint.ConstraintLayout
-            android:id="@+id/calenderLayout"
+            android:id="@+id/calendarLayout"
             android:layout_width="match_parent"
             app:layout_constraintDimensionRatio="H,5:3"
             app:layout_constraintTop_toBottomOf="@+id/appbarLayout"
@@ -34,37 +34,37 @@
             android:background="@color/colorMain">
 
         <android.support.constraint.ConstraintLayout
-                android:id="@+id/calenderTodayLayout"
+                android:id="@+id/alendarTodayLayout"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/mainCalenderView"
+                app:layout_constraintEnd_toStartOf="@id/mainCalendarView"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_width="80dp"
-                android:background="@drawable/bg_main_calender_today"
+                android:background="@drawable/bg_main_calendar_today"
                 android:layout_height="80dp">
 
             <TextView
-                    android:id="@+id/calenderTodayTv"
+                    android:id="@+id/alendarTodayTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="24"
                     android:textSize="35sp"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/calenderMonthTv"
+                    app:layout_constraintBottom_toTopOf="@+id/alendarMonthTv"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_chainStyle="packed"
                     android:textColor="@android:color/white"/>
 
             <TextView
-                    android:id="@+id/calenderMonthTv"
+                    android:id="@+id/alendarMonthTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MARCH"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/calenderTodayTv"
+                    app:layout_constraintTop_toBottomOf="@+id/alendarTodayTv"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:textSize="8sp"
                     android:textColor="@android:color/white"/>
@@ -74,13 +74,23 @@
 
 
         <android.support.constraint.ConstraintLayout
-                android:id="@+id/mainCalenderView"
+                android:id="@+id/mainCalendarView"
                 android:layout_width="0dp"
-                android:background="@color/colorChaeWon"
                 app:layout_constraintDimensionRatio="H,5:5"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_height="match_parent">
 
+
+            <CalendarView
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+            </CalendarView>
 
 
         </android.support.constraint.ConstraintLayout>
@@ -90,7 +100,7 @@
     <android.support.v7.widget.RecyclerView
             android:id="@+id/mainRecycler"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/calenderLayout"
+            app:layout_constraintTop_toBottomOf="@id/calendarLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp">
     </android.support.v7.widget.RecyclerView>
@@ -98,7 +108,7 @@
     <android.support.constraint.ConstraintLayout
             android:id="@+id/todayView"
             android:layout_width="match_parent"
-            app:layout_constraintTop_toBottomOf="@+id/calenderLayout"
+            app:layout_constraintTop_toBottomOf="@+id/calendarLayout"
             android:layout_height="wrap_content">
 
         <android.support.v7.widget.RecyclerView
