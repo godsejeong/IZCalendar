@@ -81,16 +81,17 @@
                 android:layout_height="match_parent">
 
 
-            <CalendarView
+            <com.jjmin.izcalender.calendar.CalendarView
+                    android:id="@+id/Calendar"
+                    android:gravity="center"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
-
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-            </CalendarView>
+            </com.jjmin.izcalender.calendar.CalendarView>
 
 
         </android.support.constraint.ConstraintLayout>

@@ -13,10 +13,6 @@
             android:usesCleartextTraffic="true"
             android:theme="@style/NoActionBar">
         <activity android:name=".view.MainActivity">
-
-
-        </activity>
-        <activity android:name=".calendar.CalendarView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

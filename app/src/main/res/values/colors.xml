@@ -17,5 +17,5 @@
     <color name="colorMinJu">#fefefc</color>
     <color name="colorChaeYeon">#96e0e1</color>
     <color name="colorMyColor">@color/colorOneYoung</color>
-
+    <color name="colorWhite">#FFFFFF</color>
 </resources>

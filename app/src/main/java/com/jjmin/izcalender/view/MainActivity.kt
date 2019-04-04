@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var detector: GestureDetector
     var alllist = ArrayList<Any>()
     var todaylist = ArrayList<TodayData>()
+    var clandardayList = ArrayList<String>()
     var planningInfo = PlanningModel()
     var set: ConstraintSet = ConstraintSet()
     var scrollBl = true
@@ -38,6 +39,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         calendarLayout.bringToFront()
         planInfo()
+
+        Calendar.setPlan(clandardayList)
 
         detector = GestureDetector(applicationContext, object : GestureDetector.OnGestureListener {
             override fun onShowPress(e: MotionEvent?) {
@@ -180,7 +183,7 @@ class MainActivity : AppCompatActivity() {
         planningInfo.start()
         planningInfo.join()
         alllist.addAll(planningInfo.infoList)
-
+        clandardayList.addAll(planningInfo.clandardayList)
         todaylist.addAll(planningInfo.todayList)
     }
 }

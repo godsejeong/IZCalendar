@@ -3,15 +3,21 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="@color/colorMain"
-        android:layout_width="match_parent" android:layout_height="wrap_content">
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <GridView
-
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             android:id="@+id/calendarGridView"
+            android:clipToPadding="true"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:fitsSystemWindows="true"
+            android:stretchMode="columnWidth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
     </GridView>

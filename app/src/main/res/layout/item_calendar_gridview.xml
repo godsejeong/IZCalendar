@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="25dp"
+        android:layout_height="25dp">
 
     <TextView
             android:id="@+id/calendarTv"
@@ -12,18 +10,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            android:gravity="center"
+            android:textSize="10sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
             android:textColor="#fefefe"
+            android:layout_marginBottom="1dp"
             android:text="1"
     />
 
     <ImageView
             android:id="@+id/calendarNoti"
-            android:layout_width="2dp"
-            android:layout_height="2dp"
-            android:layout_marginBottom="1dp"
+            android:layout_width="3dp"
+            android:layout_height="3dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
