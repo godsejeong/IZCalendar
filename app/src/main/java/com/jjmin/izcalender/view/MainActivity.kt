@@ -21,8 +21,10 @@ import com.jjmin.izcalender.data.TodayData
 import com.jjmin.izcalender.databinding.ItemPlanningTodayBinding
 import android.support.v7.widget.RecyclerView
 import android.view.MotionEvent
-import android.widget.AbsListView
 import android.view.GestureDetector
+import java.util.Calendar.getInstance
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,12 +36,20 @@ class MainActivity : AppCompatActivity() {
     var planningInfo = PlanningModel()
     var set: ConstraintSet = ConstraintSet()
     var scrollBl = true
+    var isRecyclerview = false
+    var isStartScroll = true
+    var today = ""
+    var month = 0
+    var cal = getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         calendarLayout.bringToFront()
         planInfo()
-
+        today = cal.get(java.util.Calendar.DATE).toString()
+        month = (cal.get(java.util.Calendar.MONTH) + 1)
+        alendarTodayTv.text = today
+        alendarMonthTv.text = monthChange(month)
         Calendar.setPlan(clandardayList)
 
         detector = GestureDetector(applicationContext, object : GestureDetector.OnGestureListener {
@@ -65,12 +75,12 @@ class MainActivity : AppCompatActivity() {
             override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
                 val params = mainRecycler.layoutParams as ConstraintLayout.LayoutParams
                 Log.e("af", "Af")
-                if (e1!!.y > e2!!.y && scrollBl) {
+                if (e1!!.y > e2!!.y) {
                     slideToTop(todayView)
                     animate(params.topMargin, todayScrollbar.height)
                     scrollBl = false
 
-                } else if (e1!!.y < e2!!.y && !scrollBl) {
+                } else if (e1!!.y < e2!!.y) {
                     slideToBottom(todayView)
                     animate(params.topMargin, 0)
                     scrollBl = true
@@ -91,8 +101,8 @@ class MainActivity : AppCompatActivity() {
 
         todayRecycler.setOnTouchListener { v, event ->
             val params = mainRecycler.layoutParams as ConstraintLayout.LayoutParams
-            if (gestureDetector.onTouchEvent(event)){
-                val childView = todayRecycler.findChildViewUnder(event.x,event.y)
+            if (gestureDetector.onTouchEvent(event)) {
+                val childView = todayRecycler.findChildViewUnder(event.x, event.y)
                 val currentPosition = todayRecycler.getChildAdapterPosition(childView!!)
                 val currentItemStudent = todaylist[currentPosition]
                 Toast.makeText(
@@ -100,9 +110,9 @@ class MainActivity : AppCompatActivity() {
                     currentItemStudent.title,
                     Toast.LENGTH_SHORT
                 ).show()
-            }else if (event.action == MotionEvent.ACTION_DOWN) {
+            } else if (event.action == MotionEvent.ACTION_DOWN) {
                 y = event.y.toInt()
-            }else if (event.action == MotionEvent.ACTION_UP) {
+            } else if (event.action == MotionEvent.ACTION_UP) {
                 if (y < event.y && !scrollBl) {
                     Log.e("Down", "d1")
                     slideToBottom(todayView)
@@ -134,7 +144,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                     .onClick {
-                        Toast.makeText(applicationContext,it.binding.item!!.title,Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, it.binding.item!!.title, Toast.LENGTH_SHORT).show()
                     }
             }
             .into(mainRecycler)
@@ -154,6 +164,24 @@ class MainActivity : AppCompatActivity() {
             }
             .into(todayRecycler)
 
+        mainRecycler.setOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                dy
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                isRecyclerview = true
+                if (isStartScroll) {
+                    val params = mainRecycler.layoutParams as ConstraintLayout.LayoutParams
+                    slideToTop(todayView)
+                    animate(params.topMargin, todayScrollbar.height)
+                    scrollBl = false
+                }
+            }
+        })
     }
 
     fun animate(start: Int, end: Int) {
@@ -173,10 +201,36 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun slideToBottom(view: View) {
+        var handler = Handler()
+        if (isRecyclerview)
+            isStartScroll = false
         view.visibility = View.VISIBLE
         view.animate()
             .translationY(0f)
             .withLayer()
+
+        handler.postDelayed({
+            isStartScroll = true
+        }, 2000)
+
+    }
+
+    fun monthChange(month: Int): String {
+        return when (month) {
+            1 -> "January"
+            2 -> "February"
+            3 -> "March"
+            4 -> "April"
+            5 -> "May"
+            6 -> "June"
+            7 -> "July"
+            8 -> "August"
+            9 -> "September"
+            10 -> "October"
+            11 -> "November"
+            12 -> "December"
+            else -> ""
+        }
     }
 
     fun planInfo() {
