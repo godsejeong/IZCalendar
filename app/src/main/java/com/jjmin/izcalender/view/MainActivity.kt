@@ -25,8 +25,6 @@ import android.view.GestureDetector
 import java.util.Calendar.getInstance
 
 
-
-
 class MainActivity : AppCompatActivity() {
     var y = 0
     lateinit var detector: GestureDetector
@@ -44,6 +42,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setSupportActionBar(mainToolbar)
         calendarLayout.bringToFront()
         planInfo()
         today = cal.get(java.util.Calendar.DATE).toString()
@@ -207,12 +206,9 @@ class MainActivity : AppCompatActivity() {
         view.visibility = View.VISIBLE
         view.animate()
             .translationY(0f)
-            .withLayer()
-
-        handler.postDelayed({
-            isStartScroll = true
-        }, 2000)
-
+            .withEndAction {
+                isStartScroll = true
+            }
     }
 
     fun monthChange(month: Int): String {
@@ -239,5 +235,20 @@ class MainActivity : AppCompatActivity() {
         alllist.addAll(planningInfo.infoList)
         clandardayList.addAll(planningInfo.clandardayList)
         todaylist.addAll(planningInfo.todayList)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            R.id.menuSetting -> {
+                Toast.makeText(applicationContext, "Setting", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }

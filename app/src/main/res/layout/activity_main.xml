@@ -16,6 +16,7 @@
             android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
+                android:id="@+id/mainToolbar"
                 android:layout_width="match_parent"
                 app:title="Today Plan"
                 app:titleTextColor="@android:color/white"
