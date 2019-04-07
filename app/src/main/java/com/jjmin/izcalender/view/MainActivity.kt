@@ -22,19 +22,22 @@ import com.jjmin.izcalender.databinding.ItemPlanningTodayBinding
 import android.support.v7.widget.RecyclerView
 import android.view.MotionEvent
 import android.view.GestureDetector
+import android.widget.AdapterView
+import com.jjmin.izcalender.model.SnappingLayoutManager
+import kotlinx.android.synthetic.main.calendar_view.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.Calendar.getInstance
 
 
 class MainActivity : AppCompatActivity() {
     var y = 0
-    lateinit var detector: GestureDetector
-    var alllist = ArrayList<Any>()
+    var alllist = ArrayList<PlanningData>()
     var todaylist = ArrayList<TodayData>()
     var clandardayList = ArrayList<String>()
     var planningInfo = PlanningModel()
     var set: ConstraintSet = ConstraintSet()
     var scrollBl = true
-    var isRecyclerview = false
     var isStartScroll = true
     var today = ""
     var month = 0
@@ -43,60 +46,40 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(mainToolbar)
+
         calendarLayout.bringToFront()
         planInfo()
         today = cal.get(java.util.Calendar.DATE).toString()
         month = (cal.get(java.util.Calendar.MONTH) + 1)
         alendarTodayTv.text = today
         alendarMonthTv.text = monthChange(month)
-        Calendar.setPlan(clandardayList)
-
-        detector = GestureDetector(applicationContext, object : GestureDetector.OnGestureListener {
-            override fun onShowPress(e: MotionEvent?) {
-            }
-
-            override fun onSingleTapUp(e: MotionEvent?): Boolean {
-                return true
-            }
-
-            override fun onDown(e: MotionEvent?): Boolean {
-                return true
-            }
-
-            override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
-                return true
-            }
-
-            override fun onLongPress(e: MotionEvent?) {
-            }
-
-
-            override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
-                val params = mainRecycler.layoutParams as ConstraintLayout.LayoutParams
-                Log.e("af", "Af")
-                if (e1!!.y > e2!!.y) {
-                    slideToTop(todayView)
-                    animate(params.topMargin, todayScrollbar.height)
-                    scrollBl = false
-
-                } else if (e1!!.y < e2!!.y) {
-                    slideToBottom(todayView)
-                    animate(params.topMargin, 0)
-                    scrollBl = true
-                }
-                return true
-            }
-        })
-
-        todayView.setOnTouchListener { v, event ->
-            detector.onTouchEvent(event)
-        }
+        CustomCalendar.setPlan(clandardayList)
 
         var gestureDetector = GestureDetector(applicationContext, object : GestureDetector.SimpleOnGestureListener() {
             override fun onSingleTapUp(e: MotionEvent): Boolean {
                 return scrollBl
             }
         })
+
+        todayView.setOnTouchListener { v, event ->
+            val params = mainRecycler.layoutParams as ConstraintLayout.LayoutParams
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                y = event.y.toInt()
+            } else if (event.action == MotionEvent.ACTION_UP) {
+                if (y < event.y && !scrollBl) {
+                    Log.e("Down", "d1")
+                    slideToBottom(todayView)
+                    animate(params.topMargin, 0)
+                    scrollBl = true
+                } else if (y > event.y && scrollBl) {
+                    Log.e("Up", "u1")
+                    slideToTop(todayView)
+                    animate(params.topMargin, todayScrollbar.height)
+                    scrollBl = false
+                }
+            }
+            return@setOnTouchListener true
+        }
 
         todayRecycler.setOnTouchListener { v, event ->
             val params = mainRecycler.layoutParams as ConstraintLayout.LayoutParams
@@ -127,7 +110,7 @@ class MainActivity : AppCompatActivity() {
             return@setOnTouchListener true
         }
 
-        mainRecycler.layoutManager = LinearLayoutManager(this)
+        mainRecycler.layoutManager = SnappingLayoutManager(this,LinearLayoutManager.VERTICAL, false)
         todayRecycler.layoutManager = LinearLayoutManager(this)
 
         LastAdapter(alllist, BR.item)
@@ -148,7 +131,7 @@ class MainActivity : AppCompatActivity() {
             }
             .into(mainRecycler)
 
-        LastAdapter(todaylist, BR.item)
+        LastAdapter(todaylist,BR.item)
             .map<TodayData, ItemPlanningTodayBinding>(R.layout.item_planning_today) {
 
                 onBind {
@@ -164,23 +147,51 @@ class MainActivity : AppCompatActivity() {
             .into(todayRecycler)
 
         mainRecycler.setOnScrollListener(object : RecyclerView.OnScrollListener() {
-
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                dy
-            }
-
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                isRecyclerview = true
-                if (isStartScroll) {
-                    val params = mainRecycler.layoutParams as ConstraintLayout.LayoutParams
-                    slideToTop(todayView)
-                    animate(params.topMargin, todayScrollbar.height)
-                    scrollBl = false
-                }
+                isStartScroll = true
+                val params = mainRecycler.layoutParams as ConstraintLayout.LayoutParams
+                slideToTop(todayView)
+                animate(params.topMargin, todayScrollbar.height)
+                scrollBl = false
             }
         })
+
+        var isclick = true
+
+        CustomCalendar.calendarGridView.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, view, position, id ->
+                var datePosition = CustomCalendar.list[position].day
+                val mSimpleDateFormat = SimpleDateFormat("MM/dd", Locale.KOREA)
+                val date = Date()
+                val mDay = mSimpleDateFormat.format(date)
+                try {
+                    if (datePosition.toInt() < 10)
+                        datePosition = "0$datePosition"
+                    datePosition = "${CustomCalendar.strmon}/$datePosition"
+                } catch (e: NumberFormatException) {
+                    e.printStackTrace()
+                    isclick = false
+                }
+                Log.e("list", datePosition)
+                val params = mainRecycler.layoutParams as ConstraintLayout.LayoutParams
+
+                if (isclick) {
+                    (0 until alllist.size).forEach {
+                        var planlist = alllist[it]
+                        Log.e("all", planlist.day)
+                        if (datePosition == planlist.day) {
+                            mainRecycler.smoothScrollToPosition(it)
+                            return@forEach
+                        } else if (datePosition == mDay) {
+                            slideToBottom(todayView)
+                            animate(params.topMargin, 0)
+                            scrollBl = true
+                        }
+                    }
+
+                }
+            }
     }
 
     fun animate(start: Int, end: Int) {
@@ -200,15 +211,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun slideToBottom(view: View) {
-        var handler = Handler()
-        if (isRecyclerview)
-            isStartScroll = false
+        if (isStartScroll) {
+            mainRecycler.stopScroll()
+        }
         view.visibility = View.VISIBLE
         view.animate()
             .translationY(0f)
-            .withEndAction {
-                isStartScroll = true
-            }
+            .withLayer()
     }
 
     fun monthChange(month: Int): String {

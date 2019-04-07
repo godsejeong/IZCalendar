@@ -19,6 +19,7 @@
                 android:id="@+id/mainToolbar"
                 android:layout_width="match_parent"
                 app:title="Today Plan"
+                android:elevation="5dp"
                 app:titleTextColor="@android:color/white"
                 android:layout_height="?attr/actionBarSize">
         </android.support.v7.widget.Toolbar>
@@ -28,6 +29,7 @@
     <android.support.constraint.ConstraintLayout
             android:id="@+id/calendarLayout"
             android:layout_width="match_parent"
+            android:elevation="10dp"
             app:layout_constraintDimensionRatio="H,5:3"
             app:layout_constraintTop_toBottomOf="@+id/appbarLayout"
             app:layout_constraintBottom_toTopOf="@+id/todayView"
@@ -83,7 +85,7 @@
 
 
             <com.jjmin.izcalender.calendar.CalendarView
-                    android:id="@+id/Calendar"
+                    android:id="@+id/CustomCalendar"
                     android:gravity="center"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -93,11 +95,9 @@
                     android:layout_height="match_parent">
 
             </com.jjmin.izcalender.calendar.CalendarView>
-
-
         </android.support.constraint.ConstraintLayout>
-
     </android.support.constraint.ConstraintLayout>
+
 
     <android.support.v7.widget.RecyclerView
             android:id="@+id/mainRecycler"
@@ -106,6 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp">
     </android.support.v7.widget.RecyclerView>
+
 
     <android.support.constraint.ConstraintLayout
             android:id="@+id/todayView"

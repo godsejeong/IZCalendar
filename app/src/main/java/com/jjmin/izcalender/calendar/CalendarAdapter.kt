@@ -57,7 +57,7 @@ class CalendarAdapter(context: Context, list: ArrayList<ClandarData>, planList: 
 
         run loop@{
             (0 until planList!!.size).forEach {
-                if (planList!![it] == item.day) {
+                if (inputday(planList!![it]) == item.day) {
                     holder.infoIv.visibility = View.VISIBLE
                     return@loop
                 } else {
@@ -67,6 +67,15 @@ class CalendarAdapter(context: Context, list: ArrayList<ClandarData>, planList: 
             }
         }
         return view
+    }
+
+    fun inputday(str : String) : String{
+        var result = str.substring(str.lastIndexOf("/")+1)
+        if(result[0] in "0"){
+            result = result[1].toString()
+        }
+        Log.e("result",result)
+        return result
     }
 
     class ViewHolder(view: View) {

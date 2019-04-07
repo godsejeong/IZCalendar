@@ -28,7 +28,7 @@ class PlanningModel : Thread() {
 
         planJson.forEach{
             Log.e("day",it.day)
-            inputday(it.day)
+            clandardayList.add(it.day)
             if(it.title.size >= 2){
                 for (i in 0 until it.title.size){
                     searchToday(it.title[i],it.subTitle[i],timeCheck(it.time[i]),it.day,Dowchange(it.dow))
@@ -37,15 +37,6 @@ class PlanningModel : Thread() {
                 searchToday(it.title[0],it.subTitle[0],timeCheck(it.time[0]),it.day,Dowchange(it.dow))
             }
         }
-    }
-
-    fun inputday(str : String){
-        var result = str.substring(str.lastIndexOf("/")+1)
-        if(result[0] in "0"){
-            result = result[1].toString()
-        }
-        Log.e("result",result)
-        clandardayList.add(result)
     }
 
     fun searchToday(title : String,subTitle : String, time : String, day : String ,dow : String){
