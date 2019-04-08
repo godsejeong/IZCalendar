@@ -1,4 +1,4 @@
-package com.jjmin.izcalender.model
+package com.jjmin.izcalender.utils
 
 import android.content.Context
 import android.support.v7.widget.LinearSmoothScroller.SNAP_TO_START

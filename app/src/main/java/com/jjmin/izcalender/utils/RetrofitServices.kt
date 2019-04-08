@@ -1,8 +1,7 @@
-package com.jjmin.izcalender.util
+package com.jjmin.izcalender.utils
 
 import com.jjmin.izcalender.data.AllPlan
 import retrofit2.Call
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
 interface RetrofitServices{

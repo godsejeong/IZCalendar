@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.content.Context.LAYOUT_INFLATER_SERVICE
+import android.databinding.ObservableArrayList
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,9 +14,9 @@ import com.jjmin.izcalender.R
 import java.util.*
 
 
-class CalendarAdapter(context: Context, list: ArrayList<ClandarData>, planList: ArrayList<String>) : BaseAdapter() {
-    val list: ArrayList<ClandarData>? = list
-    var planList: ArrayList<String>? = planList
+class CalendarAdapter(context: Context, list: ObservableArrayList<ClandarData>, planList: ArrayList<String>) : BaseAdapter() {
+    val list: ObservableArrayList<ClandarData>? = list
+    var planList: ArrayList<String> = planList
     var context = context
     var cal = Calendar.getInstance()
 
@@ -54,7 +55,7 @@ class CalendarAdapter(context: Context, list: ArrayList<ClandarData>, planList: 
             holder.dayTv.setTextColor(parent!!.context.resources.getColor(R.color.colorMyColor))
             holder.dayTv.setBackgroundResource(R.drawable.bg_calendarview_today)
         }
-
+        Log.e("Adf",planList!!.size.toString())
         run loop@{
             (0 until planList!!.size).forEach {
                 if (inputday(planList!![it]) == item.day) {
@@ -62,10 +63,10 @@ class CalendarAdapter(context: Context, list: ArrayList<ClandarData>, planList: 
                     return@loop
                 } else {
                     holder.infoIv.visibility = View.INVISIBLE
-
                 }
             }
         }
+
         return view
     }
 

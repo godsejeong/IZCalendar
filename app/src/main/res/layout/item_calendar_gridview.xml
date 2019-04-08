@@ -21,6 +21,7 @@
 
     <ImageView
             android:id="@+id/calendarNoti"
+            android:visibility="invisible"
             android:layout_width="3dp"
             android:layout_height="3dp"
             app:layout_constraintBottom_toBottomOf="parent"

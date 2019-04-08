@@ -1,148 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".view.MainActivity">
-
-    <android.support.design.widget.AppBarLayout
-            android:id="@+id/appbarLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/calendarLayout"
-            android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar
-                android:id="@+id/mainToolbar"
-                android:layout_width="match_parent"
-                app:title="Today Plan"
-                android:elevation="5dp"
-                app:titleTextColor="@android:color/white"
-                android:layout_height="?attr/actionBarSize">
-        </android.support.v7.widget.Toolbar>
-
-    </android.support.design.widget.AppBarLayout>
-
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+                name="viewmodel"
+                type="com.jjmin.izcalender.viewmodel.CalendarViewModel"/>
+    </data>
     <android.support.constraint.ConstraintLayout
-            android:id="@+id/calendarLayout"
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:elevation="10dp"
-            app:layout_constraintDimensionRatio="H,5:3"
-            app:layout_constraintTop_toBottomOf="@+id/appbarLayout"
-            app:layout_constraintBottom_toTopOf="@+id/todayView"
-            android:layout_height="0dp"
-            android:background="@color/colorMain">
+            android:layout_height="match_parent"
+            tools:context=".view.MainActivity">
 
-        <android.support.constraint.ConstraintLayout
-                android:id="@+id/alendarTodayLayout"
+        <android.support.design.widget.AppBarLayout
+                android:id="@+id/appbarLayout"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/mainCalendarView"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_width="80dp"
-                android:background="@drawable/bg_main_calendar_today"
-                android:layout_height="80dp">
-
-            <TextView
-                    android:id="@+id/alendarTodayTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="24"
-                    android:textSize="35sp"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/alendarMonthTv"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_chainStyle="packed"
-                    android:textColor="@android:color/white"/>
-
-            <TextView
-                    android:id="@+id/alendarMonthTv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="MARCH"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/alendarTodayTv"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:textSize="8sp"
-                    android:textColor="@android:color/white"/>
-
-
-        </android.support.constraint.ConstraintLayout>
-
-
-        <android.support.constraint.ConstraintLayout
-                android:id="@+id/mainCalendarView"
-                android:layout_width="0dp"
-                app:layout_constraintDimensionRatio="H,5:5"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_height="match_parent">
-
-
-            <com.jjmin.izcalender.calendar.CalendarView
-                    android:id="@+id/CustomCalendar"
-                    android:gravity="center"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-            </com.jjmin.izcalender.calendar.CalendarView>
-        </android.support.constraint.ConstraintLayout>
-    </android.support.constraint.ConstraintLayout>
-
-
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/mainRecycler"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/calendarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp">
-    </android.support.v7.widget.RecyclerView>
-
-
-    <android.support.constraint.ConstraintLayout
-            android:id="@+id/todayView"
-            android:layout_width="match_parent"
-            app:layout_constraintTop_toBottomOf="@+id/calendarLayout"
-            android:layout_height="wrap_content">
-
-        <android.support.v7.widget.RecyclerView
-                android:id="@+id/todayRecycler"
-                app:layout_constraintBottom_toTopOf="@+id/todayScrollbar"
-                app:layout_constraintTop_toBottomOf="@+id/todayScrollbar"
                 android:layout_width="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/calendarLayout"
                 android:layout_height="wrap_content">
 
+            <android.support.v7.widget.Toolbar
+                    android:id="@+id/mainToolbar"
+                    android:layout_width="match_parent"
+                    app:title="Today Plan"
+                    android:elevation="5dp"
+                    app:titleTextColor="@android:color/white"
+                    android:layout_height="?attr/actionBarSize">
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.constraint.ConstraintLayout
+                android:id="@+id/calendarLayout"
+                android:layout_width="match_parent"
+                android:elevation="10dp"
+                app:layout_constraintDimensionRatio="H,5:3"
+                app:layout_constraintTop_toBottomOf="@+id/appbarLayout"
+                app:layout_constraintBottom_toTopOf="@+id/todayView"
+                android:layout_height="0dp"
+                android:background="@color/colorMain">
+
+            <android.support.constraint.ConstraintLayout
+                    android:id="@+id/calendarTodayLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/mainCalendarView"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_width="80dp"
+                    android:background="@drawable/bg_main_calendar_today"
+                    android:layout_height="80dp">
+
+                <TextView
+                        android:id="@+id/calendarTodayTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewmodel.getToday()}"
+                        tools:text="24"
+                        android:textSize="35sp"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/calendarMonthTv"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        android:textColor="@android:color/white"/>
+
+                <TextView
+                        android:id="@+id/calendarMonthTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewmodel.monthChange()}"
+                        tools:text="MARCH"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/calendarTodayTv"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:textSize="8sp"
+                        android:textColor="@android:color/white"/>
+
+
+            </android.support.constraint.ConstraintLayout>
+
+
+            <android.support.constraint.ConstraintLayout
+                    android:id="@+id/mainCalendarView"
+                    android:layout_width="0dp"
+                    app:layout_constraintDimensionRatio="H,5:5"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_height="match_parent">
+
+
+                <com.jjmin.izcalender.calendar.CalendarView
+                        android:id="@+id/CustomCalendar"
+                        android:gravity="center"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                </com.jjmin.izcalender.calendar.CalendarView>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/mainRecycler"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/calendarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
         </android.support.v7.widget.RecyclerView>
 
 
         <android.support.constraint.ConstraintLayout
-                android:id="@+id/todayScrollbar"
-                app:layout_constraintTop_toBottomOf="@+id/todayRecycler"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/todayView"
                 android:layout_width="match_parent"
-                android:background="@drawable/bg_main_todayplan"
-                android:layout_height="13dp">
+                app:layout_constraintTop_toBottomOf="@+id/calendarLayout"
+                android:layout_height="wrap_content">
 
-            <ImageView
-                    app:layout_constraintTop_toTopOf="parent"
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/todayRecycler"
+                    app:layout_constraintBottom_toTopOf="@+id/todayScrollbar"
+                    app:layout_constraintTop_toBottomOf="@+id/todayScrollbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+
+            <android.support.constraint.ConstraintLayout
+                    android:id="@+id/todayScrollbar"
+                    app:layout_constraintTop_toBottomOf="@+id/todayRecycler"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_drag_handle_black_24dp"
-            />
+                    android:layout_width="match_parent"
+                    android:background="@drawable/bg_main_todayplan"
+                    android:layout_height="13dp">
+
+                <ImageView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/ic_drag_handle_black_24dp"
+                />
+            </android.support.constraint.ConstraintLayout>
         </android.support.constraint.ConstraintLayout>
-
-
     </android.support.constraint.ConstraintLayout>
-</android.support.constraint.ConstraintLayout>
+</layout>

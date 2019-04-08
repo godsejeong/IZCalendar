@@ -1,5 +1,6 @@
 package com.jjmin.izcalender.view
 
+import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -23,7 +24,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.MotionEvent
 import android.view.GestureDetector
 import android.widget.AdapterView
-import com.jjmin.izcalender.model.SnappingLayoutManager
+import com.jjmin.izcalender.databinding.ActivityMainBinding
+import com.jjmin.izcalender.utils.SnappingLayoutManager
+import com.jjmin.izcalender.utils.Utils
+import com.jjmin.izcalender.viewmodel.CalendarViewModel
+import com.jjmin.izcalender.viewmodel.PlanningViewModel
 import kotlinx.android.synthetic.main.calendar_view.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,29 +37,25 @@ import java.util.Calendar.getInstance
 
 class MainActivity : AppCompatActivity() {
     var y = 0
-    var alllist = ArrayList<PlanningData>()
-    var todaylist = ArrayList<TodayData>()
-    var clandardayList = ArrayList<String>()
-    var planningInfo = PlanningModel()
-    var set: ConstraintSet = ConstraintSet()
+    var planModel = PlanningViewModel()
     var scrollBl = true
     var isStartScroll = true
-    var today = ""
-    var month = 0
-    var cal = getInstance()
+    var isclick = true
+    var modle = CalendarViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(mainToolbar)
-
         calendarLayout.bringToFront()
-        planInfo()
-        today = cal.get(java.util.Calendar.DATE).toString()
-        month = (cal.get(java.util.Calendar.MONTH) + 1)
-        alendarTodayTv.text = today
-        alendarMonthTv.text = monthChange(month)
-        CustomCalendar.setPlan(clandardayList)
+        var binding: ActivityMainBinding = DataBindingUtil.setContentView(
+            this,
+            R.layout.activity_main
+        )
 
+        binding.viewmodel = modle
+        modle.onCreate()
+        planModel.onCreate()
+        CustomCalendar.setPlan(planModel.clandardayList)
         var gestureDetector = GestureDetector(applicationContext, object : GestureDetector.SimpleOnGestureListener() {
             override fun onSingleTapUp(e: MotionEvent): Boolean {
                 return scrollBl
@@ -86,7 +87,7 @@ class MainActivity : AppCompatActivity() {
             if (gestureDetector.onTouchEvent(event)) {
                 val childView = todayRecycler.findChildViewUnder(event.x, event.y)
                 val currentPosition = todayRecycler.getChildAdapterPosition(childView!!)
-                val currentItemStudent = todaylist[currentPosition]
+                val currentItemStudent = planModel.todaylist[currentPosition]
                 Toast.makeText(
                     this@MainActivity,
                     currentItemStudent.title,
@@ -110,10 +111,11 @@ class MainActivity : AppCompatActivity() {
             return@setOnTouchListener true
         }
 
-        mainRecycler.layoutManager = SnappingLayoutManager(this,LinearLayoutManager.VERTICAL, false)
+        mainRecycler.layoutManager =
+            SnappingLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         todayRecycler.layoutManager = LinearLayoutManager(this)
 
-        LastAdapter(alllist, BR.item)
+        LastAdapter(planModel.alllist, BR.item)
             .map<PlanningData, ItemPlanningBinding>(R.layout.item_planning)
             {
                 onBind {
@@ -131,7 +133,7 @@ class MainActivity : AppCompatActivity() {
             }
             .into(mainRecycler)
 
-        LastAdapter(todaylist,BR.item)
+        LastAdapter(planModel.todaylist, BR.item)
             .map<TodayData, ItemPlanningTodayBinding>(R.layout.item_planning_today) {
 
                 onBind {
@@ -157,14 +159,9 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        var isclick = true
-
         CustomCalendar.calendarGridView.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 var datePosition = CustomCalendar.list[position].day
-                val mSimpleDateFormat = SimpleDateFormat("MM/dd", Locale.KOREA)
-                val date = Date()
-                val mDay = mSimpleDateFormat.format(date)
                 try {
                     if (datePosition.toInt() < 10)
                         datePosition = "0$datePosition"
@@ -177,19 +174,18 @@ class MainActivity : AppCompatActivity() {
                 val params = mainRecycler.layoutParams as ConstraintLayout.LayoutParams
 
                 if (isclick) {
-                    (0 until alllist.size).forEach {
-                        var planlist = alllist[it]
+                    (0 until planModel.alllist.size).forEach {
+                        var planlist = planModel.alllist[it]
                         Log.e("all", planlist.day)
                         if (datePosition == planlist.day) {
                             mainRecycler.smoothScrollToPosition(it)
                             return@forEach
-                        } else if (datePosition == mDay) {
+                        } else if (datePosition ==  Utils.today()) {
                             slideToBottom(todayView)
                             animate(params.topMargin, 0)
                             scrollBl = true
                         }
                     }
-
                 }
             }
     }
@@ -200,7 +196,7 @@ class MainActivity : AppCompatActivity() {
             Handler().postDelayed({
                 params.topMargin = start - (start - end) * it / 10
                 mainRecycler.requestLayout()
-            }, it * 10L)
+            },it * 10L)
         }
     }
 
@@ -220,38 +216,13 @@ class MainActivity : AppCompatActivity() {
             .withLayer()
     }
 
-    fun monthChange(month: Int): String {
-        return when (month) {
-            1 -> "January"
-            2 -> "February"
-            3 -> "March"
-            4 -> "April"
-            5 -> "May"
-            6 -> "June"
-            7 -> "July"
-            8 -> "August"
-            9 -> "September"
-            10 -> "October"
-            11 -> "November"
-            12 -> "December"
-            else -> ""
-        }
-    }
-
-    fun planInfo() {
-        planningInfo.start()
-        planningInfo.join()
-        alllist.addAll(planningInfo.infoList)
-        clandardayList.addAll(planningInfo.clandardayList)
-        todaylist.addAll(planningInfo.todayList)
-    }
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
         when (item!!.itemId) {
             R.id.menuSetting -> {
                 Toast.makeText(applicationContext, "Setting", Toast.LENGTH_SHORT).show()
