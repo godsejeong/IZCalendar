@@ -66,7 +66,6 @@ class CalendarAdapter(context: Context, list: ObservableArrayList<ClandarData>, 
                 }
             }
         }
-
         return view
     }
 

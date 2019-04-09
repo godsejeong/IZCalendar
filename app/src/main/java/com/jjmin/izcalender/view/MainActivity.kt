@@ -10,29 +10,25 @@ import android.widget.Toast
 import com.github.nitrico.lastadapter.*
 import com.jjmin.izcalender.BR
 import com.jjmin.izcalender.data.PlanningData
-import com.jjmin.izcalender.model.PlanningModel
 import kotlinx.android.synthetic.main.activity_main.*
 import com.jjmin.izcalender.databinding.ItemPlanningBinding
 import com.jjmin.izcalender.R
 import android.support.constraint.ConstraintLayout
 import android.os.Handler
-import android.support.constraint.ConstraintSet
 import android.util.Log
 import com.jjmin.izcalender.data.TodayData
 import com.jjmin.izcalender.databinding.ItemPlanningTodayBinding
 import android.support.v7.widget.RecyclerView
 import android.view.MotionEvent
 import android.view.GestureDetector
-import android.widget.AdapterView
+import android.widget.AdapterView.OnItemClickListener
 import com.jjmin.izcalender.databinding.ActivityMainBinding
+import com.jjmin.izcalender.model.CalendarModel
 import com.jjmin.izcalender.utils.SnappingLayoutManager
 import com.jjmin.izcalender.utils.Utils
 import com.jjmin.izcalender.viewmodel.CalendarViewModel
 import com.jjmin.izcalender.viewmodel.PlanningViewModel
 import kotlinx.android.synthetic.main.calendar_view.view.*
-import java.text.SimpleDateFormat
-import java.util.*
-import java.util.Calendar.getInstance
 
 
 class MainActivity : AppCompatActivity() {
@@ -160,19 +156,18 @@ class MainActivity : AppCompatActivity() {
         })
 
         CustomCalendar.calendarGridView.onItemClickListener =
-            AdapterView.OnItemClickListener { parent, view, position, id ->
-                var datePosition = CustomCalendar.list[position].day
+            OnItemClickListener { parent, view, position, id ->
+                val params = mainRecycler.layoutParams as ConstraintLayout.LayoutParams
+                var datePosition = modle.Calendarlist[position].day
                 try {
                     if (datePosition.toInt() < 10)
                         datePosition = "0$datePosition"
-                    datePosition = "${CustomCalendar.strmon}/$datePosition"
-                } catch (e: NumberFormatException) {
-                    e.printStackTrace()
-                    isclick = false
-                }
-                Log.e("list", datePosition)
-                val params = mainRecycler.layoutParams as ConstraintLayout.LayoutParams
-
+                    datePosition = "${CalendarModel().getstrmon()}/$datePosition"
+                    } catch (e: NumberFormatException) {
+                        e.printStackTrace()
+                        isclick = false
+                    }
+                    Log.e("list", datePosition)
                 if (isclick) {
                     (0 until planModel.alllist.size).forEach {
                         var planlist = planModel.alllist[it]
@@ -228,7 +223,6 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Setting", Toast.LENGTH_SHORT).show()
             }
         }
-
         return super.onOptionsItemSelected(item)
     }
 }

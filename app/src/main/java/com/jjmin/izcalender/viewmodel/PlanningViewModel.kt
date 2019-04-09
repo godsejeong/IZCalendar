@@ -13,9 +13,6 @@ class PlanningViewModel : ViewModel{
     var clandardayList = ArrayList<String>()
     var planningInfo = PlanningModel()
 
-//    init {
-//    }
-
     override fun onCreate() {
         planInfo()
     }
