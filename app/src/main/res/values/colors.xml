@@ -3,7 +3,7 @@
     <color name="colorPrimary">@color/colorMain</color>
     <color name="colorPrimaryDark">@color/colorMain</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorMain">#292f3b</color>
+    <color name="colorMain">@color/colorOneYoungBg</color>
     <color name="colorOneYoung">#e84a8a</color>
     <color name="colorSakura">#faafbf</color>
     <color name="colorYuRi">#f68e43</color>
@@ -18,4 +18,14 @@
     <color name="colorChaeYeon">#96e0e1</color>
     <color name="colorMyColor">@color/colorOneYoung</color>
     <color name="colorWhite">#FFFFFF</color>
+
+    <color name="colorOneYoungBg">#93ADFF</color>
+    <!--<color name="colorOneYoungBg">#EBB2F8</color>-->
+    <color name="colorTagRed">#ff6d6d</color>
+    <color name="colorTagYellow">#ffe45b</color>
+    <color name="colorTagGreen">#7fce85</color>
+    <color name="colorTagBlue">#6ea8ff</color>
+
+    <color name="colorTagDisable">#00ff0000</color>
+
 </resources>

@@ -1,15 +1,15 @@
 package com.jjmin.izcalender.viewmodel
 
-import android.databinding.ObservableArrayList
 import android.util.Log
-import com.jjmin.izcalender.data.PlanningData
-import com.jjmin.izcalender.data.TodayData
+import androidx.databinding.ObservableArrayList
+import com.jjmin.izcalender.data.PlanningItem
+import com.jjmin.izcalender.data.TodayItem
 import com.jjmin.izcalender.model.PlanningModel
 import java.util.ArrayList
 
 class PlanningViewModel : ViewModel{
-    var alllist = ObservableArrayList<PlanningData>()
-    var todaylist = ObservableArrayList<TodayData>()
+    var alllist = ObservableArrayList<PlanningItem>()
+    var todaylist = ObservableArrayList<TodayItem>()
     var clandardayList = ArrayList<String>()
     var planningInfo = PlanningModel()
 

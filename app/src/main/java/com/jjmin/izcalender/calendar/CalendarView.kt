@@ -2,8 +2,6 @@ package com.jjmin.izcalender.calendar
 
 import android.app.Activity
 import android.content.Context
-import android.databinding.BindingAdapter
-import android.databinding.ObservableArrayList
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater

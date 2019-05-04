@@ -1,12 +1,10 @@
 package com.jjmin.izcalender.viewmodel
 
-import android.databinding.ObservableArrayList
-import android.databinding.ObservableField
 import android.util.Log
 import android.widget.CalendarView
+import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableField
 import com.jjmin.izcalender.calendar.ClandarData
-import com.jjmin.izcalender.data.PlanningData
-import com.jjmin.izcalender.data.TodayData
 import com.jjmin.izcalender.model.CalendarModel
 import java.text.SimpleDateFormat
 import java.util.*

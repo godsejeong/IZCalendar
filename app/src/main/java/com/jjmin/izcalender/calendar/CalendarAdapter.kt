@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.content.Context.LAYOUT_INFLATER_SERVICE
-import android.databinding.ObservableArrayList
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.databinding.ObservableArrayList
 import com.jjmin.izcalender.R
 import java.util.*
 

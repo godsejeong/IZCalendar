@@ -1,27 +1,29 @@
 package com.jjmin.izcalender.view
 
-import android.databinding.DataBindingUtil
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+//import android.support.v7.widget.LinearLayoutManager
 import android.util.TypedValue
 import android.view.*
 import android.widget.Toast
 import com.github.nitrico.lastadapter.*
 import com.jjmin.izcalender.BR
-import com.jjmin.izcalender.data.PlanningData
 import kotlinx.android.synthetic.main.activity_main.*
 import com.jjmin.izcalender.databinding.ItemPlanningBinding
 import com.jjmin.izcalender.R
-import android.support.constraint.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.os.Handler
 import android.util.Log
-import com.jjmin.izcalender.data.TodayData
 import com.jjmin.izcalender.databinding.ItemPlanningTodayBinding
-import android.support.v7.widget.RecyclerView
 import android.view.MotionEvent
 import android.view.GestureDetector
 import android.widget.AdapterView.OnItemClickListener
+import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
+import com.jjmin.izcalender.data.PlanningItem
+import com.jjmin.izcalender.data.TodayItem
 import com.jjmin.izcalender.databinding.ActivityMainBinding
 import com.jjmin.izcalender.model.CalendarModel
 import com.jjmin.izcalender.utils.SnappingLayoutManager
@@ -29,6 +31,7 @@ import com.jjmin.izcalender.utils.Utils
 import com.jjmin.izcalender.viewmodel.CalendarViewModel
 import com.jjmin.izcalender.viewmodel.PlanningViewModel
 import kotlinx.android.synthetic.main.calendar_view.view.*
+import kotlinx.android.synthetic.main.item_planning.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -111,8 +114,8 @@ class MainActivity : AppCompatActivity() {
             SnappingLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         todayRecycler.layoutManager = LinearLayoutManager(this)
 
-        LastAdapter(planModel.alllist, BR.item)
-            .map<PlanningData, ItemPlanningBinding>(R.layout.item_planning)
+        LastAdapter(planModel.alllist,BR.item)
+            .map<PlanningItem, ItemPlanningBinding>(R.layout.item_planning)
             {
                 onBind {
                     it.binding.run {
@@ -125,12 +128,14 @@ class MainActivity : AppCompatActivity() {
                 }
                     .onClick {
                         Toast.makeText(applicationContext, it.binding.item!!.title, Toast.LENGTH_SHORT).show()
+                        var intent = Intent(this@MainActivity,DetailPlanActivity::class.java)
+                        startActivity(intent)
                     }
             }
             .into(mainRecycler)
 
         LastAdapter(planModel.todaylist, BR.item)
-            .map<TodayData, ItemPlanningTodayBinding>(R.layout.item_planning_today) {
+            .map<TodayItem, ItemPlanningTodayBinding>(R.layout.item_planning_today) {
 
                 onBind {
                     it.binding.run {
@@ -175,7 +180,9 @@ class MainActivity : AppCompatActivity() {
                         if (datePosition == planlist.day) {
                             mainRecycler.smoothScrollToPosition(it)
                             return@forEach
-                        } else if (datePosition ==  Utils.today()) {
+                        }else if(datePosition == ""){
+
+                        }else if (datePosition == Utils.today()) {
                             slideToBottom(todayView)
                             animate(params.topMargin, 0)
                             scrollBl = true

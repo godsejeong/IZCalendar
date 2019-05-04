@@ -5,16 +5,16 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="item" type="com.jjmin.izcalender.data.TodayData"/>
+        <variable name="item" type="com.jjmin.izcalender.data.TodayItem"/>
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/todayLayout"
             android:layout_width="match_parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_height="90dp">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/toyDayTimeLayout"
                 android:layout_width="wrap_content"
                 android:paddingLeft="12dp"
@@ -80,9 +80,9 @@
                     android:text="@{item.dow}"
             />
 
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/todayTitleLayout"
                 android:layout_width="0dp"
                 android:paddingLeft="14dp"
@@ -120,6 +120,6 @@
                     android:textSize="8sp"
                     android:textColor="@android:color/white"
             />
-        </android.support.constraint.ConstraintLayout>
-    </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

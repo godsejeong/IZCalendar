@@ -3,9 +3,9 @@
     <data>
         <variable
                 name="item"
-                type="com.jjmin.izcalender.data.PlanningData"/>
+                type="com.jjmin.izcalender.data.PlanningItem"/>
     </data>
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_marginTop="2.4dp"
@@ -14,7 +14,7 @@
             android:paddingLeft="7.5dp"
             android:layout_height="73dp">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -23,7 +23,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:background="@drawable/bg_planning_item_title">
 
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/planDayLayout"
                     android:layout_width="wrap_content"
                     app:layout_constraintTop_toTopOf="parent"
@@ -85,10 +85,10 @@
                         tools:text="Sat"
                 />
 
-            </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/planTitleLayout"
                     android:layout_width="0dp"
                     android:paddingLeft="14dp"
@@ -126,8 +126,8 @@
                         android:textSize="8sp"
                         android:textColor="@color/colorMain"
                 />
-            </android.support.constraint.ConstraintLayout>
-        </android.support.constraint.ConstraintLayout>
-    </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

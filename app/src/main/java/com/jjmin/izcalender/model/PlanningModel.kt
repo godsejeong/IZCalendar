@@ -1,16 +1,16 @@
 package com.jjmin.izcalender.model
 
 import android.util.Log
-import com.jjmin.izcalender.data.PlanningData
-import com.jjmin.izcalender.data.TodayData
+import com.jjmin.izcalender.data.PlanningItem
+import com.jjmin.izcalender.data.TodayItem
 import com.jjmin.izcalender.utils.Utils
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 class PlanningModel : Thread() {
-    var infoList = ArrayList<PlanningData>()
-    var todayList = ArrayList<TodayData>()
+    var infoList = ArrayList<PlanningItem>()
+    var todayList = ArrayList<TodayItem>()
     var clandardayList = ArrayList<String>()
     var res = Utils.postservice.allPlanList()
 
@@ -37,9 +37,9 @@ class PlanningModel : Thread() {
         Log.e("Time", day)
         if (day in mDay) {
             Log.e("Ads", "a")
-            todayList.add(TodayData(title, subTitle, timeCheck(time), "TODAY", dow))
+            todayList.add(TodayItem(title, subTitle, timeCheck(time), "TODAY", dow))
         } else {
-            infoList.add(PlanningData(title, subTitle, timeCheck(time), day, dow))
+            infoList.add(PlanningItem(title, subTitle, timeCheck(time), day, dow))
         }
     }
 
