@@ -39,7 +39,7 @@ class TagSpinnerAdapter(val vm: ViewModel, var item: ArrayList<TagSpinnerItem>) 
         }else{
             binding = view!!.tag as ItemTagSpinnerNormalBinding
         }
-        binding.item = item[position]
+        binding.item = items[position]
         return view!!
     }
 
@@ -55,7 +55,7 @@ class TagSpinnerAdapter(val vm: ViewModel, var item: ArrayList<TagSpinnerItem>) 
         }else{
             binding = view!!.tag as ItemTagSpinnerDropdownBinding
         }
-        binding.item = item[position]
+        binding.item = items[position]
         return view!!
     }
 }

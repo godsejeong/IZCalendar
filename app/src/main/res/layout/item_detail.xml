@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="androidx.core.content.ContextCompat"/>
+
         <variable
                 name="item"
                 type="com.jjmin.izcalender.data.DetailPlanItem"/>
@@ -56,7 +58,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toLeftOf="@+id/categoryTitle"
-                            android:backgroundTint="@color/colorMyColor"
+                            android:backgroundTint="@{ContextCompat.getColor(context,item.tagColor)}"
                             android:background="@drawable/bg_calendarview_today"/>
 
                     <TextView

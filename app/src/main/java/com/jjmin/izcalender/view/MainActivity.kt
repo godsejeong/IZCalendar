@@ -129,6 +129,7 @@ class MainActivity : AppCompatActivity() {
                     .onClick {
                         Toast.makeText(applicationContext, it.binding.item!!.title, Toast.LENGTH_SHORT).show()
                         var intent = Intent(this@MainActivity,DetailPlanActivity::class.java)
+                        intent.putExtra("position",it.adapterPosition)
                         startActivity(intent)
                     }
             }

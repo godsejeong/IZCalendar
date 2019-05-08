@@ -1,5 +1,6 @@
 package com.jjmin.izcalender.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +17,7 @@ import com.jjmin.izcalender.databinding.ItemDetailBinding
 
 class ItemListAdapter(private val vm: DetailViewModel) : ListAdapter<DetailPlanItem,ItemListAdapter.ViewHolder>(itemCallback) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_detail, parent, false))
     }
 
@@ -25,17 +26,23 @@ class ItemListAdapter(private val vm: DetailViewModel) : ListAdapter<DetailPlanI
         holder.binding.item = item
     }
 
+    override fun getItemId(position: Int): Long {
+        return getItemId(position).hashCode().toLong()
+    }
+
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var binding : ItemDetailBinding = DataBindingUtil.bind(view)!!
     }
 
     companion object {
-        val itemCallback = object : DiffUtil.ItemCallback<DetailPlanItem>() {
+        val itemCallback= object : DiffUtil.ItemCallback<DetailPlanItem>() {
             override fun areItemsTheSame(oldItem: DetailPlanItem, newItem: DetailPlanItem): Boolean {
+                Log.e("areItemsTheSame", (oldItem == newItem).toString())
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(oldItem:DetailPlanItem, newItem: DetailPlanItem): Boolean {
+                Log.e("areContentsTheSame", (oldItem == newItem).toString())
                 return oldItem == newItem
             }
         }

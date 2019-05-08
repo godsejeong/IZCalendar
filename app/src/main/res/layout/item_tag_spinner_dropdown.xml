@@ -21,7 +21,7 @@
                 android:id="@+id/tagImg"
                 android:layout_width="14dp"
                 android:layout_height="14dp"
-                android:background="@drawable/bg_tag_disable"
+                android:background="@drawable/bg_detailplan_item"
                 android:backgroundTint="@{ContextCompat.getColor(context,item.color)}"
                 tools:backgroundTint="@color/colorMain"/>
 
