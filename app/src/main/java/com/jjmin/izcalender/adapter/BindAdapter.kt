@@ -36,8 +36,6 @@ object BindAdapter {
                 Log.e("test","test2")
             }
         }
-
-        view.itemAnimator = null
     }
 
     @JvmStatic

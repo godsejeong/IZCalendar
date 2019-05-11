@@ -2,6 +2,7 @@ package com.jjmin.izcalender.view
 
 import android.os.Bundle
 import android.text.format.DateUtils
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -16,13 +17,16 @@ import com.jjmin.izcalender.data.DetailPlanItem
 import com.jjmin.izcalender.utils.SharedPreprecnceUtils
 import kotlinx.android.synthetic.main.activity_detail_plan.*
 import androidx.recyclerview.widget.SimpleItemAnimator
-
-
+import com.jjmin.izcalender.utils.DowChangeUtils
 
 
 class DetailPlanActivity : AppCompatActivity() {
     var position: Int? = null
-    private val viewModelFactory by lazy { DetailViewModelFactory(position!!,this) }
+    var title : ArrayList<String>? = null
+    var date : String? = null
+    var dow : String? = null
+    var subtitle : ArrayList<String>? = null
+    private val viewModelFactory by lazy { DetailViewModelFactory(position!!,date!!,title!!,subtitle!!) }
     private val viewModel by lazy { ViewModelProviders.of(this, viewModelFactory).get(DetailViewModel::class.java) }
 
     lateinit var detailviewBinding: ActivityDetailPlanBinding
@@ -31,19 +35,15 @@ class DetailPlanActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         position = intent.getIntExtra("position", 0)
+        date = intent.getStringExtra("date")
+        dow = intent.getStringExtra("dow")
+        date = "${date!!.substring(date!!.lastIndexOf("/")+1)} ${DowChangeUtils.toKr(dow!!)}"
+        title = intent.getStringArrayListExtra("title")
+        subtitle = intent.getStringArrayListExtra("subtitle")
+        Log.e("data","$date")
+
         detailviewBinding = DataBindingUtil.setContentView(this, R.layout.activity_detail_plan)
         detailviewBinding.lifecycleOwner = this
         detailviewBinding.vm = viewModel
-
-
-//        val itemObserver = Observer<ArrayList<DetailPlanItem>> { newName ->
-//
-//            (0 until newName.size).forEach {
-//                newName[it].tagColor =
-//                    if (SharedPreprecnceUtils.getColorTag(position!!) != 0) SharedPreprecnceUtils.getColorTag(position!!)
-//                    else R.color.colorMyColor
-//            }
-//        }
-
     }
 }

@@ -92,6 +92,24 @@ class MainActivity : AppCompatActivity() {
                     currentItemStudent.title,
                     Toast.LENGTH_SHORT
                 ).show()
+                var namelist = ArrayList<String>()
+                var subtitleList = ArrayList<String>()
+
+                //클릭
+                (0 until planModel.todaylist.size).forEach { position ->
+                        namelist.add(currentItemStudent.title!!)
+                        subtitleList.add(currentItemStudent.subtitle!!)
+
+                }
+
+                var intent = Intent(this@MainActivity,DetailPlanActivity::class.java)
+                intent.putExtra("position",999)
+                intent.putExtra("date",Utils.today())
+                intent.putExtra("dow",currentItemStudent.dow)
+                intent.putExtra("title",namelist)
+                intent.putExtra("subtitle",subtitleList)
+                startActivity(intent)
+
             } else if (event.action == MotionEvent.ACTION_DOWN) {
                 y = event.y.toInt()
             } else if (event.action == MotionEvent.ACTION_UP) {
@@ -128,8 +146,31 @@ class MainActivity : AppCompatActivity() {
                 }
                     .onClick {
                         Toast.makeText(applicationContext, it.binding.item!!.title, Toast.LENGTH_SHORT).show()
+                        var pos: Int?
+                        var namelist = ArrayList<String>()
+                        var subtitleList = ArrayList<String>()
+                        var day = it.binding.item!!.day
+
+                        pos = getTopPosition(day!!)
+
+                        (0 until planModel.alllist.size).forEach { position ->
+                            if(planModel.alllist[position].day == day){
+                                Log.e("title",planModel.alllist[position].title!!)
+                                Log.e("subtitle",planModel.alllist[position].subtitle!!)
+
+                                namelist.add(planModel.alllist[position].title!!)
+                                subtitleList.add(planModel.alllist[position].subtitle!!)
+                            }
+                        }
+
+                        Log.e("pos", pos.toString())
                         var intent = Intent(this@MainActivity,DetailPlanActivity::class.java)
-                        intent.putExtra("position",it.adapterPosition)
+                        intent.putExtra("position",pos)
+                        intent.putExtra("date",it.binding.item!!.day)
+                        intent.putExtra("date",it.binding.item!!.day)
+                        intent.putExtra("dow",it.binding.item!!.dow)
+                        intent.putExtra("title",namelist)
+                        intent.putExtra("subtitle",subtitleList)
                         startActivity(intent)
                     }
             }
@@ -191,6 +232,17 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+    }
+
+    fun getTopPosition(day : String) : Int{
+        var pos = 0
+        (0 until planModel.alllist.size).forEach {
+            if(planModel.alllist[it].day == day){
+                pos = it
+                return@forEach
+            }
+        }
+        return pos
     }
 
     fun animate(start: Int, end: Int) {

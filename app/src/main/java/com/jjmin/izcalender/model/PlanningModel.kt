@@ -3,6 +3,7 @@ package com.jjmin.izcalender.model
 import android.util.Log
 import com.jjmin.izcalender.data.PlanningItem
 import com.jjmin.izcalender.data.TodayItem
+import com.jjmin.izcalender.utils.DowChangeUtils
 import com.jjmin.izcalender.utils.Utils
 import java.text.SimpleDateFormat
 import java.util.*
@@ -23,10 +24,10 @@ class PlanningModel : Thread() {
             clandardayList.add(it.day)
             if (it.title.size >= 2) {
                 for (i in 0 until it.title.size) {
-                    searchToday(it.title[i], it.subTitle[i], timeCheck(it.time[i]), it.day, Dowchange(it.dow))
+                    searchToday(it.title[i], it.subTitle[i], timeCheck(it.time[i]), it.day, DowChangeUtils.toEn(it.dow))
                 }
             } else {
-                searchToday(it.title[0], it.subTitle[0], timeCheck(it.time[0]), it.day, Dowchange(it.dow))
+                searchToday(it.title[0], it.subTitle[0], timeCheck(it.time[0]), it.day, DowChangeUtils.toEn(it.dow))
             }
         }
     }
@@ -48,19 +49,6 @@ class PlanningModel : Thread() {
             "Always"
         } else {
             time
-        }
-    }
-
-    fun Dowchange(dow: String): String {
-        return when (dow) {
-            "월요일" -> "Mon"
-            "화요일" -> "Tue"
-            "수요일" -> "Wed"
-            "목요일" -> "Tue"
-            "금요일" -> "Fri"
-            "토요일" -> "Sat"
-            "일요일" -> "Sun"
-            else -> ""
         }
     }
 }

@@ -21,12 +21,12 @@ object SharedPreprecnceUtils {
 
     fun setSpinnerPostion(Layoutposition: Int,pos : Int){
         var editor = sharedPreferences.edit()
-        editor.putInt("postion$Layoutposition",pos)
+        editor.putInt("position$Layoutposition",pos)
         editor.commit()
     }
 
     fun getSpinnerPosition(position: Int) : Int {
-        return sharedPreferences.getInt("postion$position",0)
+        return sharedPreferences.getInt("position$position",0)
     }
 
     fun getColorTag(position: Int): Int {
