@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
     <data>
         <variable
-                name="viewmodel"
-                type="com.jjmin.izcalender.viewmodel.CalendarViewModel"/>
+                name="vm"
+                type="com.jjmin.izcalendar.ui.main.MainViewModel"/>
+        <variable
+                name="activity"
+                type="com.jjmin.izcalendar.ui.main.MainActivity"/>
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".view.MainActivity">
+            android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appbarLayout"
@@ -37,7 +41,7 @@
                 android:elevation="10dp"
                 app:layout_constraintDimensionRatio="H,5:3"
                 app:layout_constraintTop_toBottomOf="@+id/appbarLayout"
-                app:layout_constraintBottom_toTopOf="@+id/todayView"
+                app:layout_constraintBottom_toTopOf="@+id/today_view"
                 android:layout_height="0dp"
                 android:background="@color/colorMain">
 
@@ -56,7 +60,7 @@
                         android:id="@+id/calendarTodayTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{viewmodel.getToday()}"
+                        android:text="@{vm.today}"
                         tools:text="24"
                         android:textSize="35sp"
                         app:layout_constraintRight_toRightOf="parent"
@@ -70,7 +74,7 @@
                         android:id="@+id/calendarMonthTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{viewmodel.monthChange()}"
+                        android:text="@{vm.monthChange()}"
                         tools:text="MARCH"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -91,7 +95,7 @@
                     android:layout_height="match_parent">
 
 
-                <com.jjmin.izcalender.calendar.CalendarView
+                <com.jjmin.izcalendar.ui.calendar.CalendarView
                         android:id="@+id/CustomCalendar"
                         android:gravity="center"
                         app:layout_constraintTop_toTopOf="parent"
@@ -101,30 +105,44 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                </com.jjmin.izcalender.calendar.CalendarView>
+                </com.jjmin.izcalendar.ui.calendar.CalendarView>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mainRecycler"
+                android:id="@+id/main_recycler"
+                app:listItem="@{vm.alllist}"
+                app:viewModel="@{vm}"
+                app:RecyclerScroll="@{todayView}"
+                app:ScrollbarSize="@{todayScrollbar}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/calendarLayout"
                 android:layout_width="match_parent"
-                android:layout_height="0dp">
+                android:layout_height="0dp" tools:layout_editor_absoluteX="0dp"
+                app:layout_constraintVertical_bias="0.0">
         </androidx.recyclerview.widget.RecyclerView>
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/todayView"
+                android:id="@+id/today_view"
                 android:layout_width="match_parent"
                 app:layout_constraintTop_toBottomOf="@+id/calendarLayout"
+                app:MainView="@{mainRecycler}"
+                app:ScrollbarSize="@{todayScrollbar}"
                 android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/todayRecycler"
-                    app:layout_constraintBottom_toTopOf="@+id/todayScrollbar"
-                    app:layout_constraintTop_toBottomOf="@+id/todayScrollbar"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:listItem="@{vm.todaylist}"
+                    app:viewModel="@{vm}"
+                    app:setTodayView="@{todayView}"
+                    app:MainView="@{mainRecycler}"
+                    app:ScrollbarSize="@{todayScrollbar}"
+                    app:layout_constraintBottom_toTopOf="@+id/today_scrollbar"
+                    app:layout_constraintTop_toBottomOf="@+id/today_scrollbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -132,7 +150,7 @@
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/todayScrollbar"
+                    android:id="@+id/today_scrollbar"
                     app:layout_constraintTop_toBottomOf="@+id/todayRecycler"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_width="match_parent"

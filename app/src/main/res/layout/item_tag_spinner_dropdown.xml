@@ -2,7 +2,7 @@
 <layout xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <import type="androidx.core.content.ContextCompat"/>
-        <variable name="item" type="com.jjmin.izcalender.data.TagSpinnerItem"/>
+        <variable name="item" type="com.jjmin.izcalendar.data.TagSpinnerItem"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             xmlns:android="http://schemas.android.com/apk/res/android"

@@ -5,14 +5,14 @@
     <data>
         <variable
                 name="vm"
-                type="com.jjmin.izcalender.viewmodel.DetailViewModel"/>
+                type="com.jjmin.izcalendar.ui.detailplan.DetailViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".view.DetailPlanActivity">
+            tools:context=".ui.detailplan.DetailPlanActivity">
 
         <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/detailappbarLayout"
@@ -26,7 +26,7 @@
                     android:id="@+id/detailToolbar"
                     android:layout_width="match_parent"
                     android:elevation="5dp"
-                    app:title="@{vm.date}"
+                    app:title="@{vm.useCase.date}"
                     app:titleTextColor="@android:color/white"
                     android:layout_height="?attr/actionBarSize">
             </androidx.appcompat.widget.Toolbar>
