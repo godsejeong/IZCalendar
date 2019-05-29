@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import com.jjmin.izcalendar.di.DetailModules
 import com.jjmin.izcalendar.di.MainModules
+import com.jjmin.izcalendar.di.NetworkModules
+import com.jjmin.izcalendar.di.PlanRepositoryMoudles
 import com.jjmin.izcalendar.utils.SharedPreprecnceUtils
 import org.koin.core.context.startKoin
 
@@ -16,7 +18,9 @@ class Application : Application() {
             this@Application
             modules(
                 DetailModules.detialModule,
-                MainModules.mainModules)
+                MainModules.mainModules,
+                PlanRepositoryMoudles.planRepositoryMoudles,
+                NetworkModules.networkModules)
         }
 
         context = this

@@ -10,21 +10,6 @@ import org.koin.core.parameter.parametersOf
 
 class DetailPlanActivity : AppCompatActivity() {
 
-//    override val layoutResourceId: Int = R.layout.activity_detail_plan
-
-    //    var position: Int? = null
-//    var title: ArrayList<String>? = null
-//    var date: String? = null
-//    var dow: String? = null
-//    var subtitle: ArrayList<String>? = null
-    //    private val viewModelFactory by lazy {
-//        DetailViewModelFactory(
-//            position!!,
-//            date!!,
-//            title!!,
-//            subtitle!!
-//        )
-//    }
     lateinit var detailviewBinding: ActivityDetailPlanBinding
 
     val useCase by lazy { DetailUseCase(this) }
@@ -33,14 +18,7 @@ class DetailPlanActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        position = intent.getIntExtra("position", 0)
-//        date = intent.getStringExtra("date")
-//        dow = intent.getStringExtra("dow")
-//        date = "${date!!.substring(date!!.lastIndexOf("/") + 1)} ${DowChangeUtils.toKr(dow!!)}"
-//        title = intent.getStringArrayListExtra("title")
-//        subtitle = intent.getStringArrayListExtra("subtitle")
-//        Log.e("data", "$date")
+        //0월00일 월
         detailviewBinding = DataBindingUtil.setContentView(this, R.layout.activity_detail_plan)
         detailviewBinding.lifecycleOwner = this
         detailviewBinding.vm = viewModel

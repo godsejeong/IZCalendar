@@ -1,10 +1,12 @@
 package com.jjmin.izcalendar.adapter
 
+import android.content.Intent
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
@@ -21,6 +23,7 @@ import com.jjmin.izcalendar.ui.detailplan.DetailViewModel
 import com.jjmin.izcalendar.databinding.ItemDetailBinding
 import com.jjmin.izcalendar.databinding.ItemPlanningBinding
 import com.jjmin.izcalendar.databinding.ItemPlanningTodayBinding
+import com.jjmin.izcalendar.ui.detailplan.DetailPlanActivity
 import kotlin.reflect.KType
 
 
@@ -74,6 +77,33 @@ class ItemListAdapter(private val vm: ViewModel) :
             1 -> {
                 val item = getItem(position) as PlanningItem
                 (holder as MainViewHolder).binding.item = item
+                holder.itemView.setOnClickListener {
+
+                    var pos: Int?
+                    var namelist = ArrayList<String>()
+                    var subtitleList = ArrayList<String>()
+                    var day = holder.binding.item!!.day
+
+//                    pos = getTopPosition(day!!,itemCount,item)
+                    (0 until itemCount).forEach { position ->
+                        var _item = getItem(position) as PlanningItem
+                        if(_item.day == day){
+                            Log.e("title",_item.title!!)
+                            Log.e("subtitle",_item.subtitle!!)
+                            namelist.add(_item.title!!)
+                            subtitleList.add(_item.subtitle!!)
+                        }
+                    }
+
+//                    Log.e("pos", pos.toString())
+                    var intent = Intent(holder.itemView.context, DetailPlanActivity::class.java)
+                    intent.putExtra("position",item.day)
+                    intent.putExtra("date",item.day)
+                    intent.putExtra("dow",item.dow)
+                    intent.putExtra("title",namelist)
+                    intent.putExtra("subtitle",subtitleList)
+                    holder.itemView.context.startActivity(intent)
+                }
             }
             2->{
                 val item = getItem(position) as TodayItem
@@ -84,7 +114,19 @@ class ItemListAdapter(private val vm: ViewModel) :
                 (holder as DetailViewHolder).binding.item = item
             }
         }
+    }
 
+    fun getTopPosition(day: String,size : Int,item : PlanningItem): Int {
+        var pos = 0
+        var _item : PlanningItem
+        (0 until size).forEach {
+            _item = getItem(it) as PlanningItem
+            if (_item.day == day) {
+                pos = it
+                return@forEach
+            }
+        }
+        return pos
     }
 
     override fun getItemId(position: Int): Long {

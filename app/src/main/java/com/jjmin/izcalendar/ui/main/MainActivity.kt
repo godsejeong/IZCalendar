@@ -21,11 +21,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.jjmin.izcalendar.data.PlanningItem
 import com.jjmin.izcalendar.data.TodayItem
 import com.jjmin.izcalendar.ui.calendar.CalendarModel
 import com.jjmin.izcalendar.ui.calendar.CalendarViewModel
 import com.jjmin.izcalendar.utils.Utils
 import com.jjmin.izcalendar.databinding.ActivityMainBinding
+import com.jjmin.izcalendar.databinding.ItemPlanningBinding
+import com.jjmin.izcalendar.ui.base.BaseActivity
 import com.jjmin.izcalendar.ui.detailplan.DetailPlanActivity
 import com.jjmin.izcalendar.utils.SnappingLayoutManager
 import kotlinx.android.synthetic.main.calendar_view.view.*
@@ -33,13 +36,14 @@ import org.koin.core.parameter.parametersOf
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
+
+    override val layoutResourceId: Int = R.layout.activity_main
+
     val useCase by lazy { MainUserCase(this) }
     val viewModel: MainViewModel by viewModel { parametersOf(useCase) }
-    lateinit var viewDataBinding: ActivityMainBinding
 
     var y = 0
-    var planModel = MainViewModel(useCase)
     var scrollBl = true
     var isStartScroll = true
     var isclick = true
@@ -48,8 +52,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewDataBinding = DataBindingUtil.setContentView(this,R.layout.activity_main)
-        viewDataBinding.lifecycleOwner = this
         viewDataBinding.vm = viewModel
 
         setSupportActionBar(mainToolbar)
@@ -57,12 +59,12 @@ class MainActivity : AppCompatActivity() {
 
 
 //      binding.viewmodel = modle
-        CustomCalendar.setPlan(planModel.clandardayList)
-        var gestureDetector = GestureDetector(applicationContext, object : GestureDetector.SimpleOnGestureListener() {
-            override fun onSingleTapUp(e: MotionEvent): Boolean {
-                return scrollBl
-            }
-        })
+//        CustomCalendar.setPlan(planModel.clandardayList)
+//        var gestureDetector = GestureDetector(applicationContext, object : GestureDetector.SimpleOnGestureListener() {
+//            override fun onSingleTapUp(e: MotionEvent): Boolean {
+//                return scrollBl
+//            }
+//        })
 
 //        todayView.setOnTouchListener { v, event ->
 //            val params = main_recycler.layoutParams as ConstraintLayout.LayoutParams
@@ -131,7 +133,7 @@ class MainActivity : AppCompatActivity() {
 //            return@setOnTouchListener true
 //        }
 
-//        mainRecycler.layoutManager =
+//        main_.layoutManager =
 //            SnappingLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 //        todayRecycler.layoutManager = LinearLayoutManager(this)
 
@@ -177,7 +179,7 @@ class MainActivity : AppCompatActivity() {
 //                        startActivity(intent)
 //                    }
 //            }
-//            .into(mainRecycler)
+//            .into(main_recycler)
 
 //        LastAdapter(planModel.todaylist, BR.item)
 //            .map<TodayItem, ItemPlanningTodayBinding>(R.layout.item_planning_today) {
@@ -219,8 +221,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 Log.e("list", datePosition)
                 if (isclick) {
-                    (0 until planModel.alllist.value?.size!!).forEach {
-                        var planlist = planModel.alllist.value!![it]
+                    (0 until viewModel.alllist.value?.size!!).forEach {
+                        var planlist = viewModel.alllist.value!![it]
                         Log.e("all", planlist.day)
                         if (datePosition == planlist.day) {
                             main_recycler.smoothScrollToPosition(it)
@@ -237,16 +239,16 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    fun getTopPosition(day: String): Int {
-        var pos = 0
-        (0 until planModel.alllist.value?.size!!).forEach {
-            if (planModel.alllist.value!![it].day == day) {
-                pos = it
-                return@forEach
-            }
-        }
-        return pos
-    }
+//    fun getTopPosition(day: String): Int {
+//        var pos = 0
+//        (0 until planModel.alllist.value?.size!!).forEach {
+//            if (planModel.alllist.value!![it].day == day) {
+//                pos = it
+//                return@forEach
+//            }
+//        }
+//        return pos
+//    }
 
     fun animate(start: Int, end: Int) {
         val params = main_recycler.layoutParams as ConstraintLayout.LayoutParams

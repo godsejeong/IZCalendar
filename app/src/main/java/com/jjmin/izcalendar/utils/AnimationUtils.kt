@@ -22,9 +22,6 @@ object AnimationUtils{
     }
 
     fun slideToBottom(view: View) {
-//        if (isStartScroll) {
-//            mainRecycler.stopScroll()
-//        }
         view.visibility = View.VISIBLE
         view.animate()
             .translationY(0f)

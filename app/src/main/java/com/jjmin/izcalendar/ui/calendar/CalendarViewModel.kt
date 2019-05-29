@@ -3,11 +3,17 @@ package com.jjmin.izcalendar.ui.calendar
 import android.util.Log
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableField
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.jjmin.izcalendar.data.TodayItem
 import java.util.*
+import kotlin.collections.ArrayList
 
 class CalendarViewModel : ViewModel() {
     var Calendarlist = ObservableArrayList<ClandarData>()
+
+    var clandardayList : ArrayList<String>? = arrayListOf()
 
     var model = CalendarModel()
     var today = ObservableField<String>()

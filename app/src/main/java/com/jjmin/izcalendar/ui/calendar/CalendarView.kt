@@ -30,20 +30,20 @@ class CalendarView : LinearLayout {
     var clandardayList = ArrayList<String>()
     var model = CalendarViewModel()
 
-    fun setPlan(list: ArrayList<String>) {
-        clandardayList.addAll(list)
-    }
+//    fun setPlan(list: ArrayList<String>) {
+//        clandardayList.addAll(list)
+//    }
 
-    fun init(view: View) {
-        gridAdapter = CalendarAdapter(context, model.Calendarlist, clandardayList)
-        view.calendarGridView.numColumns = 7
-        view.calendarGridView.adapter = gridAdapter
-    }
+//    fun init(view: View) {
+//        gridAdapter = CalendarAdapter(model.Calendarlist, clandardayList)
+//        view.calendarGridView.numColumns = 7
+//        view.calendarGridView.adapter = gridAdapter
+//    }
 
     fun initView(context: Context) {
         val li = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         var view = li!!.inflate(R.layout.calendar_view,this@CalendarView, false) as View
         addView(view)
-        init(view)
+//        init(view)
     }
 }

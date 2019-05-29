@@ -14,10 +14,9 @@ import com.jjmin.izcalendar.R
 import java.util.*
 
 
-class CalendarAdapter(context: Context, list: ObservableArrayList<ClandarData>, planList: ArrayList<String>) : BaseAdapter() {
+class CalendarAdapter(list: ObservableArrayList<ClandarData>, planList: ArrayList<String>) : BaseAdapter() {
     val list: ObservableArrayList<ClandarData>? = list
     var planList: ArrayList<String> = planList
-    var context = context
     var cal = Calendar.getInstance()
 
     override fun getItem(position: Int): Any {
@@ -35,7 +34,7 @@ class CalendarAdapter(context: Context, list: ObservableArrayList<ClandarData>, 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var view = convertView
         var holder: ViewHolder? = null
-        var inflater = context.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater?
+        var inflater = parent?.context!!.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater?
         if (view == null) {
             view = inflater?.inflate(R.layout.item_calendar_gridview, parent, false) as View
             holder = ViewHolder(view)

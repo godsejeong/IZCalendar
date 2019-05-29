@@ -7,9 +7,6 @@
         <variable
                 name="vm"
                 type="com.jjmin.izcalendar.ui.main.MainViewModel"/>
-        <variable
-                name="activity"
-                type="com.jjmin.izcalendar.ui.main.MainActivity"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -83,7 +80,6 @@
                         android:textSize="8sp"
                         android:textColor="@android:color/white"/>
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -98,6 +94,7 @@
                 <com.jjmin.izcalendar.ui.calendar.CalendarView
                         android:id="@+id/CustomCalendar"
                         android:gravity="center"
+                        app:setPlan="@{vm.clandardayList}"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintRight_toRightOf="parent"

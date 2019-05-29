@@ -8,7 +8,7 @@ import org.koin.dsl.module
 object MainModules{
     var mainModules = module {
         viewModel { (useCase: MainUserCase) ->
-            MainViewModel(useCase)
+            MainViewModel(useCase,get())
         }
     }
 }

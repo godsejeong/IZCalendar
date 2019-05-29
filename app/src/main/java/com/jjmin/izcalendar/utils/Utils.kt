@@ -13,7 +13,7 @@ object Utils{
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    var postservice = retrofit.create(RetrofitServices::class.java!!)
+    var postservice = retrofit.create(NetworkApi::class.java!!)
 
     fun today(): String {
         val mSimpleDateFormat = SimpleDateFormat("MM/dd", Locale.KOREA)
