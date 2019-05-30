@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 import com.jjmin.izcalendar.R
 import java.security.PrivateKey
 
-object SharedPreprecnceUtils {
+object SharedPreprecncesUtils {
     lateinit var sharedPreferences : SharedPreferences
 
     fun setSpinnerShared(context: Context){

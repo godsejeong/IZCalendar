@@ -5,9 +5,9 @@ import java.util.*
 
 object CalendarUtils {
     var cal = Calendar.getInstance()
-    var today = cal.get(java.util.Calendar.DATE).toString()
+    var today = cal.get(Calendar.DATE).toString()
     val year = cal.get(Calendar.YEAR)
-    var thisMonth = (cal.get(java.util.Calendar.MONTH) + 1)
+    var thisMonth = (cal.get(Calendar.MONTH) + 1)
     val mon = cal.get(Calendar.MONTH)
 
     fun getstrmon(): String {
@@ -32,5 +32,15 @@ object CalendarUtils {
         val mSimpleDateFormat = SimpleDateFormat("MM/dd", Locale.KOREA)
         val date = Date()
         return mSimpleDateFormat.format(date)
+    }
+
+    fun returnDate(date : String) : String{
+        var setdate : String
+        setdate = if (date.toInt() < 10) {
+            "${CalendarUtils.getstrmon()}/${"0$date"}"
+        }else{
+            "${CalendarUtils.getstrmon()}/$date"
+        }
+        return setdate
     }
 }

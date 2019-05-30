@@ -1,5 +1,6 @@
 package com.jjmin.izcalendar.adapter
 
+import android.app.Activity
 import android.content.Intent
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.util.Log
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat.startActivityForResult
 
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
@@ -27,7 +29,7 @@ import com.jjmin.izcalendar.ui.detailplan.DetailPlanActivity
 import kotlin.reflect.KType
 
 
-class ItemListAdapter(private val vm: ViewModel) :
+class ItemListAdapter(private val vm: ViewModel,val activity: Activity?) :
     ListAdapter<ListDataInterface, RecyclerView.ViewHolder>(itemCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -79,12 +81,10 @@ class ItemListAdapter(private val vm: ViewModel) :
                 (holder as MainViewHolder).binding.item = item
                 holder.itemView.setOnClickListener {
 
-                    var pos: Int?
                     var namelist = ArrayList<String>()
                     var subtitleList = ArrayList<String>()
                     var day = holder.binding.item!!.day
 
-//                    pos = getTopPosition(day!!,itemCount,item)
                     (0 until itemCount).forEach { position ->
                         var _item = getItem(position) as PlanningItem
                         if(_item.day == day){
@@ -95,14 +95,15 @@ class ItemListAdapter(private val vm: ViewModel) :
                         }
                     }
 
-//                    Log.e("pos", pos.toString())
                     var intent = Intent(holder.itemView.context, DetailPlanActivity::class.java)
                     intent.putExtra("position",item.day)
                     intent.putExtra("date",item.day)
                     intent.putExtra("dow",item.dow)
                     intent.putExtra("title",namelist)
                     intent.putExtra("subtitle",subtitleList)
-                    holder.itemView.context.startActivity(intent)
+                    activity!!.startActivityForResult(intent,20)
+//                    holder.itemView.context.startActivity(intent)
+
                 }
             }
             2->{

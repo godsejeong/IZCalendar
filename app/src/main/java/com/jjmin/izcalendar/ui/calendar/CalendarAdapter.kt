@@ -45,6 +45,11 @@ class CalendarAdapter(list: ArrayList<ClandarData>, planList: ArrayList<String>)
 
         var item = list!![position]
         holder.dayTv.text = item.day
+        item.tagColor?.let {
+            Log.e("colorit", it.toString())
+            if(it!=0)
+                holder.infoIv.backgroundTintList = parent!!.context.resources.getColorStateList(it)
+        }
 
         //오늘 day 가져옴
         val today = cal.get(Calendar.DATE)

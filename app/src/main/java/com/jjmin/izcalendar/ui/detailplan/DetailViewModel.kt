@@ -8,8 +8,8 @@ import android.view.View
 import android.util.Log
 import androidx.lifecycle.*
 import androidx.lifecycle.ViewModel
-import com.jjmin.izcalendar.data.DetailLinkData
-import com.jjmin.izcalendar.utils.SharedPreprecnceUtils
+import com.jjmin.izcalendar.ui.calendar.CalendarView
+import com.jjmin.izcalendar.utils.SharedPreprecncesUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -63,7 +63,7 @@ class DetailViewModel(var useCase : DetailUseCase,var detailPlanRepository: Deta
                         useCase.subtitle[it],
                         date[it],
                         time[it],
-                        if (SharedPreprecnceUtils.getColorTag(useCase.position) != 0) SharedPreprecnceUtils.getColorTag(
+                        if (SharedPreprecncesUtils.getColorTag(useCase.position) != 0) SharedPreprecncesUtils.getColorTag(
                             useCase.position
                         ) else R.color.colorMyColor
                     )
@@ -74,22 +74,20 @@ class DetailViewModel(var useCase : DetailUseCase,var detailPlanRepository: Deta
     }
 
     fun getposion(): Int {
-        return SharedPreprecnceUtils.getSpinnerPosition(useCase.position)
+        return SharedPreprecncesUtils.getSpinnerPosition(useCase.position)
     }
 
     fun onLanguageSpinnerItemSelected(parent: AdapterView<*>?, view: View?, position: Int?, id: Long?) {
         Log.e("bind", position.toString())
         var item = parent!!.getItemAtPosition(position!!) as TagSpinnerItem
         Log.e("bindColor", item.color.toString())
-
         if (position == 0)
-            SharedPreprecnceUtils.setTag(useCase.position, R.color.colorMyColor)
+            SharedPreprecncesUtils.setTag(useCase.position, R.color.colorMyColor)
         else
-            SharedPreprecnceUtils.setTag(useCase.position, item.color!!)
+            SharedPreprecncesUtils.setTag(useCase.position, item.color!!)
 
-        SharedPreprecnceUtils.setSpinnerPostion(useCase.position, position)
+        SharedPreprecncesUtils.setSpinnerPostion(useCase.position, position)
         Detailplan()
-//        _detailItems.value = updateData()
         Log.e("list","update")
     }
 }

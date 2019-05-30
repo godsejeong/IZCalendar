@@ -10,12 +10,12 @@ import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.jjmin.izcalendar.R
-import com.jjmin.izcalendar.data.AllPlan
 import com.jjmin.izcalendar.data.PlanningItem
 import kotlinx.android.synthetic.main.calendar_view.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 import com.jjmin.izcalendar.utils.AnimationUtils
+import com.jjmin.izcalendar.utils.SharedPreprecncesUtils
 
 
 class CalendarView : LinearLayout {
@@ -61,6 +61,12 @@ class CalendarView : LinearLayout {
         Log.e("setplanlist", calndardayList.toString())
     }
 
+    fun changeList(){
+        Calendarlist.clear()
+        addClaendarList()
+        gridAdapter.notifyDataSetChanged()
+    }
+
     fun init(view: View) {
         gridAdapter = CalendarAdapter(Calendarlist, calndardayList)
         view.calendarGridView.adapter = gridAdapter
@@ -68,11 +74,9 @@ class CalendarView : LinearLayout {
         calendarGridView.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 var datePosition = Calendarlist.get(position)?.day
-                Log.e("dataPosition", datePosition)
                 try {
-                    if (datePosition!!.toInt() < 10)
-                        datePosition = "0$datePosition"
-                    datePosition = "${CalendarUtils.getstrmon()}/$datePosition"
+                    datePosition = CalendarUtils.returnDate(datePosition)
+                    Log.e("dataPosition", datePosition)
                 } catch (e: NumberFormatException) {
                     e.printStackTrace()
                 }
@@ -101,19 +105,19 @@ class CalendarView : LinearLayout {
     }
 
     fun addClaendarList() {
-        Calendarlist.add(ClandarData("S"))
-        Calendarlist.add(ClandarData("M"))
-        Calendarlist.add(ClandarData("T"))
-        Calendarlist.add(ClandarData("W"))
-        Calendarlist.add(ClandarData("T"))
-        Calendarlist.add(ClandarData("F"))
-        Calendarlist.add(ClandarData("S"))
+        Calendarlist.add(ClandarData("S",null))
+        Calendarlist.add(ClandarData("M",null))
+        Calendarlist.add(ClandarData("T",null))
+        Calendarlist.add(ClandarData("W",null))
+        Calendarlist.add(ClandarData("T",null))
+        Calendarlist.add(ClandarData("F",null))
+        Calendarlist.add(ClandarData("S",null))
 
         var beforemonth = CalendarUtils.getDateDay("${CalendarUtils.year}${CalendarUtils.getstrmon()}01")
 
         //1일 - 전달 마지막날
         (1 until (beforemonth)).forEach {
-            Calendarlist.add(ClandarData(""))
+            Calendarlist.add(ClandarData("",null))
         }
         setCalendarDate(CalendarUtils.mon)
 
@@ -122,9 +126,11 @@ class CalendarView : LinearLayout {
         }
     }
     fun setCalendarDate(month: Int) {
+        var Checkdate: String
         CalendarUtils.cal.set(Calendar.MONTH, month)
         (1..CalendarUtils.cal.getActualMaximum(Calendar.DAY_OF_MONTH)).forEach {
-            Calendarlist.add(ClandarData(it.toString()))
+            Checkdate = CalendarUtils.returnDate(it.toString())
+            Calendarlist.add(ClandarData(it.toString(),SharedPreprecncesUtils.getColorTag(Checkdate)))
         }
     }
 }

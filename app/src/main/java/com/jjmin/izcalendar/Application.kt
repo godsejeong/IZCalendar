@@ -3,7 +3,7 @@ package com.jjmin.izcalendar
 import android.app.Application
 import android.content.Context
 import com.jjmin.izcalendar.di.*
-import com.jjmin.izcalendar.utils.SharedPreprecnceUtils
+import com.jjmin.izcalendar.utils.SharedPreprecncesUtils
 import org.koin.core.context.startKoin
 
 class Application : Application() {
@@ -22,6 +22,6 @@ class Application : Application() {
         }
 
         context = this
-        SharedPreprecnceUtils.setSpinnerShared(this)
+        SharedPreprecncesUtils.setSpinnerShared(this)
     }
 }

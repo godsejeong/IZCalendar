@@ -7,6 +7,10 @@
         <variable
                 name="vm"
                 type="com.jjmin.izcalendar.ui.main.MainViewModel"/>
+
+        <variable
+                name="activity"
+                type="com.jjmin.izcalendar.ui.main.MainActivity"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -112,16 +116,16 @@
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/main_recycler"
-                app:listItem="@{vm.alllist}"
-                app:viewModel="@{vm}"
+                app:mainviewModel="@{vm}"
+                app:mainsetActivity="@{activity}"
                 app:RecyclerScroll="@{todayView}"
                 app:ScrollbarSize="@{todayScrollbar}"
+                app:mainlistItem="@{vm.alllist}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/calendarLayout"
                 android:layout_width="match_parent"
-                android:layout_height="0dp" tools:layout_editor_absoluteX="0dp"
-                app:layout_constraintVertical_bias="0.0">
+                android:layout_height="0dp">
         </androidx.recyclerview.widget.RecyclerView>
 
 
@@ -142,6 +146,7 @@
                     app:MainView="@{mainRecycler}"
                     app:ScrollbarSize="@{todayScrollbar}"
                     app:AddTodayList="@{vm.todaylist}"
+                    app:SetActivity="@{activity}"
                     app:layout_constraintBottom_toTopOf="@+id/today_scrollbar"
                     app:layout_constraintTop_toBottomOf="@+id/today_scrollbar"
                     android:layout_width="match_parent"

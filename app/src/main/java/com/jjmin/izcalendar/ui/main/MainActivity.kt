@@ -1,20 +1,15 @@
 package com.jjmin.izcalendar.ui.main
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 //import android.support.v7.widget.LinearLayoutManager
 import android.view.*
+import android.widget.CalendarView
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_main.*
 import com.jjmin.izcalendar.R
-import android.os.Handler
-import android.util.Log
-import android.widget.AdapterView.OnItemClickListener
-import androidx.constraintlayout.widget.ConstraintLayout
-import com.jjmin.izcalendar.ui.calendar.CalendarUtils
-import com.jjmin.izcalendar.utils.Utils
 import com.jjmin.izcalendar.databinding.ActivityMainBinding
 import com.jjmin.izcalendar.ui.base.BaseActivity
-import kotlinx.android.synthetic.main.calendar_view.view.*
 import org.koin.core.parameter.parametersOf
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -29,9 +24,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewDataBinding.vm = viewModel
-
+        viewDataBinding.activity = this
         setSupportActionBar(viewDataBinding.mainToolbar)
         viewDataBinding.calendarLayout.bringToFront()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.e("asdfasdf","ASDFasdfasdf")
+        viewDataBinding.CustomCalendar.changeList()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
