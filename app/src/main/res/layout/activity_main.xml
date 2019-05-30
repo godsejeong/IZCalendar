@@ -141,6 +141,7 @@
                     app:setTodayView="@{todayView}"
                     app:MainView="@{mainRecycler}"
                     app:ScrollbarSize="@{todayScrollbar}"
+                    app:AddTodayList="@{vm.todaylist}"
                     app:layout_constraintBottom_toTopOf="@+id/today_scrollbar"
                     app:layout_constraintTop_toBottomOf="@+id/today_scrollbar"
                     android:layout_width="match_parent"

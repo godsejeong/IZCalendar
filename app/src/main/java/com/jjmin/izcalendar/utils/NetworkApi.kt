@@ -15,5 +15,5 @@ interface NetworkApi{
     fun allPlanList() : Single<AllPlan>
 
     @GET("/allPlanList/{plan_name}")
-    fun DetailLink(@Path("plan_name") plan_name : String) : Call<DetailLinkData>
+    fun DetailLink(@Path("plan_name") plan_name : String) : Single<DetailLinkData>
 }

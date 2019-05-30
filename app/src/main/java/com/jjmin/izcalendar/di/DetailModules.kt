@@ -9,7 +9,7 @@ import org.koin.dsl.module
 object DetailModules {
     var detialModule = module {
         viewModel { (useCase: DetailUseCase) ->
-            DetailViewModel(useCase)
+            DetailViewModel(useCase,get())
         }
     }
 }

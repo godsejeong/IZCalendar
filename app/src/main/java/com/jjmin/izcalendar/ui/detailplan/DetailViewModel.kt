@@ -8,40 +8,21 @@ import android.view.View
 import android.util.Log
 import androidx.lifecycle.*
 import androidx.lifecycle.ViewModel
+import com.jjmin.izcalendar.data.DetailLinkData
 import com.jjmin.izcalendar.utils.SharedPreprecnceUtils
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
-class DetailViewModel(var useCase : DetailUseCase) : ViewModel() {
-//    val position: Int, val date: String, val title: ArrayList<String>, val subtitle: ArrayList<String>
-    val model = DetailModel(useCase.date)
-    val _detailItems = MutableLiveData<ArrayList<DetailPlanItem>>()
+class DetailViewModel(var useCase : DetailUseCase,var detailPlanRepository: DetailPlanRepository) : ViewModel() {
+
+    val _detailItems = MutableLiveData<ArrayList<DetailPlanItem>>(arrayListOf())
     val detailitems: LiveData<ArrayList<DetailPlanItem>> get() = _detailItems
-
-    var startbl = false
 
     val _spinnerItems = MutableLiveData<ArrayList<TagSpinnerItem>>()
     val spinnerItems: LiveData<ArrayList<TagSpinnerItem>> get() = _spinnerItems
 
     init {
-        model.start()
-        model.join()
-
-        _detailItems.value =
-            ArrayList<DetailPlanItem>().apply {
-                (0 until model.date.size).forEach {
-                    add(
-                        DetailPlanItem(
-                            useCase.title[it],
-                            useCase.subtitle[it],
-                            model.date[it],
-                            model.time[it],
-                            if (SharedPreprecnceUtils.getColorTag(useCase.position) != 0) SharedPreprecnceUtils.getColorTag(
-                                useCase.position
-                            ) else R.color.colorMyColor
-                        )
-                    )
-                }
-            }
-
+        Detailplan()
         _spinnerItems.value = ArrayList<TagSpinnerItem>().apply {
             add(TagSpinnerItem(R.color.colorTagDisable, "태그없음"))
             add(TagSpinnerItem(R.color.colorTagRed, "Red"))
@@ -51,16 +32,37 @@ class DetailViewModel(var useCase : DetailUseCase) : ViewModel() {
         }
     }
 
-    fun updateData(): ArrayList<DetailPlanItem> {
+    fun Detailplan(){
+        detailPlanRepository.DetailLink(useCase.date)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                _detailItems.value = updateData(it.detailPlan)
+            }){
+
+            }
+    }
+
+    fun updateData(detailPlan : List<String>): ArrayList<DetailPlanItem> {
+        var date = ArrayList<String>()
+        var time = ArrayList<String>()
         var item = ArrayList<DetailPlanItem>()
+
+        (0 until detailPlan.size).forEach {
+            val array = detailPlan[it].split("\n")
+            date.add(array[0])
+            time.add(array[1])
+            Log.e(array[0],array[1])
+        }
+
         item.apply {
-            (0 until model.date.size).forEach {
+            (0 until detailPlan.size).forEach {
                 add(
                     DetailPlanItem(
                         useCase.title[it],
                         useCase.subtitle[it],
-                        model.date[it],
-                        model.time[it],
+                        date[it],
+                        time[it],
                         if (SharedPreprecnceUtils.getColorTag(useCase.position) != 0) SharedPreprecnceUtils.getColorTag(
                             useCase.position
                         ) else R.color.colorMyColor
@@ -86,8 +88,8 @@ class DetailViewModel(var useCase : DetailUseCase) : ViewModel() {
             SharedPreprecnceUtils.setTag(useCase.position, item.color!!)
 
         SharedPreprecnceUtils.setSpinnerPostion(useCase.position, position)
-
-        _detailItems.value = updateData()
+        Detailplan()
+//        _detailItems.value = updateData()
         Log.e("list","update")
     }
 }
