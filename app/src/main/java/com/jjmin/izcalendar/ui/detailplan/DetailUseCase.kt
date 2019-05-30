@@ -2,7 +2,7 @@ package com.jjmin.izcalendar.ui.detailplan
 
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.jjmin.izcalendar.ui.calendar.CalendarModel
+import com.jjmin.izcalendar.ui.calendar.CalendarUtils
 import com.jjmin.izcalendar.utils.DowChangeUtils
 
 class DetailUseCase(private val activity: AppCompatActivity){
@@ -10,7 +10,7 @@ class DetailUseCase(private val activity: AppCompatActivity){
     var date_ = activity.intent.getStringExtra("date")
     var dow = activity.intent.getStringExtra("dow")
     var date = "${date_!!.substring(date_!!.lastIndexOf("/") + 1)} ${DowChangeUtils.toKr(dow!!)}"
-    var toolbarDate = "${CalendarModel().thisMonth}월 ${ChangeDay(date_!!.substring(date_!!.lastIndexOf("/") + 1))}일 ${DowChangeUtils.toKr(dow!!)}"
+    var toolbarDate = "${CalendarUtils.thisMonth}월 ${ChangeDay(date_!!.substring(date_!!.lastIndexOf("/") + 1))}일 ${DowChangeUtils.toKr(dow!!)}"
     var title = activity.intent.getStringArrayListExtra("title")
     var subtitle = activity.intent.getStringArrayListExtra("subtitle")
 

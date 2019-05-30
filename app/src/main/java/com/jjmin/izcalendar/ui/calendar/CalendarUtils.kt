@@ -3,7 +3,7 @@ package com.jjmin.izcalendar.ui.calendar
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CalendarModel {
+object CalendarUtils {
     var cal = Calendar.getInstance()
     var today = cal.get(java.util.Calendar.DATE).toString()
     val year = cal.get(Calendar.YEAR)
@@ -26,5 +26,11 @@ class CalendarModel {
         var dayNum = cal.get(Calendar.DAY_OF_WEEK)
 
         return dayNum
+    }
+
+    fun today(): String {
+        val mSimpleDateFormat = SimpleDateFormat("MM/dd", Locale.KOREA)
+        val date = Date()
+        return mSimpleDateFormat.format(date)
     }
 }

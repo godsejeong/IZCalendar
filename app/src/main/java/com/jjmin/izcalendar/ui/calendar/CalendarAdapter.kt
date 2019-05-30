@@ -14,8 +14,8 @@ import com.jjmin.izcalendar.R
 import java.util.*
 
 
-class CalendarAdapter(list: ObservableArrayList<ClandarData>, planList: ArrayList<String>) : BaseAdapter() {
-    val list: ObservableArrayList<ClandarData>? = list
+class CalendarAdapter(list: ArrayList<ClandarData>, planList: ArrayList<String>) : BaseAdapter() {
+    val list: ArrayList<ClandarData>? = list
     var planList: ArrayList<String> = planList
     var cal = Calendar.getInstance()
 

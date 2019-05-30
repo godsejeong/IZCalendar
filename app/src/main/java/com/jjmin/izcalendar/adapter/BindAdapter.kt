@@ -1,6 +1,5 @@
 package com.jjmin.izcalendar.adapter
 
-import android.annotation.SuppressLint
 import android.widget.Spinner
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -12,43 +11,31 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.GridView
 import android.widget.TextView
-import androidx.annotation.IdRes
 import androidx.lifecycle.ViewModel
 import com.jjmin.izcalendar.data.ListDataInterface
 import android.util.Log.e as e1
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.databinding.ObservableArrayList
-import com.jjmin.izcalendar.ui.calendar.CalendarAdapter
-import com.jjmin.izcalendar.ui.calendar.CalendarView
-import com.jjmin.izcalendar.ui.calendar.CalendarViewModel
 import com.jjmin.izcalendar.ui.calendar.ClandarData
 import com.jjmin.izcalendar.utils.AnimationUtils
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 object BindAdapter {
 
     @JvmStatic
-    @BindingAdapter(value = ["addList","addPlanList"])
-    fun CalendarSetAdapter(view : GridView,Calendarlist: ObservableArrayList<ClandarData>,planList:ArrayList<String>){
+    @BindingAdapter(value = ["Setplan","addCalendarList"])
+    fun CalendarSetAdapter(view : GridView,planList:ArrayList<String>?,Calendarlist : ArrayList<ClandarData?>){
+        Log.e("tag","tag")
         Log.e("Calendarlist", Calendarlist.toString())
         Log.e("planList", planList.toString())
-        view.adapter?.run {
-            if(this is CalendarAdapter){
-                this.notifyDataSetChanged()
-            }
-        } ?: run{
-            CalendarAdapter(Calendarlist,planList).apply {
-                view.adapter = this
-            }
-        }
-    }
-
-    @JvmStatic
-    @BindingAdapter(value = ["setPlan"])
-    fun setPlan(view : CalendarView, list : ArrayList<String>){
-        Log.e("setplan", list.toString())
-        CalendarViewModel().clandardayList = list
+//        view.adapter?.run {
+//            if(this is CalendarAdapter){
+//                this.notifyDataSetChanged()
+//            }
+//        } ?: run{
+//            CalendarAdapter(Calendarlist,planList).apply {
+//                view.adapter = this
+//            }
+//        }
     }
 
     @JvmStatic

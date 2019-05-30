@@ -15,9 +15,5 @@ object Utils{
 
     var postservice = retrofit.create(NetworkApi::class.java!!)
 
-    fun today(): String {
-        val mSimpleDateFormat = SimpleDateFormat("MM/dd", Locale.KOREA)
-        val date = Date()
-        return mSimpleDateFormat.format(date)
-    }
+
 }

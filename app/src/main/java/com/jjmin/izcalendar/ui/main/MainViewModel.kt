@@ -1,25 +1,19 @@
 package com.jjmin.izcalendar.ui.main
 
 import android.util.Log
-import android.view.View
-import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.jjmin.izcalendar.data.PlanningItem
 import com.jjmin.izcalendar.data.TodayItem
-import com.jjmin.izcalendar.ui.calendar.CalendarModel
+import com.jjmin.izcalendar.ui.calendar.CalendarUtils
 import java.util.ArrayList
-import android.view.View.OnTouchListener
 import com.jjmin.izcalendar.data.AllPlan
 import com.jjmin.izcalendar.ui.base.DisposableViewModel
 import com.jjmin.izcalendar.utils.DowChangeUtils
 import com.jjmin.izcalendar.utils.Utils
-import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import retrofit2.adapter.rxjava2.HttpException
 
 
 class MainViewModel(val useCase: MainUserCase, val planRepository: PlanRepository) : DisposableViewModel() {
@@ -27,6 +21,7 @@ class MainViewModel(val useCase: MainUserCase, val planRepository: PlanRepositor
 
     var infoList = ArrayList<PlanningItem>()
     var todayList = ArrayList<TodayItem>()
+    var calendarlist = ArrayList<String>()
 
     val _alllist = MutableLiveData<ArrayList<PlanningItem>>(arrayListOf())
     val alllist: LiveData<ArrayList<PlanningItem>> get() = _alllist
@@ -34,12 +29,13 @@ class MainViewModel(val useCase: MainUserCase, val planRepository: PlanRepositor
     val _todaylist = MutableLiveData<ArrayList<TodayItem>>(arrayListOf())
     val todaylist: LiveData<ArrayList<TodayItem>> get() = _todaylist
 
-    var clandardayList = ArrayList<String>()
+    val _claendarsetPlenlist = MutableLiveData<ArrayList<String>>(arrayListOf())
+    val claendarsetPlenlist : LiveData<ArrayList<String>> get() = _claendarsetPlenlist
     var today = ObservableField<String>()
 
     init {
         Plan()
-        today.set(CalendarModel().today)
+        today.set(CalendarUtils.today)
     }
 
     fun Plan() {
@@ -50,6 +46,7 @@ class MainViewModel(val useCase: MainUserCase, val planRepository: PlanRepositor
                 addList(it)
                 _todaylist.value = todayList
                 _alllist.value = infoList
+                _claendarsetPlenlist.value = calendarlist
             }) { e ->
                 //Network 오류 부분
                 Log.e("error", e.message)
@@ -62,7 +59,7 @@ class MainViewModel(val useCase: MainUserCase, val planRepository: PlanRepositor
     fun addList(it: AllPlan) {
         it.plan.forEach {
             Log.e("day", it.day)
-            clandardayList.add(it.day)
+            calendarlist.add(it.day)
             if (it.title.size >= 2) {
                 for (i in 0 until it.title.size) {
                     searchToday(it.title[i], it.subTitle[i], timeCheck(it.time[i]), it.day, DowChangeUtils.toEn(it.dow))
@@ -74,7 +71,7 @@ class MainViewModel(val useCase: MainUserCase, val planRepository: PlanRepositor
     }
 
     fun searchToday(title: String, subTitle: String, time: String, day: String, dow: String) {
-        val mDay = Utils.today()
+        val mDay = CalendarUtils.today()
         Log.e("mTime", mDay)
         Log.e("Time", day)
         if (day in mDay) {
@@ -94,7 +91,7 @@ class MainViewModel(val useCase: MainUserCase, val planRepository: PlanRepositor
     }
 
     fun monthChange(): String {
-        var month = CalendarModel().thisMonth
+        var month = CalendarUtils.thisMonth
         return when (month) {
             1 -> "January"
             2 -> "February"
