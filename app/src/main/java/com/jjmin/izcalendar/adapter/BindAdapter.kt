@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.jjmin.izcalendar.data.ListDataInterface
 import android.util.Log.e as e1
 

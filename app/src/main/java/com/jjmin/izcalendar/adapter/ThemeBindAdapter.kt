@@ -28,13 +28,11 @@ object ThemeBindAdapter {
         view.adapter?.run {
             view.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
             if (this is GridViewAdapter) {
-
                 notifyDataSetChanged()
             }
         } ?: run {
             GridViewAdapter(item).apply {
                 view.adapter = this
-                this.notifyDataSetChanged()
             }
         }
 

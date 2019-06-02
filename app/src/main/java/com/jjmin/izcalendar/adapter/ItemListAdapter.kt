@@ -33,7 +33,6 @@ class ItemListAdapter(private val vm: ViewModel,val activity: Activity?) :
     ListAdapter<ListDataInterface, RecyclerView.ViewHolder>(itemCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-
         return when (viewType) {
             1 -> {
                 MainViewHolder(
@@ -102,34 +101,20 @@ class ItemListAdapter(private val vm: ViewModel,val activity: Activity?) :
                     intent.putExtra("title",namelist)
                     intent.putExtra("subtitle",subtitleList)
                     activity!!.startActivityForResult(intent,20)
-//                    holder.itemView.context.startActivity(intent)
-
                 }
             }
-            2->{
+
+            2 -> {
                 val item = getItem(position) as TodayItem
                 (holder as TodayViewHolder).binding.item = item
             }
+
             3 -> {
                 val item = getItem(position) as DetailPlanItem
                 (holder as DetailViewHolder).binding.item = item
             }
         }
     }
-
-    fun getTopPosition(day: String,size : Int,item : PlanningItem): Int {
-        var pos = 0
-        var _item : PlanningItem
-        (0 until size).forEach {
-            _item = getItem(it) as PlanningItem
-            if (_item.day == day) {
-                pos = it
-                return@forEach
-            }
-        }
-        return pos
-    }
-
     override fun getItemId(position: Int): Long {
         return getItemId(position).hashCode().toLong()
     }
