@@ -7,10 +7,6 @@
         <variable
                 name="vm"
                 type="com.jjmin.izcalendar.ui.main.MainViewModel"/>
-
-        <variable
-                name="activity"
-                type="com.jjmin.izcalendar.ui.main.MainActivity"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -117,7 +113,7 @@
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/main_recycler"
                 app:mainviewModel="@{vm}"
-                app:mainsetActivity="@{activity}"
+                app:mainsetActivity="@{vm.useCase.activity}"
                 app:RecyclerScroll="@{todayView}"
                 app:ScrollbarSize="@{todayScrollbar}"
                 app:mainlistItem="@{vm.alllist}"
@@ -146,7 +142,7 @@
                     app:MainView="@{mainRecycler}"
                     app:ScrollbarSize="@{todayScrollbar}"
                     app:AddTodayList="@{vm.todaylist}"
-                    app:SetActivity="@{activity}"
+                    app:SetActivity="@{vm.useCase.activity}"
                     app:layout_constraintBottom_toTopOf="@+id/today_scrollbar"
                     app:layout_constraintTop_toBottomOf="@+id/today_scrollbar"
                     android:layout_width="match_parent"

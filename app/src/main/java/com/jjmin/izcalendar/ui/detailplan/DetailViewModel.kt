@@ -8,12 +8,13 @@ import android.view.View
 import android.util.Log
 import androidx.lifecycle.*
 import androidx.lifecycle.ViewModel
+import com.jjmin.izcalendar.ui.base.DisposableViewModel
 import com.jjmin.izcalendar.ui.calendar.CalendarView
 import com.jjmin.izcalendar.utils.SharedPreprecncesUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class DetailViewModel(var useCase : DetailUseCase,var detailPlanRepository: DetailPlanRepository) : ViewModel() {
+class DetailViewModel(var useCase : DetailUseCase,var detailPlanRepository: DetailPlanRepository) : DisposableViewModel() {
 
     val _detailItems = MutableLiveData<ArrayList<DetailPlanItem>>(arrayListOf())
     val detailitems: LiveData<ArrayList<DetailPlanItem>> get() = _detailItems
@@ -39,8 +40,9 @@ class DetailViewModel(var useCase : DetailUseCase,var detailPlanRepository: Deta
             .subscribe({
                 _detailItems.value = updateData(it.detailPlan)
             }){
-
+                Log.e("Detialerror",it.message)
             }
+            .also { addDisposable(it) }
     }
 
     fun updateData(detailPlan : List<String>): ArrayList<DetailPlanItem> {
@@ -82,7 +84,7 @@ class DetailViewModel(var useCase : DetailUseCase,var detailPlanRepository: Deta
         var item = parent!!.getItemAtPosition(position!!) as TagSpinnerItem
         Log.e("bindColor", item.color.toString())
         if (position == 0)
-            SharedPreprecncesUtils.setTag(useCase.position, R.color.colorMyColor)
+            SharedPreprecncesUtils.setTag(useCase.position,R.color.colorMyColor)
         else
             SharedPreprecncesUtils.setTag(useCase.position, item.color!!)
 

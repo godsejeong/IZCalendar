@@ -6,4 +6,4 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.jjmin.izcalendar.R
 
-class MainUserCase(val context: Context){}
+class MainUserCase(val activity: AppCompatActivity){}

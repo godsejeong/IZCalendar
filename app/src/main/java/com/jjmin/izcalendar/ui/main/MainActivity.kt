@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.jjmin.izcalendar.R
 import com.jjmin.izcalendar.databinding.ActivityMainBinding
 import com.jjmin.izcalendar.ui.base.BaseActivity
+import com.jjmin.izcalendar.ui.setting.SettingActivity
 import org.koin.core.parameter.parametersOf
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -24,9 +25,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewDataBinding.vm = viewModel
-        viewDataBinding.activity = this
         setSupportActionBar(viewDataBinding.mainToolbar)
         viewDataBinding.calendarLayout.bringToFront()
+
+        R.color.colorMain
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -43,7 +45,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.menuSetting -> {
-                Toast.makeText(applicationContext, "Setting", Toast.LENGTH_SHORT).show()
+                var intent = Intent(this,SettingActivity::class.java)
+                startActivity(intent)
             }
         }
         return super.onOptionsItemSelected(item)

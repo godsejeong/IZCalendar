@@ -3,7 +3,9 @@
     <color name="colorPrimary">@color/colorMain</color>
     <color name="colorPrimaryDark">@color/colorMain</color>
     <color name="colorAccent">#D81B60</color>
+
     <color name="colorMain">@color/colorOneYoungBg</color>
+
     <color name="colorOneYoung">#e84a8a</color>
     <color name="colorSakura">#faafbf</color>
     <color name="colorYuRi">#f68e43</color>
@@ -16,16 +18,36 @@
     <color name="colorChaeWon">#cce3d1</color>
     <color name="colorMinJu">#fefefc</color>
     <color name="colorChaeYeon">#96e0e1</color>
-    <color name="colorMyColor">@color/colorOneYoung</color>
-    <color name="colorWhite">#FFFFFF</color>
 
-    <color name="colorOneYoungBg">#93ADFF</color>
-    <!--<color name="colorOneYoungBg">#EBB2F8</color>-->
+    <color name="colorOneYoungBg">#FF817E</color>
+    <color name="colorSakuraBg">#d6639f</color>
+    <color name="colorYuRiBg">#00cdb5</color>
+    <color name="colorYeNaBg">#ff6161</color>
+    <color name="colorYuJinBg">#d6afff</color>
+    <color name="colorNacoBg">#155170</color>
+    <color name="colorEunBiBg">#43c5ff</color>
+    <color name="colorHyeWonBg">#6fb8c4</color>
+    <color name="colorHitomiBg">#f1c1de</color>
+    <color name="colorChaeWonBg">#aeaeae</color>
+    <color name="colorMinJuBg">#d53358</color>
+    <color name="colorChaeYeonBg">#5b8c85</color>
+
     <color name="colorTagRed">#ff6d6d</color>
     <color name="colorTagYellow">#ffe45b</color>
     <color name="colorTagGreen">#7fce85</color>
     <color name="colorTagBlue">#6ea8ff</color>
 
     <color name="colorTagDisable">#00ff0000</color>
+    <color name="colorSettingbase">#7f8289</color>
 
+    <color name="colorWhite">#FFFFFF</color>
+
+    <color name="colorTextWhite">#FFFFFF</color>
+    <color name="colorTextBlack">#292f3b</color>
+
+    <color name="colorDarkMode">#292f3b</color>
+
+    <color name="colorMyColorBg">@color/colorOneYoungBg</color>
+    <color name="colorMyColorText">@color/colorOneYoungBg</color>
+    <color name="colorMyColor">@color/colorOneYoung</color>
 </resources>

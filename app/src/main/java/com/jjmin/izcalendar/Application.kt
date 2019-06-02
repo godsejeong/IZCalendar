@@ -18,7 +18,9 @@ class Application : Application() {
                 MainModules.mainModules,
                 PlanRepositoryMoudles.planRepositoryMoudles,
                 NetworkModules.networkModules,
-                DetailPlanReopsitoryMoudles.DetailPlanModules)
+                DetailPlanReopsitoryMoudles.DetailPlanModules,
+                SettingModules.SettingModules,
+                ThemeModules.themeModules)
         }
 
         context = this

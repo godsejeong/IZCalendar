@@ -1,5 +1,6 @@
 package com.jjmin.izcalendar.ui.detailplan
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -10,6 +11,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import com.jjmin.izcalendar.R
 import com.jjmin.izcalendar.databinding.ActivityDetailPlanBinding
 import com.jjmin.izcalendar.ui.base.BaseActivity
+import com.jjmin.izcalendar.ui.setting.SettingActivity
 import org.koin.core.parameter.parametersOf
 
 class DetailPlanActivity : BaseActivity<ActivityDetailPlanBinding>() {
@@ -38,7 +40,8 @@ class DetailPlanActivity : BaseActivity<ActivityDetailPlanBinding>() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.menuSetting -> {
-                Toast.makeText(applicationContext, "Setting", Toast.LENGTH_SHORT).show()
+                var intent = Intent(this, SettingActivity::class.java)
+                startActivity(intent)
             }
 
             android.R.id.home -> {

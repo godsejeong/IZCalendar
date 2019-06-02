@@ -12,4 +12,10 @@
        <item name="windowActionBar">false</item>
        <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="OneYoungThmem" parent="NoActionBar">
+        <item name="colorPrimary">@color/colorOneYoungBg</item>
+        <item name="colorPrimaryDark">@color/colorOneYoungBg</item>
+    </style>
+
 </resources>
