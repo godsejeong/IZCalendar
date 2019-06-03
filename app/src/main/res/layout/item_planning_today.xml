@@ -5,6 +5,12 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="androidx.core.content.ContextCompat"/>
+
+        <variable
+                name="theme"
+                type="com.jjmin.izcalendar.utils.SetTheme"/>
+
         <variable name="item" type="com.jjmin.izcalendar.data.TodayItem"/>
     </data>
 
@@ -12,6 +18,8 @@
             android:id="@+id/todayLayout"
             android:layout_width="match_parent"
             app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/colorMain"
+            android:background="@{ContextCompat.getColor(context,theme.themebackgroundcolor)}"
             android:layout_height="90dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,8 +30,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/planTitleLayout"
-                android:background="@color/colorMain"
+                app:layout_constraintEnd_toStartOf="@id/todayTitleLayout"
                 android:layout_height="match_parent">
 
             <TextView
@@ -39,7 +46,7 @@
                     android:paddingTop="11dp"
                     android:textStyle="bold"
                     android:lineSpacingExtra="6sp"
-                    android:textColor="@color/colorMyColor"
+                    android:textColor="@{ContextCompat.getColor(context,theme.themecolor)}"
                     android:paddingLeft="13dp"
                     tools:text="ToDay"
                     android:text="@{item.day}"/>
@@ -56,7 +63,7 @@
                     android:textStyle="bold"
                     android:textSize="17sp"
                     android:lineSpacingExtra="6sp"
-                    android:textColor="@color/colorMyColor"
+                    android:textColor="@{ContextCompat.getColor(context,theme.themecolor)}"
                     android:paddingLeft="13dp"
                     tools:text="2:00"
                     android:text="@{item.time}"
@@ -74,7 +81,7 @@
                     android:textStyle="bold"
                     android:textSize="10sp"
                     android:lineSpacingExtra="3sp"
-                    android:textColor="@color/colorMyColor"
+                    android:textColor="@{ContextCompat.getColor(context,theme.themecolor)}"
                     android:paddingLeft="13dp"
                     tools:text="Sat"
                     android:text="@{item.dow}"
@@ -90,8 +97,9 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:background="@color/colorMain"
-                app:layout_constraintStart_toEndOf="@id/toyDayTimeLayout">
+                app:layout_constraintStart_toEndOf="@id/toyDayTimeLayout"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintVertical_bias="0.0">
 
             <TextView
                     android:id="@+id/todayTitle"
@@ -106,7 +114,7 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/todaySubTitle"
                     android:textColor="@android:color/white"
-            />
+                    />
 
             <TextView
                     android:id="@+id/todaySubTitle"
@@ -119,7 +127,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:textSize="8sp"
                     android:textColor="@android:color/white"
-            />
+                    />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

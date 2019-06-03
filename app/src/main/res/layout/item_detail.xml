@@ -4,6 +4,10 @@
         <import type="androidx.core.content.ContextCompat"/>
 
         <variable
+                name="theme"
+                type="com.jjmin.izcalendar.utils.SetTheme"/>
+
+        <variable
                 name="item"
                 type="com.jjmin.izcalendar.data.DetailPlanItem"/>
     </data>
@@ -38,7 +42,8 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         android:textStyle="bold"
-                        android:textColor="@color/colorMyColor"
+                        tools:textColor="@color/colorMain"
+                        android:textColor="@{ContextCompat.getColor(context,theme.themecolor)}"
                         app:layout_constraintBottom_toTopOf="@+id/detailCategoryLayout"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,6 +63,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toLeftOf="@+id/categoryTitle"
+                            tools:backgroundTint="@color/colorMain"
                             android:backgroundTint="@{ContextCompat.getColor(context,item.tagColor)}"
                             android:background="@drawable/bg_calendarview_today"/>
 
@@ -71,8 +77,9 @@
                             android:layout_height="wrap_content"
                             android:text="@{item.subtitle}"
                             tools:text="방송"
+                            tools:textColor="@color/colorMain"
                             android:textSize="10sp"
-                            android:textColor="@color/colorMain"/>
+                            android:textColor="@{ContextCompat.getColor(context,theme.themebackgroundcolor)}"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -84,10 +91,11 @@
                         app:layout_constraintBottom_toTopOf="@+id/detailTimeLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        tools:textColor="@color/colorMain"
                         tools:text="2019년 4월 25일 목요일"
                         android:text="@{item.date}"
                         android:textSize="12sp"
-                        android:textColor="@color/colorMain"/>
+                        android:textColor="@{ContextCompat.getColor(context,theme.themebackgroundcolor)}"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -104,7 +112,8 @@
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toLeftOf="@+id/timeTv"
                             android:id="@+id/timeClock"
-                            android:backgroundTint="@color/colorMain"
+                            tools:backgroundTint="@color/colorMain"
+                            android:backgroundTint="@{ContextCompat.getColor(context,theme.themebackgroundcolor)}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/ic_clock_24px"
@@ -116,8 +125,9 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             android:layout_marginLeft="5dp"
                             android:gravity="center"
-                            android:textColor="@color/colorMain"
+                            android:textColor="@{ContextCompat.getColor(context,theme.themebackgroundcolor)}"
                             android:textSize="12sp"
+                            tools:textColor="@color/colorMain"
                             app:layout_constraintLeft_toRightOf="@+id/timeClock"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

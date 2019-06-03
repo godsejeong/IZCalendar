@@ -51,7 +51,7 @@
                     android:id="@+id/settingtitleApp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorMain"
+                    android:textColor="@color/colorTextBlack"
                     android:textStyle="bold"
                     android:textSize="13sp"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -79,12 +79,12 @@
                             android:layout_height="wrap_content"
                             android:text="잠금화면 배경 변경"
                             android:gravity="center"
-                            android:textColor="@color/colorMain"
+                            android:textColor="@color/colorTextBlack"
                             android:textStyle="bold"
                             android:textSize="13sp"
                             android:drawablePadding="15dp"
                             android:layout_marginLeft="10dp"
-                            android:drawableTint="@color/colorMain"
+                            android:drawableTint="@color/colorTextBlack"
                             android:drawableLeft="@drawable/ic_rockscreenbackground_24dp"/>
 
                     <TextView
@@ -133,12 +133,12 @@
                             android:layout_height="wrap_content"
                             android:text="잠금화면 사용하기"
                             android:gravity="center"
-                            android:textColor="@color/colorMain"
+                            android:textColor="@color/colorTextBlack"
                             android:textStyle="bold"
                             android:textSize="13sp"
                             android:drawablePadding="15dp"
                             android:layout_marginLeft="10dp"
-                            android:drawableTint="@color/colorMain"
+                            android:drawableTint="@color/colorTextBlack"
                             android:drawableLeft="@drawable/ic_rockscreen_24dp"/>
 
                     <Switch
@@ -177,12 +177,12 @@
                             android:layout_height="wrap_content"
                             android:text="다크테마"
                             android:gravity="center"
-                            android:textColor="@color/colorMain"
+                            android:textColor="@color/colorTextBlack"
                             android:textStyle="bold"
                             android:textSize="13sp"
                             android:drawablePadding="15dp"
                             android:layout_marginLeft="10dp"
-                            android:drawableTint="@color/colorMain"
+                            android:drawableTint="@color/colorTextBlack"
                             android:drawableLeft="@drawable/ic_darktheme"/>
 
                     <Switch
@@ -222,13 +222,13 @@
                             android:layout_height="wrap_content"
                             android:text="테마변경"
                             android:gravity="center"
-                            android:textColor="@color/colorMain"
+                            android:textColor="@color/colorTextBlack"
                             android:textStyle="bold"
                             android:textSize="13sp"
                             android:drawablePadding="15dp"
                             android:layout_marginLeft="10dp"
-                            android:drawableTint="@color/colorMain"
-                            android:drawableLeft="@drawable/ic_darktheme"/>
+                            android:drawableTint="@color/colorTextBlack"
+                            android:drawableLeft="@drawable/ic_themeselect"/>
 
                     <TextView
                             android:id="@+id/settingThemeBtn"
@@ -281,7 +281,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="15dp"
-                    android:textColor="@color/colorMain"
+                    android:textColor="@color/colorTextBlack"
                     android:textStyle="bold"
                     android:textSize="13sp"
                     app:layout_constraintTop_toTopOf="parent"
@@ -309,12 +309,12 @@
                             android:layout_height="wrap_content"
                             android:text="앱 정보"
                             android:gravity="center"
-                            android:textColor="@color/colorMain"
+                            android:textColor="@color/colorTextBlack"
                             android:textStyle="bold"
                             android:textSize="13sp"
                             android:drawablePadding="15dp"
                             android:layout_marginLeft="10dp"
-                            android:drawableTint="@color/colorMain"
+                            android:drawableTint="@color/colorTextBlack"
                             android:drawableLeft="@drawable/ic_info_app_24dp"/>
 
                     <TextView

@@ -7,10 +7,14 @@ import android.util.Log
 import android.view.*
 import android.widget.CalendarView
 import android.widget.Toast
+import androidx.databinding.ObservableField
+import com.jjmin.izcalendar.BR
 import com.jjmin.izcalendar.R
 import com.jjmin.izcalendar.databinding.ActivityMainBinding
 import com.jjmin.izcalendar.ui.base.BaseActivity
 import com.jjmin.izcalendar.ui.setting.SettingActivity
+import com.jjmin.izcalendar.utils.SetTheme
+import com.jjmin.izcalendar.utils.SetThemeToolbar
 import org.koin.core.parameter.parametersOf
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -21,21 +25,29 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     val useCase by lazy { MainUserCase(this) }
     val viewModel: MainViewModel by viewModel { parametersOf(useCase) }
+    val theme by lazy {SetTheme()}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         viewDataBinding.vm = viewModel
+        viewDataBinding.theme = theme
+
         setSupportActionBar(viewDataBinding.mainToolbar)
         viewDataBinding.calendarLayout.bringToFront()
-
-        R.color.colorMain
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.e("asdfasdf","ASDFasdfasdf")
+        viewDataBinding.CustomCalendar.changeList()
+        this.recreate()
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewDataBinding.CustomCalendar.changeList()
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
@@ -46,7 +58,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         when (item!!.itemId) {
             R.id.menuSetting -> {
                 var intent = Intent(this,SettingActivity::class.java)
-                startActivity(intent)
+                startActivityForResult(intent,1000)
             }
         }
         return super.onOptionsItemSelected(item)

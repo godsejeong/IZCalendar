@@ -28,7 +28,6 @@
                 android:layout_width="match_parent"
                 app:setGridItem="@{vm.themeItems}"
                 app:OnClickItem="@{vm::OnItemClick}"
-
                 android:horizontalSpacing="10dp"
                 android:verticalSpacing="10dp"
                 android:stretchMode="columnWidth"
@@ -45,7 +44,7 @@
                 android:layout_marginTop="60dp"
                 android:textStyle="bold"
                 android:textSize="15sp"
-                android:textColor="#292f3b"
+                android:textColor="@color/colorTextBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="최애 맴버를 선택해주세요"/>
@@ -60,9 +59,10 @@
                 android:layout_marginRight="41dp"
                 android:layout_height="wrap_content"
                 android:text="다음"
+                android:onClick="@{vm.finishOnclick}"
                 android:visibility="@{vm.btnbl ? View.VISIBLE : View.INVISIBLE}"
                 android:background="@drawable/bg_theme_btn"
-                android:textColor="#292f3b"
+                android:textColor="@color/colorTextBlack"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintHorizontal_bias="0.498"/>

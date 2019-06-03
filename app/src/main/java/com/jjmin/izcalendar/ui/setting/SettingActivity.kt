@@ -4,9 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.jjmin.izcalendar.R
 import com.jjmin.izcalendar.databinding.ActivitySettingBinding
 import com.jjmin.izcalendar.ui.base.BaseActivity
+import com.jjmin.izcalendar.utils.SetTheme
+import com.jjmin.izcalendar.utils.SharedPreprecncesUtils
 import org.jetbrains.anko.toast
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -15,6 +18,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
 
     override val layoutResourceId: Int = R.layout.activity_setting
 
+    val theme by lazy {SetTheme()}
     val useCase by lazy { SettingUseCase(this) }
     val viewModel: SettingViewModel by viewModel { parametersOf(useCase) }
 
@@ -25,9 +29,15 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == Activity.RESULT_OK) {
-            if (resultCode == 100){
+        if(resultCode == Activity.RESULT_OK) {
+            if (requestCode== 100){
+                var name = data?.getStringExtra("setThemeName")
+                var color = data?.getIntExtra("setThemeColor",0)
+                var backgroundcolor = data?.getIntExtra("setThemeBackgroundColor",0)
+                SharedPreprecncesUtils.setTheme(name!!,color!!,backgroundcolor!!)
+                SetTheme().update()
                 toast("테마가 변경되었습니다.")
+                this.recreate()
             }
         }
     }

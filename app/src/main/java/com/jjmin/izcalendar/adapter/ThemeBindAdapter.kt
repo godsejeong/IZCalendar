@@ -13,11 +13,8 @@ import android.widget.AdapterView
 import android.widget.GridView
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SimpleItemAnimator
 import com.jjmin.izcalendar.R
 import com.jjmin.izcalendar.data.ThemeItem
-import com.jjmin.izcalendar.utils.GridViewItemClickListener
 
 
 object ThemeBindAdapter {
@@ -39,6 +36,7 @@ object ThemeBindAdapter {
         view.onItemClickListener = listener
 
     }
+
     @JvmStatic
     @BindingAdapter(value = ["setStroke","setColor"])
     fun SetStroke(view : ImageView,bl : Boolean,color : Int){

@@ -10,6 +10,7 @@ import androidx.lifecycle.*
 import androidx.lifecycle.ViewModel
 import com.jjmin.izcalendar.ui.base.DisposableViewModel
 import com.jjmin.izcalendar.ui.calendar.CalendarView
+import com.jjmin.izcalendar.utils.SetTheme
 import com.jjmin.izcalendar.utils.SharedPreprecncesUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -25,7 +26,7 @@ class DetailViewModel(var useCase : DetailUseCase,var detailPlanRepository: Deta
     init {
         Detailplan()
         _spinnerItems.value = ArrayList<TagSpinnerItem>().apply {
-            add(TagSpinnerItem(R.color.colorTagDisable, "태그없음"))
+            add(TagSpinnerItem(SetTheme().themecolor.value!!, "태그없음"))
             add(TagSpinnerItem(R.color.colorTagRed, "Red"))
             add(TagSpinnerItem(R.color.colorTagYellow, "Yellow"))
             add(TagSpinnerItem(R.color.colorTagGreen, "Green"))
@@ -67,7 +68,7 @@ class DetailViewModel(var useCase : DetailUseCase,var detailPlanRepository: Deta
                         time[it],
                         if (SharedPreprecncesUtils.getColorTag(useCase.position) != 0) SharedPreprecncesUtils.getColorTag(
                             useCase.position
-                        ) else R.color.colorMyColor
+                        ) else SetTheme().themecolor.value!!
                     )
                 )
             }
@@ -84,7 +85,7 @@ class DetailViewModel(var useCase : DetailUseCase,var detailPlanRepository: Deta
         var item = parent!!.getItemAtPosition(position!!) as TagSpinnerItem
         Log.e("bindColor", item.color.toString())
         if (position == 0)
-            SharedPreprecncesUtils.setTag(useCase.position,R.color.colorMyColor)
+            SharedPreprecncesUtils.setTag(useCase.position,0)
         else
             SharedPreprecncesUtils.setTag(useCase.position, item.color!!)
 

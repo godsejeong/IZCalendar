@@ -3,6 +3,12 @@
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:bind="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="androidx.core.content.ContextCompat"/>
+
+        <variable
+                name="theme"
+                type="com.jjmin.izcalendar.utils.SetTheme"/>
+
         <variable
                 name="vm"
                 type="com.jjmin.izcalendar.ui.detailplan.DetailViewModel"/>
@@ -42,7 +48,8 @@
             <TextView
                     android:layout_margin="20dp"
                     android:id="@+id/tagTv"
-                    android:textColor="@color/colorMain"
+                    tools:textColor="@color/colorMain"
+                    android:textColor="@{ContextCompat.getColor(context,theme.themebackgroundcolor)}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="10sp"

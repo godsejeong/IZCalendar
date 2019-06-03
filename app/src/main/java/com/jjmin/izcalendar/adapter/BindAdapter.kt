@@ -13,12 +13,10 @@ object BindAdapter {
     @BindingAdapter(value = ["listItem", "viewModel"])
     fun ListAdapter(view: RecyclerView, items: List<ListDataInterface>, vm: ViewModel) {
         view.adapter?.run {
-            Log.e("sadfadsf","Asdfasdfasdfasdfasdfasdfasdfad")
             if (this is ItemListAdapter) {
                 this.submitList(items)
             }
         } ?: run {
-            Log.e("Asdfadsf","ASDfasdf")
             ItemListAdapter(vm,null).apply {
                 view.adapter = this
                 this.submitList(items)

@@ -26,6 +26,7 @@ import com.jjmin.izcalendar.databinding.ItemDetailBinding
 import com.jjmin.izcalendar.databinding.ItemPlanningBinding
 import com.jjmin.izcalendar.databinding.ItemPlanningTodayBinding
 import com.jjmin.izcalendar.ui.detailplan.DetailPlanActivity
+import com.jjmin.izcalendar.utils.SetTheme
 import kotlin.reflect.KType
 
 
@@ -78,6 +79,8 @@ class ItemListAdapter(private val vm: ViewModel,val activity: Activity?) :
             1 -> {
                 val item = getItem(position) as PlanningItem
                 (holder as MainViewHolder).binding.item = item
+                holder.binding.theme = SetTheme()
+
                 holder.itemView.setOnClickListener {
 
                     var namelist = ArrayList<String>()
@@ -107,11 +110,14 @@ class ItemListAdapter(private val vm: ViewModel,val activity: Activity?) :
             2 -> {
                 val item = getItem(position) as TodayItem
                 (holder as TodayViewHolder).binding.item = item
+                holder.binding.theme = SetTheme()
             }
 
             3 -> {
                 val item = getItem(position) as DetailPlanItem
                 (holder as DetailViewHolder).binding.item = item
+                holder.binding.theme = SetTheme()
+
             }
         }
     }

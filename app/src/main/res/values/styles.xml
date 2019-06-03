@@ -13,9 +13,64 @@
        <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="OneYoungThmem" parent="NoActionBar">
+    <style name="OneYoungTheme" parent="NoActionBar">
         <item name="colorPrimary">@color/colorOneYoungBg</item>
         <item name="colorPrimaryDark">@color/colorOneYoungBg</item>
+    </style>
+
+    <style name="SakuraTheme" parent="NoActionBar">
+        <item name="colorPrimary">@color/colorSakuraBg</item>
+        <item name="colorPrimaryDark">@color/colorSakuraBg</item>
+    </style>
+
+    <style name="YuRiTheme" parent="NoActionBar">
+        <item name="colorPrimary">@color/colorYuRiBg</item>
+        <item name="colorPrimaryDark">@color/colorYuRiBg</item>
+    </style>
+
+    <style name="YeNaTheme" parent="NoActionBar">
+        <item name="colorPrimary">@color/colorYeNaBg</item>
+        <item name="colorPrimaryDark">@color/colorYeNaBg</item>
+    </style>
+
+    <style name="YuJinTheme" parent="NoActionBar">
+        <item name="colorPrimary">@color/colorYuJinBg</item>
+        <item name="colorPrimaryDark">@color/colorYuJinBg</item>
+    </style>
+
+    <style name="NacoTheme" parent="NoActionBar">
+        <item name="colorPrimary">@color/colorNacoBg</item>
+        <item name="colorPrimaryDark">@color/colorNacoBg</item>
+    </style>
+
+    <style name="EunbiTheme" parent="NoActionBar">
+        <item name="colorPrimary">@color/colorEunBiBg</item>
+        <item name="colorPrimaryDark">@color/colorEunBiBg</item>
+    </style>
+
+    <style name="HyeWonTheme" parent="NoActionBar">
+        <item name="colorPrimary">@color/colorHyeWonBg</item>
+        <item name="colorPrimaryDark">@color/colorHyeWonBg</item>
+    </style>
+
+    <style name="HitomiTheme" parent="NoActionBar">
+        <item name="colorPrimary">@color/colorHitomiBg</item>
+        <item name="colorPrimaryDark">@color/colorHitomiBg</item>
+    </style>
+
+    <style name="MinJuTheme" parent="NoActionBar">
+        <item name="colorPrimary">@color/colorMinJuBg</item>
+        <item name="colorPrimaryDark">@color/colorMinJuBg</item>
+    </style>
+
+    <style name="ChaeWonTheme" parent="NoActionBar">
+        <item name="colorPrimary">@color/colorChaeWonBg</item>
+        <item name="colorPrimaryDark">@color/colorChaeWonBg</item>
+    </style>
+
+    <style name="ChaeYeonTheme" parent="NoActionBar">
+        <item name="colorPrimary">@color/colorChaeYeonBg</item>
+        <item name="colorPrimaryDark">@color/colorChaeYeonBg</item>
     </style>
 
 </resources>

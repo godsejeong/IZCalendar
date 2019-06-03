@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <import type="androidx.core.content.ContextCompat"/>
+
+        <variable
+                name="theme"
+                type="com.jjmin.izcalendar.utils.SetTheme"/>
+
         <variable
                 name="item"
                 type="com.jjmin.izcalendar.data.PlanningItem"/>
@@ -31,6 +37,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/planTitleLayout"
+                    android:backgroundTint="@{ContextCompat.getColor(context,theme.themebackgroundcolor)}"
                     android:background="@drawable/bg_planning_item_day"
                     android:layout_height="match_parent">
 
@@ -111,7 +118,7 @@
                         android:text="@{item.title}"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintBottom_toTopOf="@id/planSubTitle"
-                        android:textColor="@color/colorMain"
+                        android:textColor="@{ContextCompat.getColor(context,theme.themebackgroundcolor)}"
                 />
 
                 <TextView
@@ -124,7 +131,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/planTitle"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:textSize="8sp"
-                        android:textColor="@color/colorMain"
+                        android:textColor="@{ContextCompat.getColor(context,theme.themebackgroundcolor)}"
                 />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

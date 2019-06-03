@@ -3,11 +3,19 @@
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:android="http://schemas.android.com/apk/res/android" >
 
+
     <data>
+        <import type="androidx.core.content.ContextCompat"/>
+
+        <variable
+                name="theme"
+                type="com.jjmin.izcalendar.utils.SetTheme"/>
+
         <variable
                 name="vm"
                 type="com.jjmin.izcalendar.ui.main.MainViewModel"/>
     </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -40,7 +48,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/appbarLayout"
                 app:layout_constraintBottom_toTopOf="@+id/today_view"
                 android:layout_height="0dp"
-                android:background="@color/colorMain">
+                android:background="@{ContextCompat.getColor(context,theme.themebackgroundcolor)}"
+                >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/calendarTodayLayout"
@@ -50,6 +59,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     android:layout_width="80dp"
+                    android:backgroundTint="@color/colorWhite"
                     android:background="@drawable/bg_main_calendar_today"
                     android:layout_height="80dp">
 
@@ -65,7 +75,8 @@
                         app:layout_constraintBottom_toTopOf="@+id/calendarMonthTv"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_chainStyle="packed"
-                        android:textColor="@android:color/white"/>
+                        tools:textColor="@color/colorMain"
+                        android:textColor="@{ContextCompat.getColor(context,theme.themecolor)}"/>
 
                 <TextView
                         android:id="@+id/calendarMonthTv"
@@ -78,7 +89,8 @@
                         app:layout_constraintTop_toBottomOf="@+id/calendarTodayTv"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:textSize="8sp"
-                        android:textColor="@android:color/white"/>
+                        tools:textColor="@color/colorMain"
+                        android:textColor="@{ContextCompat.getColor(context,theme.themecolor)}"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -156,6 +168,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/todayRecycler"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_width="match_parent"
+                    android:backgroundTint="@{ContextCompat.getColor(context,theme.themebackgroundcolor)}"
                     android:background="@drawable/bg_main_todayplan"
                     android:layout_height="13dp">
 

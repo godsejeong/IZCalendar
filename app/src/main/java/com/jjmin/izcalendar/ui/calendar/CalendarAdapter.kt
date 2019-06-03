@@ -6,11 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.content.Context.LAYOUT_INFLATER_SERVICE
+import android.content.res.ColorStateList
+import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.databinding.ObservableArrayList
 import com.jjmin.izcalendar.R
+import com.jjmin.izcalendar.utils.SetTheme
 import java.util.*
 
 
@@ -51,12 +57,15 @@ class CalendarAdapter(list: ArrayList<ClandarData>, planList: ArrayList<String>)
                 holder.infoIv.backgroundTintList = parent!!.context.resources.getColorStateList(it)
         }
 
+//        var tagimg = holder.infoIv.background as Drawable
+//        tagimg.setTint(SetTheme().themecolor)
+        holder.infoIv.backgroundTintList = parent.context.resources.getColorStateList(SetTheme().themecolor.value!!)
         //오늘 day 가져옴
         val today = cal.get(Calendar.DATE)
         val sToday = today.toString()
         if (sToday == item.day) { //오늘 day 텍스트 컬러 변경
             Log.e("sToday",sToday)
-            holder.dayTv.setTextColor(parent!!.context.resources.getColor(R.color.colorMyColor))
+            holder.dayTv.setTextColor(parent.context.resources.getColorStateList(SetTheme().themecolor.value!!))
             holder.dayTv.setBackgroundResource(R.drawable.bg_calendarview_today)
         }
         Log.e("Adf",planList!!.size.toString())

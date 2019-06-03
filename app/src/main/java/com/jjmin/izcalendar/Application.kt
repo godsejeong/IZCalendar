@@ -24,6 +24,6 @@ class Application : Application() {
         }
 
         context = this
-        SharedPreprecncesUtils.setSpinnerShared(this)
+        SharedPreprecncesUtils.init(this)
     }
 }

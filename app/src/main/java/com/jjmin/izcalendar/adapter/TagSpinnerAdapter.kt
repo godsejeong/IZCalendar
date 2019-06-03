@@ -11,6 +11,7 @@ import com.jjmin.izcalendar.R
 import com.jjmin.izcalendar.data.TagSpinnerItem
 import com.jjmin.izcalendar.databinding.ItemTagSpinnerDropdownBinding
 import com.jjmin.izcalendar.databinding.ItemTagSpinnerNormalBinding
+import com.jjmin.izcalendar.utils.SetTheme
 
 class TagSpinnerAdapter(val vm: ViewModel, var item: ArrayList<TagSpinnerItem>) : BaseAdapter() {
     var items = item
@@ -40,6 +41,7 @@ class TagSpinnerAdapter(val vm: ViewModel, var item: ArrayList<TagSpinnerItem>) 
             binding = view!!.tag as ItemTagSpinnerNormalBinding
         }
         binding.item = items[position]
+        binding.theme = SetTheme()
         return view!!
     }
 
@@ -56,6 +58,8 @@ class TagSpinnerAdapter(val vm: ViewModel, var item: ArrayList<TagSpinnerItem>) 
             binding = view!!.tag as ItemTagSpinnerDropdownBinding
         }
         binding.item = items[position]
+        binding.theme = SetTheme()
+
         return view!!
     }
 }
