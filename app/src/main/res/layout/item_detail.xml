@@ -79,7 +79,7 @@
                             tools:text="방송"
                             tools:textColor="@color/colorMain"
                             android:textSize="10sp"
-                            android:textColor="@{ContextCompat.getColor(context,theme.themebackgroundcolor)}"/>
+                            android:textColor="@{ContextCompat.getColor(context,item.tagColor)}"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -12,6 +12,7 @@ import android.widget.AdapterView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.jjmin.izcalendar.data.ThemeItem
+import com.jjmin.izcalendar.utils.SharedPreprecncesUtils
 
 
 class ThemeViewModel(private val usecase: ThemeUseCase) : ViewModel(){
@@ -23,6 +24,7 @@ class ThemeViewModel(private val usecase: ThemeUseCase) : ViewModel(){
     val themeItems: LiveData<ArrayList<ThemeItem>> get() = _themeItems
 
     var finishOnclick = OnClickListener {
+
         var intent = Intent()
         var position : Int = 0
         (0 until baselist.size).forEach {
@@ -50,7 +52,7 @@ class ThemeViewModel(private val usecase: ThemeUseCase) : ViewModel(){
             add(ThemeItem(usecase.activity.applicationContext.resources.getDrawable(R.drawable.bg_eunbi),"은비",R.color.colorEunBi,R.color.colorEunBiBg))
             add(ThemeItem(usecase.activity.applicationContext.resources.getDrawable(R.drawable.bg_hyewon),"혜원",R.color.colorHyeWon,R.color.colorHyeWonBg))
             add(ThemeItem(usecase.activity.applicationContext.resources.getDrawable(R.drawable.bg_hitomi),"히토미",R.color.colorHitomi,R.color.colorHitomiBg))
-            add(ThemeItem(usecase.activity.applicationContext.resources.getDrawable(R.drawable.bg_chaeone),"채원",R.color.colorChaeWon,R.color.colorHyeWonBg))
+            add(ThemeItem(usecase.activity.applicationContext.resources.getDrawable(R.drawable.bg_chaeone),"채원",R.color.colorChaeWon,R.color.colorChaeWonBg))
             add(ThemeItem(usecase.activity.applicationContext.resources.getDrawable(R.drawable.bg_minju),"민주",R.color.colorMinJu,R.color.colorMinJuBg))
             add(ThemeItem(usecase.activity.applicationContext.resources.getDrawable(R.drawable.bg_chaeyeon),"채연",R.color.colorChaeYeon,R.color.colorChaeYeonBg))
         }

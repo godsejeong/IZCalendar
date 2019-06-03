@@ -17,7 +17,7 @@ object BindAdapter {
                 this.submitList(items)
             }
         } ?: run {
-            ItemListAdapter(vm,null).apply {
+            ItemListAdapter(vm).apply {
                 view.adapter = this
                 this.submitList(items)
             }

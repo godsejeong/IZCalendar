@@ -56,10 +56,6 @@ class CalendarAdapter(list: ArrayList<ClandarData>, planList: ArrayList<String>)
             if(it!=0)
                 holder.infoIv.backgroundTintList = parent!!.context.resources.getColorStateList(it)
         }
-
-//        var tagimg = holder.infoIv.background as Drawable
-//        tagimg.setTint(SetTheme().themecolor)
-        holder.infoIv.backgroundTintList = parent.context.resources.getColorStateList(SetTheme().themecolor.value!!)
         //오늘 day 가져옴
         val today = cal.get(Calendar.DATE)
         val sToday = today.toString()

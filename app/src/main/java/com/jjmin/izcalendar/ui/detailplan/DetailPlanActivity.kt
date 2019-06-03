@@ -16,8 +16,8 @@ import com.jjmin.izcalendar.utils.SetTheme
 import org.koin.core.parameter.parametersOf
 
 class DetailPlanActivity : BaseActivity<ActivityDetailPlanBinding>() {
-    override val layoutResourceId = R.layout.activity_detail_plan
 
+    override val layoutResourceId = R.layout.activity_detail_plan
 
     val useCase by lazy { DetailUseCase(this) }
     val theme by lazy { SetTheme() }

@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.Observer
 import com.jjmin.izcalendar.R
 import com.jjmin.izcalendar.databinding.ActivitySettingBinding
 import com.jjmin.izcalendar.ui.base.BaseActivity
@@ -25,6 +26,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewDataBinding.vm = viewModel
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

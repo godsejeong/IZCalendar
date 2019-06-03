@@ -16,7 +16,8 @@
     <color name="colorHyeWon">#e96766</color>
     <color name="colorHitomi">#f8c0a3</color>
     <color name="colorChaeWon">#cce3d1</color>
-    <color name="colorMinJu">#fefefc</color>
+    <color name="colorMinJu">#BBBBBB</color>
+    <!--#fefefc-->
     <color name="colorChaeYeon">#96e0e1</color>
 
     <color name="colorOneYoungBg">#FF817E</color>
@@ -27,10 +28,10 @@
     <color name="colorNacoBg">#155170</color>
     <color name="colorEunBiBg">#43c5ff</color>
     <color name="colorHyeWonBg">#6fb8c4</color>
-    <color name="colorHitomiBg">#f1c1de</color>
-    <color name="colorChaeWonBg">#aeaeae</color>
-    <color name="colorMinJuBg">#d53358</color>
-    <color name="colorChaeYeonBg">#5b8c85</color>
+    <color name="colorHitomiBg">#d53358</color>
+    <color name="colorChaeWonBg">#5b8c85</color>
+    <color name="colorMinJuBg">#aeaeae</color>
+    <color name="colorChaeYeonBg">#f1c1de</color>
 
     <color name="colorTagRed">#ff6d6d</color>
     <color name="colorTagYellow">#ffe45b</color>

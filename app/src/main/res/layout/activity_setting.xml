@@ -2,7 +2,6 @@
 <layout>
 
     <data>
-
         <variable
                 name="vm"
                 type="com.jjmin.izcalendar.ui.setting.SettingViewModel"/>
@@ -96,6 +95,7 @@
                             android:textSize="11sp"
                             android:layout_marginRight="10dp"
                             android:textStyle="bold"
+                            android:onClick="@{vm.rockBackgroundChangeClick}"
                             android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
                             android:layout_height="wrap_content"
                             android:text="변경하기"
@@ -147,6 +147,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
                             android:gravity="center"
+                            android:onCheckedChanged="@{vm::RockBackgroundCheckedChanged}"
                             android:layout_marginRight="10dp"
                             android:layout_height="wrap_content"
                             app:layout_constraintRight_toRightOf="parent"/>
@@ -191,6 +192,8 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
                             android:gravity="center"
+                            android:checked="@{vm.checked}"
+                            android:onCheckedChanged="@{vm::DarkThemeCheckedChanged}"
                             android:layout_marginRight="10dp"
                             android:layout_height="wrap_content"
                             app:layout_constraintRight_toRightOf="parent"/>
@@ -329,6 +332,7 @@
                             android:textColor="@color/colorSettingbase"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
+                            android:onClick="@{vm.appinfoClick}"
                             android:drawableTint="@color/colorSettingbase"
                             android:drawableRight="@drawable/ic_keyboard_arrow_right_black_24dp"
                             app:layout_constraintRight_toRightOf="parent"/>

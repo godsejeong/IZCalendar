@@ -2,19 +2,12 @@ package com.jjmin.izcalendar.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-//import android.support.v7.widget.LinearLayoutManager
 import android.view.*
-import android.widget.CalendarView
-import android.widget.Toast
-import androidx.databinding.ObservableField
-import com.jjmin.izcalendar.BR
 import com.jjmin.izcalendar.R
 import com.jjmin.izcalendar.databinding.ActivityMainBinding
 import com.jjmin.izcalendar.ui.base.BaseActivity
 import com.jjmin.izcalendar.ui.setting.SettingActivity
 import com.jjmin.izcalendar.utils.SetTheme
-import com.jjmin.izcalendar.utils.SetThemeToolbar
 import org.koin.core.parameter.parametersOf
 import org.koin.android.viewmodel.ext.android.viewModel
 

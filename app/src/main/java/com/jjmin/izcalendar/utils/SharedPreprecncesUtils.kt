@@ -28,8 +28,20 @@ object SharedPreprecncesUtils {
         var editor = themePreferences.edit()
         editor.putString("setThemeName",name)
         editor.putInt("setThemeColor",color)
-        editor.putInt("setThemeBackgroundColor",backgroundcolor)
+        if(!getDarkTheme())
+            editor.putInt("setThemeBackgroundColor",backgroundcolor)
         editor.commit()
+    }
+
+    fun setDarkTheme(check : Boolean){
+        var editor = themePreferences.edit()
+        editor.putBoolean("setDarkMode",check)
+        editor.putInt("setThemeBackgroundColor",R.color.colorDarkMode)
+        editor.commit()
+    }
+
+    fun getDarkTheme() : Boolean{
+        return themePreferences.getBoolean("setDarkMode",false)
     }
 
     fun getThemeName() : String{
@@ -66,6 +78,6 @@ object SharedPreprecncesUtils {
 
     fun getColorTag(position: String): Int {
         Log.e("position1111", sharedPreferences.getInt("color$position",0).toString())
-        return sharedPreferences.getInt("color$position",0)
+        return sharedPreferences.getInt("color$position",SetTheme().themecolor.value!!)
     }
 }
