@@ -1,10 +1,12 @@
 package com.jjmin.izcalendar.ui.setting
 
 import android.content.Intent
+import android.os.Handler
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.Switch
 import androidx.core.app.ActivityCompat.recreate
+import androidx.core.content.ContextCompat
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,11 +18,13 @@ import com.jjmin.izcalendar.utils.SetThemeToolbar
 import com.jjmin.izcalendar.utils.SharedPreprecncesUtils
 import org.jetbrains.anko.toast
 
+
 class SettingViewModel(private val useCase: SettingUseCase) : ViewModel() {
     var _checked = MutableLiveData<Boolean>()
     val checked : LiveData<Boolean> get() = _checked
     var version = "버전정보 : 1.0.0"
     var nowVersion = "현재버전 : 1.0.0"
+
     init {
         _checked.value = SharedPreprecncesUtils.getDarkTheme()
     }
@@ -44,21 +48,24 @@ class SettingViewModel(private val useCase: SettingUseCase) : ViewModel() {
     }
 
     fun DarkThemeCheckedChanged(buttonView : CompoundButton,isChecked : Boolean) {
-        if(isChecked) {
-            SharedPreprecncesUtils.setDarkTheme(true)
-            SetTheme().update()
-        } else {
-            SharedPreprecncesUtils.setDarkTheme(false)
-            var name = SharedPreprecncesUtils.getThemeName()
-            var color = SharedPreprecncesUtils.getThemeColor()
-            SharedPreprecncesUtils.setTheme(name,color,SetThemeToolbar.setBackgroundcolor(name))
-            SetTheme().update()
-        }
 
+//        Thread(Runnable {
+                if (isChecked) {
+                    SharedPreprecncesUtils.setDarkTheme(true)
+                    SetTheme().update()
 
-        val intent = useCase.activity.intent
-        useCase.activity.finish()
-        useCase.activity.startActivity(intent)
-        useCase.activity.overridePendingTransition(0, 0)
+                } else {
+                    SharedPreprecncesUtils.setDarkTheme(false)
+                    var name = SharedPreprecncesUtils.getThemeName()
+                    var color = SharedPreprecncesUtils.getThemeColor()
+                    SharedPreprecncesUtils.setTheme(name, color, SetThemeToolbar.setBackgroundcolor(name))
+                    SetTheme().update()
+                }
+
+            val intent = useCase.activity.intent
+            useCase.activity.finish()
+            useCase.activity.startActivity(intent)
+            useCase.activity.overridePendingTransition(0, 0)
+
     }
 }

@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">IZCalender</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="banner_ad_unit_id">ca-app-pub-8519715231292590/2043284888</string>
+    <string name="banner_ad_app_id">ca-app-pub-8519715231292590~5431865550</string>
 </resources>

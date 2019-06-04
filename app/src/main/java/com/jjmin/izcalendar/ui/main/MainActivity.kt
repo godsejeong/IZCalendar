@@ -3,6 +3,7 @@ package com.jjmin.izcalendar.ui.main
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import com.google.android.gms.ads.MobileAds
 import com.jjmin.izcalendar.R
 import com.jjmin.izcalendar.databinding.ActivityMainBinding
 import com.jjmin.izcalendar.ui.base.BaseActivity
@@ -22,6 +23,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        MobileAds.initialize(this)
 
         viewDataBinding.vm = viewModel
         viewDataBinding.theme = theme

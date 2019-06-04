@@ -12,6 +12,7 @@
     <style name="DialogFullScreen" parent="@android:style/Theme.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
+
     </style>
 
     <style name="NoActionBar"

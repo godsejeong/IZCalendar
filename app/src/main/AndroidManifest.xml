@@ -3,6 +3,7 @@
           package="com.jjmin.izcalendar">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
             android:name=".Application"
@@ -17,18 +18,6 @@
         <activity android:name=".ui.tutorial.TutorialStartActivity">
         </activity>
         <activity android:name=".ui.tutorial.TutorialMainActivity">
-        </activity>
-        <activity
-                android:name=".ui.tutorial.TutorialActivityThree"
-                android:screenOrientation="portrait">
-        </activity>
-        <activity
-                android:name=".ui.tutorial.TutorialActivityTwo"
-                android:screenOrientation="portrait">
-        </activity>
-        <activity
-                android:name=".ui.tutorial.TutorialActivityOne"
-                android:screenOrientation="portrait">
         </activity>
         <activity
                 android:name=".ui.splash.SplashActivity"
@@ -59,7 +48,16 @@
         <activity
                 android:name=".ui.main.MainActivity"
                 android:screenOrientation="portrait">
+            <meta-data
+                    android:name="com.google.android.gms.version"
+                    android:value="@string/banner_ad_app_id" />
         </activity>
+
+        <activity
+                android:name="com.google.android.gms.ads.AdActivity"
+                android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+                android:theme="@android:style/Theme.Translucent" />
+
     </application>
 
 </manifest>

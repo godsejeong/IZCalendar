@@ -17,4 +17,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
         viewDataBinding.vm = viewModel
         viewModel.start()
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        finish()
+    }
 }

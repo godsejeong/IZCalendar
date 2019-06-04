@@ -5,8 +5,11 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.jjmin.izcalendar.R
 import com.jjmin.izcalendar.utils.SetTheme
 import com.jjmin.izcalendar.utils.SetThemeToolbar
+
+
 
 abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 
