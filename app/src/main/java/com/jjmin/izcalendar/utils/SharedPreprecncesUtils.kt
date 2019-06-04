@@ -12,12 +12,28 @@ import java.security.PrivateKey
 object SharedPreprecncesUtils {
     lateinit var sharedPreferences : SharedPreferences
     lateinit var themePreferences : SharedPreferences
+    lateinit var TutorialPreferences : SharedPreferences
     lateinit var context : Context
 
     fun init(context: Context){
         this.context = context
         setThemeShared()
         setSpinnerShared()
+        setTuorialShared()
+    }
+
+    fun setTuorialShared(){
+        TutorialPreferences = context.getSharedPreferences("Tutorial",MODE_PRIVATE)
+    }
+
+    fun setTutorialCheck(bl : Boolean){
+        var editor = TutorialPreferences.edit()
+        editor.putBoolean("settutorial",bl)
+        editor.commit()
+    }
+
+    fun getTutorialCheck() : Boolean{
+        return TutorialPreferences.getBoolean("settutorial",false)
     }
 
     fun setThemeShared(){

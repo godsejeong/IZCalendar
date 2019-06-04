@@ -14,21 +14,51 @@
             android:supportsRtl="true"
             android:theme="@style/NoActionBar"
             android:usesCleartextTraffic="true">
-        <activity android:name=".ui.setting.AppInfoDialog"
-                android:theme="@android:style/Theme.Dialog">
+        <activity android:name=".ui.tutorial.TutorialStartActivity">
         </activity>
-        <activity android:name=".ui.theme.ThemeChangeActivity">
+        <activity android:name=".ui.tutorial.TutorialMainActivity">
         </activity>
-        <activity android:name=".ui.setting.SettingActivity">
+        <activity
+                android:name=".ui.tutorial.TutorialActivityThree"
+                android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.detailplan.DetailPlanActivity">
+        <activity
+                android:name=".ui.tutorial.TutorialActivityTwo"
+                android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.main.MainActivity">
+        <activity
+                android:name=".ui.tutorial.TutorialActivityOne"
+                android:screenOrientation="portrait">
+        </activity>
+        <activity
+                android:name=".ui.splash.SplashActivity"
+                android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity
+                android:name=".ui.setting.AppInfoDialog"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Dialog">
+        </activity>
+        <activity
+                android:name=".ui.theme.ThemeChangeActivity"
+                android:screenOrientation="portrait">
+        </activity>
+        <activity
+                android:name=".ui.setting.SettingActivity"
+                android:screenOrientation="portrait">
+        </activity>
+        <activity
+                android:name=".ui.detailplan.DetailPlanActivity"
+                android:screenOrientation="portrait">
+        </activity>
+        <activity
+                android:name=".ui.main.MainActivity"
+                android:screenOrientation="portrait">
         </activity>
     </application>
 

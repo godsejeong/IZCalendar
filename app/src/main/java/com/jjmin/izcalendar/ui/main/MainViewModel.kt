@@ -56,7 +56,6 @@ class MainViewModel(val useCase: MainUserCase, val planRepository: PlanRepositor
     }
 
     fun addList(it: AllPlan) {
-        todayList.add(TodayItem("ㅁㄴㅇㄹ", "ㅁㄴㅇㄹ","ㅁㄴㅇㄹ", "TODAY","ㅁㄴㅇㄹ"))
         it.plan.forEach {
             Log.e("day", it.day)
             calendarlist.add(it.day)

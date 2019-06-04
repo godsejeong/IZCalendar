@@ -14,15 +14,6 @@ import com.jjmin.izcalendar.R
 import com.jjmin.izcalendar.data.ThemeItem
 import com.jjmin.izcalendar.databinding.ItemThemeBinding
 
-
-
-
-
-
-
-
-
-
 class GridViewAdapter(item: ArrayList<ThemeItem>) : BaseAdapter() {
     var item = item
 

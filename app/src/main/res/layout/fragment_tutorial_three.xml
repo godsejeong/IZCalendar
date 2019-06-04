@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="vm"
+                type="com.jjmin.izcalendar.ui.tutorial.TutorialViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            tools:context=".ui.tutorial.TutorialActivityThree">
+
+        <ImageView
+                android:id="@+id/tutorialthreeImg"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tutorialTvLayout"
+                android:layout_width="match_parent"
+                android:background="@drawable/ic_tutorial_three"
+                android:layout_height="400dp"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/tutorialTvLayout"
+                app:layout_constraintTop_toBottomOf="@+id/tutorialthreeImg"
+                app:layout_constraintBottom_toTopOf="@+id/tutorialThreeBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/tutorialthreeSubTv"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:id="@+id/tutorialthreeMainTv"
+                    android:layout_width="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorTextBlack"
+                    android:text="더 상세한 정보확인과 알림설정을 하세요"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    app:layout_constraintTop_toBottomOf="@+id/tutorialthreeMainTv"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:id="@+id/tutorialthreeSubTv"
+                    android:layout_marginTop="30dp"
+                    android:textColor="@color/colorTextBlack"
+                    android:gravity="center"
+                    android:text="처음화면에서 일정들을 클릭하여 더 많은정보와\n그 일정일의 알람을 만드십시오"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <Button
+                app:layout_constraintTop_toBottomOf="@+id/tutorialTvLayout"
+                app:layout_constraintBottom_toTopOf="@+id/tutorialthreeIndexLayout"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_height="wrap_content"
+                android:onClick="@{vm.themeSelect}"
+                android:id="@+id/tutorialThreeBtn"
+                android:background="@drawable/bg_theme_btn"
+                android:textColor="@color/colorTextBlack"
+                android:text="테마설정"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                app:layout_constraintTop_toBottomOf="@+id/tutorialThreeBtn"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/tutorialthreeIndexLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <ImageView
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:id="@+id/tutorialthreeStart1"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/tutorialthreeStart2"
+                    android:backgroundTint="#989DA8"
+                    android:background="@drawable/bg_main_calendar_today"/>
+
+            <ImageView
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:id="@+id/tutorialthreeStart2"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    app:layout_constraintLeft_toRightOf="@+id/tutorialthreeStart1"
+                    app:layout_constraintRight_toLeftOf="@+id/tutorialthreeStart3"
+                    android:backgroundTint="#989DA8"
+                    android:background="@drawable/bg_main_calendar_today"/>
+
+            <ImageView
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:id="@+id/tutorialthreeStart3"
+                    android:layout_width="10dp"
+                    app:layout_constraintLeft_toRightOf="@+id/tutorialthreeStart1"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_height="10dp"
+                    android:backgroundTint="@color/colorTextBlack"
+                    android:background="@drawable/bg_main_calendar_today"
+                    app:layout_constraintHorizontal_bias="0.684"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

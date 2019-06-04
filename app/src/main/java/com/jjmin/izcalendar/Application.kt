@@ -5,6 +5,7 @@ import android.content.Context
 import com.jjmin.izcalendar.di.*
 import com.jjmin.izcalendar.utils.SharedPreprecncesUtils
 import org.koin.core.context.startKoin
+import org.koin.core.module.Module
 
 class Application : Application() {
     var context : Context? = null
@@ -14,13 +15,16 @@ class Application : Application() {
         startKoin{
             this@Application
             modules(
-                DetailModules.detialModule,
-                MainModules.mainModules,
+                Modules.detialModule,
+                Modules.mainModules,
                 PlanRepositoryMoudles.planRepositoryMoudles,
                 NetworkModules.networkModules,
                 DetailPlanReopsitoryMoudles.DetailPlanModules,
-                SettingModules.SettingModules,
-                ThemeModules.themeModules)
+                Modules.SettingModules,
+                Modules.themeModules,
+                Modules.splashModules,
+                Modules.tutorialModules
+            )
         }
 
         context = this

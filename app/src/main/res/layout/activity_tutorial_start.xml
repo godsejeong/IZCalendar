@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="vm"
+                type="com.jjmin.izcalendar.ui.tutorial.TutorialViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.tutorial.TutorialStartActivity">
+
+        <ImageView
+                android:id="@+id/tutorialStartImg"
+                android:layout_width="270dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tutorialstartBtn"
+                android:background="@drawable/ic_tutorial_start"
+                android:layout_height="200dp"/>
+
+        <Button
+                android:id="@+id/tutorialstartBtn"
+                app:layout_constraintTop_toBottomOf="@+id/tutorialStartImg"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_width="match_parent"
+                android:layout_marginRight="41dp"
+                android:layout_marginLeft="41dp"
+                android:layout_height="wrap_content"
+                android:text="튜토리얼로 이동"
+                android:onClick="@{vm.startBtn}"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:background="@drawable/bg_theme_btn"
+                android:textColor="@color/colorTextBlack"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
