@@ -1,5 +1,6 @@
 package com.jjmin.izcalendar.adapter
 
+import android.app.Activity
 import android.util.Log
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +18,7 @@ object BindAdapter {
                 this.submitList(items)
             }
         } ?: run {
-            ItemListAdapter(vm).apply {
+            ItemListAdapter(vm,null).apply {
                 view.adapter = this
                 this.submitList(items)
             }

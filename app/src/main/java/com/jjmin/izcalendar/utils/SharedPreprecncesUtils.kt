@@ -94,6 +94,12 @@ object SharedPreprecncesUtils {
 
     fun getColorTag(position: String): Int {
         Log.e("position1111", sharedPreferences.getInt("color$position",0).toString())
-        return sharedPreferences.getInt("color$position",SetTheme().themecolor.value!!)
+        var color = sharedPreferences.getInt("color$position",SetTheme().themecolor.value!!)
+        return if(color == 0){
+            getThemeColor()
+        }else{
+            color
+        }
+
     }
 }

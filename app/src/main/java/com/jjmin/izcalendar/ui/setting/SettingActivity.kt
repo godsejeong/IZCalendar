@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.lifecycle.Observer
 import com.jjmin.izcalendar.R
 import com.jjmin.izcalendar.databinding.ActivitySettingBinding
@@ -25,6 +26,11 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setSupportActionBar(viewDataBinding.settingToolbar)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_keyboard_arrow_left_black_24dp)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         viewDataBinding.vm = viewModel
 
     }
@@ -42,5 +48,15 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
                 this.recreate()
             }
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+
+            android.R.id.home -> {
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

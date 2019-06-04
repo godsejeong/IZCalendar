@@ -30,7 +30,7 @@ import com.jjmin.izcalendar.utils.SetTheme
 import kotlin.reflect.KType
 
 
-class ItemListAdapter(private val vm: ViewModel) :
+class ItemListAdapter(private val vm: ViewModel,val activity: Activity?) :
     ListAdapter<ListDataInterface, RecyclerView.ViewHolder>(itemCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -103,7 +103,7 @@ class ItemListAdapter(private val vm: ViewModel) :
                     intent.putExtra("dow",item.dow)
                     intent.putExtra("title",namelist)
                     intent.putExtra("subtitle",subtitleList)
-                    holder.itemView.context.startActivity(intent)
+                    activity?.startActivityForResult(intent,100)
                 }
             }
 

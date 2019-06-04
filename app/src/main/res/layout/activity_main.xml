@@ -44,6 +44,7 @@
                 android:id="@+id/calendarLayout"
                 android:layout_width="match_parent"
                 android:elevation="10dp"
+                android:onClick="@{null}"
                 app:layout_constraintDimensionRatio="H,5:3"
                 app:layout_constraintTop_toBottomOf="@+id/appbarLayout"
                 app:layout_constraintBottom_toTopOf="@+id/today_view"
@@ -124,10 +125,11 @@
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/main_recycler"
-                app:viewModel="@{vm}"
+                app:MainviewModel="@{vm}"
                 app:RecyclerScroll="@{todayView}"
                 app:ScrollbarSize="@{todayScrollbar}"
-                app:listItem="@{vm.alllist}"
+                app:MainlistItem="@{vm.alllist}"
+                app:setActivity="@{vm.useCase.activity}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/calendarLayout"

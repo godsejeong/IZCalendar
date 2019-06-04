@@ -19,6 +19,22 @@ import com.jjmin.izcalendar.ui.detailplan.DetailPlanActivity
 import com.jjmin.izcalendar.utils.AnimationUtils
 
 object MainBindAdapter{
+
+    @JvmStatic
+    @BindingAdapter(value = ["MainlistItem", "MainviewModel","setActivity"])
+    fun MainListAdapter(view: RecyclerView, items: List<ListDataInterface>, vm: ViewModel,activity: Activity) {
+        view.adapter?.run {
+            if (this is ItemListAdapter) {
+                this.submitList(items)
+            }
+        } ?: run {
+            ItemListAdapter(vm,activity).apply {
+                view.adapter = this
+                this.submitList(items)
+            }
+        }
+    }
+
     @JvmStatic
     @BindingAdapter(value = ["itemText"])
     fun TextSize(view: TextView, text: String) {
@@ -103,7 +119,7 @@ object MainBindAdapter{
                     intent.putExtra("title", namelist)
                     intent.putExtra("subtitle", subtitleList)
 
-                    activity.startActivity(intent)
+                    activity.startActivityForResult(intent,100)
                 } catch (e: KotlinNullPointerException) {
                     e.printStackTrace()
                 }

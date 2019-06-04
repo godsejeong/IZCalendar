@@ -85,7 +85,7 @@ class DetailViewModel(var useCase : DetailUseCase,var detailPlanRepository: Deta
         var item = parent!!.getItemAtPosition(position!!) as TagSpinnerItem
         Log.e("bindColor", item.color.toString())
         if (position == 0)
-            SharedPreprecncesUtils.setTag(useCase.position,SetTheme().themecolor.value!!)
+            SharedPreprecncesUtils.setTag(useCase.position,0)
         else
             SharedPreprecncesUtils.setTag(useCase.position, item.color!!)
 
