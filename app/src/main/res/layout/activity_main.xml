@@ -196,7 +196,7 @@
                 ads:layout_constraintTop_toBottomOf="@+id/main_recycler"
                 xmlns:ads="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
                 ads:adSize="SMART_BANNER"

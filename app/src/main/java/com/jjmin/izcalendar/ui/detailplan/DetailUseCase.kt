@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.jjmin.izcalendar.ui.calendar.CalendarUtils
 import com.jjmin.izcalendar.utils.DowChangeUtils
 
-class DetailUseCase(private val activity: AppCompatActivity){
+class DetailUseCase(val activity: AppCompatActivity){
     var position = activity.intent.getStringExtra("position")
     var date_ = activity.intent.getStringExtra("date")
     var dow = activity.intent.getStringExtra("dow")

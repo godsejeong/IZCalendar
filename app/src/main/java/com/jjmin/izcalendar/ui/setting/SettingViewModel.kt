@@ -13,6 +13,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jjmin.izcalendar.R
 import com.jjmin.izcalendar.ui.theme.ThemeChangeActivity
+import com.jjmin.izcalendar.utils.MarketVersion
 import com.jjmin.izcalendar.utils.SetTheme
 import com.jjmin.izcalendar.utils.SetThemeToolbar
 import com.jjmin.izcalendar.utils.SharedPreprecncesUtils
@@ -22,9 +23,6 @@ import org.jetbrains.anko.toast
 class SettingViewModel(private val useCase: SettingUseCase) : ViewModel() {
     var _checked = MutableLiveData<Boolean>()
     val checked : LiveData<Boolean> get() = _checked
-    var version = "버전정보 : 1.0.0"
-    var nowVersion = "현재버전 : 1.0.0"
-
     init {
         _checked.value = SharedPreprecncesUtils.getDarkTheme()
     }
@@ -66,6 +64,5 @@ class SettingViewModel(private val useCase: SettingUseCase) : ViewModel() {
             useCase.activity.finish()
             useCase.activity.startActivity(intent)
             useCase.activity.overridePendingTransition(0, 0)
-
     }
 }

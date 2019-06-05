@@ -11,6 +11,7 @@ import java.util.ArrayList
 import com.jjmin.izcalendar.data.AllPlan
 import com.jjmin.izcalendar.ui.base.DisposableViewModel
 import com.jjmin.izcalendar.utils.DowChangeUtils
+import com.jjmin.izcalendar.utils.MarketVersion
 import com.jjmin.izcalendar.utils.SharedPreprecncesUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -34,6 +35,7 @@ class MainViewModel(val useCase: MainUserCase, val planRepository: PlanRepositor
     init {
         Plan()
         today.set(CalendarUtils.today)
+        MarketVersion(useCase.activity).execute()
     }
 
 
