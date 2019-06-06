@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.jjmin.izcalendar.data.ListDataInterface
 import com.jjmin.izcalendar.data.TodayItem
 import com.jjmin.izcalendar.ui.calendar.CalendarUtils
@@ -29,6 +30,22 @@ object MainBindAdapter{
             }
         } ?: run {
             ItemListAdapter(vm,activity).apply {
+                view.adapter = this
+                this.submitList(items)
+            }
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter(value = ["TodaylistItem", "TodayviewModel"])
+    fun TodayListAdapter(view: RecyclerView, items: List<ListDataInterface>, vm: ViewModel) {
+        view.adapter?.run {
+            if (this is ItemListAdapter) {
+                this.submitList(items)
+                this.notifyDataSetChanged()
+            }
+        } ?: run {
+            ItemListAdapter(vm,null).apply {
                 view.adapter = this
                 this.submitList(items)
             }
@@ -96,22 +113,20 @@ object MainBindAdapter{
                     else
                         Todaylsit[currentPosition]
 
-
                     var namelist = ArrayList<String>()
                     var subtitleList = ArrayList<String>()
 
                     //클릭
                     (0 until Todaylsit.size).forEach { position ->
-                        Log.e("title", currentItemStudent.title!!)
-                        Log.e("subtitle", currentItemStudent.subtitle!!)
+                        Log.e("title",currentItemStudent.title!!)
+                        Log.e("subtitle",currentItemStudent.subtitle!!)
                         namelist.add(currentItemStudent.title!!)
                         subtitleList.add(currentItemStudent.subtitle!!)
                     }
 
                     var intent = Intent(view.context, DetailPlanActivity::class.java)
 
-                    var Today : String
-                    Today = CalendarUtils.returnDate(CalendarUtils.today)
+                    var Today : String = CalendarUtils.returnDate(CalendarUtils.today)
 
                     intent.putExtra("position", Today)
                     intent.putExtra("date", CalendarUtils.today())

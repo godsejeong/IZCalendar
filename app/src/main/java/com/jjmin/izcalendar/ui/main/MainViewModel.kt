@@ -4,23 +4,24 @@ import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.jjmin.izcalendar.data.AllPlan
 import com.jjmin.izcalendar.data.PlanningItem
 import com.jjmin.izcalendar.data.TodayItem
-import com.jjmin.izcalendar.ui.calendar.CalendarUtils
-import java.util.ArrayList
-import com.jjmin.izcalendar.data.AllPlan
 import com.jjmin.izcalendar.ui.base.DisposableViewModel
+import com.jjmin.izcalendar.ui.calendar.CalendarUtils
 import com.jjmin.izcalendar.utils.DowChangeUtils
 import com.jjmin.izcalendar.utils.MarketVersion
+import com.jjmin.izcalendar.utils.SetTheme
 import com.jjmin.izcalendar.utils.SharedPreprecncesUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 
 
 class MainViewModel(val useCase: MainUserCase, val planRepository: PlanRepository) : DisposableViewModel() {
-    var infoList = ArrayList<PlanningItem>()
-    var todayList = ArrayList<TodayItem>()
-    var calendarlist = ArrayList<String>()
+    var infoList = ArrayList<PlanningItem>(arrayListOf())
+    var todayArrayList = ArrayList<TodayItem>(arrayListOf())
+    var calendarlist = ArrayList<String>(arrayListOf())
 
     val _alllist = MutableLiveData<ArrayList<PlanningItem>>(arrayListOf())
     val alllist: LiveData<ArrayList<PlanningItem>> get() = _alllist
@@ -29,7 +30,7 @@ class MainViewModel(val useCase: MainUserCase, val planRepository: PlanRepositor
     val todaylist: LiveData<ArrayList<TodayItem>> get() = _todaylist
 
     val _claendarsetPlenlist = MutableLiveData<ArrayList<String>>(arrayListOf())
-    val claendarsetPlenlist : LiveData<ArrayList<String>> get() = _claendarsetPlenlist
+    val claendarsetPlenlist: LiveData<ArrayList<String>> get() = _claendarsetPlenlist
     var today = ObservableField<String>()
 
     init {
@@ -38,14 +39,16 @@ class MainViewModel(val useCase: MainUserCase, val planRepository: PlanRepositor
         MarketVersion(useCase.activity).execute()
     }
 
-
     fun Plan() {
+        todayArrayList.clear()
+        infoList.clear()
+        calendarlist.clear()
         planRepository.allPlanList()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ it ->
                 addList(it)
-                _todaylist.value = todayList
+                _todaylist.value = todayArrayList
                 _alllist.value = infoList
                 _claendarsetPlenlist.value = calendarlist
             }) { e ->
@@ -77,9 +80,23 @@ class MainViewModel(val useCase: MainUserCase, val planRepository: PlanRepositor
         Log.e("Time", day)
         if (day in mDay) {
             Log.e("Ads", "a")
-            todayList.add(TodayItem(title, subTitle, timeCheck(time), "TODAY", dow))
+            todayArrayList.add(
+                TodayItem(
+                    title, subTitle, timeCheck(time), "TODAY", dow,
+                    if (SharedPreprecncesUtils.getColorTag(day) != 0) SharedPreprecncesUtils.getColorTag(
+                        day
+                    ) else SetTheme().themecolor.value!!
+                )
+            )
         } else {
-            infoList.add(PlanningItem(title, subTitle, timeCheck(time), day, dow))
+            infoList.add(
+                PlanningItem(
+                    title, subTitle, timeCheck(time), day, dow,
+                    if (SharedPreprecncesUtils.getColorTag(day) != 0) SharedPreprecncesUtils.getColorTag(
+                        day
+                    ) else SetTheme().themecolor.value!!
+                )
+            )
         }
     }
 

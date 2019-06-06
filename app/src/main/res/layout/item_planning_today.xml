@@ -112,22 +112,43 @@
                     app:layout_constraintTop_toTopOf="parent"
                     android:textSize="15sp"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/todaySubTitle"
+                    app:layout_constraintBottom_toTopOf="@id/todaySubLayout"
                     android:textColor="@android:color/white"
                     />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/todaySubLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/todayTitle"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_width="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_height="wrap_content">
+
+            <ImageView
+                    android:id="@+id/todaySubIcon"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    tools:backgroundTint="@color/colorSakura"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:background="@drawable/bg_calendarview_today"
+                    android:backgroundTint="@{ContextCompat.getColor(context,item.color)}"/>
 
             <TextView
                     android:id="@+id/todaySubTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="방송"
+                    android:layout_marginLeft="5dp"
                     android:text="@{item.subtitle}"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/todayTitle"
+                    app:layout_constraintLeft_toRightOf="@+id/todaySubIcon"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:textSize="8sp"
                     android:textColor="@android:color/white"
                     />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

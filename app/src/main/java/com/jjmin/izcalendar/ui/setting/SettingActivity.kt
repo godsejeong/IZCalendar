@@ -4,8 +4,10 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.view.MenuItem
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.jjmin.izcalendar.R
 import com.jjmin.izcalendar.databinding.ActivitySettingBinding
@@ -16,6 +18,8 @@ import org.jetbrains.anko.toast
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
+
+
 class SettingActivity : BaseActivity<ActivitySettingBinding>() {
 
     override val layoutResourceId: Int = R.layout.activity_setting
@@ -24,7 +28,7 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
     val useCase by lazy { SettingUseCase(this) }
     val viewModel: SettingViewModel by viewModel { parametersOf(useCase) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setSupportActionBar(viewDataBinding.settingToolbar)
@@ -58,5 +62,9 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    public override fun onDestroy() {
+        super.onDestroy()
     }
 }

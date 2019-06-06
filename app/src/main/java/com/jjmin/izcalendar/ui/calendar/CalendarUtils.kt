@@ -37,9 +37,9 @@ object CalendarUtils {
     fun returnDate(date : String) : String{
         var setdate : String
         setdate = if (date.toInt() < 10) {
-            "${CalendarUtils.getstrmon()}/${"0$date"}"
+            "${getstrmon()}/${"0$date"}"
         }else{
-            "${CalendarUtils.getstrmon()}/$date"
+            "${getstrmon()}/$date"
         }
         return setdate
     }

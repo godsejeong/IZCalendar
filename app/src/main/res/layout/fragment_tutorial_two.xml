@@ -16,12 +16,12 @@
             android:background="#FFFFFF"
             tools:context=".ui.tutorial.TutorialActivityTwo">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/tutorialtwoImg"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/tutorialTvLayout"
                 android:layout_width="match_parent"
-                android:background="@drawable/ic_tutorial_two"
+                app:srcCompat="@drawable/ic_tutorial_two"
                 android:layout_height="400dp"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout

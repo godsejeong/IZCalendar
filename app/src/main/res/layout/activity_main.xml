@@ -151,8 +151,8 @@
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/todayRecycler"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:listItem="@{vm.todaylist}"
-                    app:viewModel="@{vm}"
+                    app:TodaylistItem="@{vm.todaylist}"
+                    app:TodayviewModel="@{vm}"
                     app:setTodayView="@{todayView}"
                     app:MainView="@{mainRecycler}"
                     app:ScrollbarSize="@{todayScrollbar}"
@@ -189,12 +189,12 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.gms.ads.AdView
+                xmlns:ads="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/mainAdview"
                 ads:layout_constraintBottom_toBottomOf="parent"
                 ads:layout_constraintLeft_toLeftOf="parent"
                 ads:layout_constraintRight_toRightOf="parent"
                 ads:layout_constraintTop_toBottomOf="@+id/main_recycler"
-                xmlns:ads="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"

@@ -15,12 +15,12 @@
             android:layout_height="match_parent"
             android:background="#FFFFFF">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/tutorialoneImg"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/tutorialTvLayout"
                 android:layout_width="match_parent"
-                android:background="@drawable/ic_tutorial_one"
+                app:srcCompat="@drawable/ic_tutorial_one"
                 android:layout_height="400dp"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout

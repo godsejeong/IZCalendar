@@ -100,6 +100,5 @@ object SharedPreprecncesUtils {
         }else{
             color
         }
-
     }
 }

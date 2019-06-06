@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.jjmin.izcalendar.ui.main.MainActivity
 
-data class PlanningItem(var title : String?,var subtitle : String?,var time : String?,var day : String?,var dow : String?) : ListDataInterface{
+data class PlanningItem(var title : String?,var subtitle : String?,var time : String?,var day : String?,var dow : String?,var color : Int?) : ListDataInterface{
     override fun getitem(): Int {
         return TYPE_MAIN
     }

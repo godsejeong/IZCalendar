@@ -16,12 +16,12 @@
             android:background="#FFFFFF"
             tools:context=".ui.tutorial.TutorialActivityThree">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/tutorialthreeImg"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/tutorialTvLayout"
                 android:layout_width="match_parent"
-                android:background="@drawable/ic_tutorial_three"
+                app:srcCompat="@drawable/ic_tutorial_three"
                 android:layout_height="400dp"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout

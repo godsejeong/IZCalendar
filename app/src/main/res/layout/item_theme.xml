@@ -30,7 +30,7 @@
                     app:setColor="@{item.color}"
                     android:background="@{item.img}"
                     tools:src="@drawable/theme_solid_background"
-                    tools:background="@drawable/bg_youngone"/>
+                    tools:background="@drawable/bg_oneyoung"/>
 
             <TextView
                     app:layout_constraintRight_toRightOf="parent"

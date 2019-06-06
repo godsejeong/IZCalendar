@@ -2,6 +2,7 @@ package com.jjmin.izcalendar.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import com.google.android.gms.ads.MobileAds
 import com.jjmin.izcalendar.R
@@ -35,6 +36,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         viewDataBinding.CustomCalendar.changeList()
+        viewModel.Plan()
         this.recreate()
     }
 

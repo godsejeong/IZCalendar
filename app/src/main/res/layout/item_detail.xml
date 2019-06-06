@@ -116,7 +116,7 @@
                             android:backgroundTint="@{ContextCompat.getColor(context,theme.themebackgroundcolor)}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/ic_clock_24px"
+                            android:background="@drawable/ic_clock_24dp"
                     />
 
                     <TextView

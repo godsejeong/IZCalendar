@@ -1,5 +1,6 @@
 package com.jjmin.izcalendar.adapter
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
@@ -16,6 +17,7 @@ import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.jjmin.izcalendar.R
 import com.jjmin.izcalendar.data.DetailPlanItem
 import com.jjmin.izcalendar.data.ListDataInterface
@@ -109,6 +111,7 @@ class ItemListAdapter(private val vm: ViewModel,val activity: Activity?) :
 
             2 -> {
                 val item = getItem(position) as TodayItem
+                Log.e("item", Gson().toJson(item))
                 (holder as TodayViewHolder).binding.item = item
                 holder.binding.theme = SetTheme()
             }
@@ -117,7 +120,6 @@ class ItemListAdapter(private val vm: ViewModel,val activity: Activity?) :
                 val item = getItem(position) as DetailPlanItem
                 (holder as DetailViewHolder).binding.item = item
                 holder.binding.theme = SetTheme()
-
             }
         }
     }
@@ -126,6 +128,7 @@ class ItemListAdapter(private val vm: ViewModel,val activity: Activity?) :
     }
 
     override fun getItemViewType(position: Int): Int {
+        Log.e("getitem", getItem(position).toString())
         return getItem(position).getitem()
     }
 
