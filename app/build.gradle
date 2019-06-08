@@ -14,8 +14,8 @@ android {
         applicationId "com.jjmin.izcalendar"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 8
-        versionName "1.1.4"
+        versionCode 9
+        versionName "1.1.5"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }

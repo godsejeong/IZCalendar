@@ -118,10 +118,10 @@ object MainBindAdapter{
 
                     //클릭
                     (0 until Todaylsit.size).forEach { position ->
-                        Log.e("title",currentItemStudent.title!!)
-                        Log.e("subtitle",currentItemStudent.subtitle!!)
-                        namelist.add(currentItemStudent.title!!)
-                        subtitleList.add(currentItemStudent.subtitle!!)
+                        Log.e("title",Todaylsit[position].title)
+                        Log.e("subtitle",Todaylsit[position].subtitle!!)
+                        namelist.add(Todaylsit[position].title!!)
+                        subtitleList.add(Todaylsit[position].subtitle!!)
                     }
 
                     var intent = Intent(view.context, DetailPlanActivity::class.java)
