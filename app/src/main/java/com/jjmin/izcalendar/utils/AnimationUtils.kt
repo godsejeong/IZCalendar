@@ -5,6 +5,9 @@ import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 
 object AnimationUtils{
+
+    var clickbl : Boolean = true
+
     fun animate(view: View, start: Int, end: Int) {
         val params = view.layoutParams as ConstraintLayout.LayoutParams
         (1..10).forEach {

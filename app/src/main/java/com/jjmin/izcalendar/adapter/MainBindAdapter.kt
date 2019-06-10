@@ -104,47 +104,53 @@ object MainBindAdapter{
         view.setOnTouchListener { v, event ->
             val params = view2.layoutParams as ConstraintLayout.LayoutParams
             if (gestureDetector.onTouchEvent(event)) {
-                try {
-                    val childView = view2.findChildViewUnder(event.x, event.y)
-                    val currentPosition = view2.getChildAdapterPosition(childView!!)
-                    var currentItemStudent : TodayItem
-                    currentItemStudent = if(Todaylsit.size == currentPosition)
-                        Todaylsit[currentPosition-1]
-                    else
-                        Todaylsit[currentPosition]
+                if(AnimationUtils.clickbl) {
+                    try {
+                        val childView = view2.findChildViewUnder(event.x, event.y)
+                        val currentPosition = view2.getChildAdapterPosition(childView!!)
+                        var currentItemStudent: TodayItem
+                        currentItemStudent = if (Todaylsit.size == currentPosition)
+                            Todaylsit[currentPosition - 1]
+                        else
+                            Todaylsit[currentPosition]
 
-                    var namelist = ArrayList<String>()
-                    var subtitleList = ArrayList<String>()
+                        var namelist = ArrayList<String>()
+                        var subtitleList = ArrayList<String>()
 
-                    //클릭
-                    (0 until Todaylsit.size).forEach { position ->
-                        Log.e("title",Todaylsit[position].title)
-                        Log.e("subtitle",Todaylsit[position].subtitle!!)
-                        namelist.add(Todaylsit[position].title!!)
-                        subtitleList.add(Todaylsit[position].subtitle!!)
+                        //클릭
+                        (0 until Todaylsit.size).forEach { position ->
+                            Log.e("title", Todaylsit[position].title)
+                            Log.e("subtitle", Todaylsit[position].subtitle!!)
+                            namelist.add(Todaylsit[position].title!!)
+                            subtitleList.add(Todaylsit[position].subtitle!!)
+                        }
+
+                        var intent = Intent(view.context, DetailPlanActivity::class.java)
+
+                        var Today: String = CalendarUtils.returnDate(CalendarUtils.today)
+
+                        intent.putExtra("position", Today)
+                        intent.putExtra("date", CalendarUtils.today())
+                        intent.putExtra("dow", currentItemStudent.dow)
+                        intent.putExtra("title", namelist)
+                        intent.putExtra("subtitle", subtitleList)
+
+                        activity.startActivityForResult(intent, 100)
+                    } catch (e: KotlinNullPointerException) {
+                        e.printStackTrace()
+                    } catch (e : IndexOutOfBoundsException){
+                        e.printStackTrace()
                     }
-
-                    var intent = Intent(view.context, DetailPlanActivity::class.java)
-
-                    var Today : String = CalendarUtils.returnDate(CalendarUtils.today)
-
-                    intent.putExtra("position", Today)
-                    intent.putExtra("date", CalendarUtils.today())
-                    intent.putExtra("dow", currentItemStudent.dow)
-                    intent.putExtra("title", namelist)
-                    intent.putExtra("subtitle", subtitleList)
-
-                    activity.startActivityForResult(intent,100)
-                } catch (e: KotlinNullPointerException) {
-                    e.printStackTrace()
                 }
             } else if (event.action == MotionEvent.ACTION_DOWN) {
                 y = event.y.toInt()
             } else if (event.action == MotionEvent.ACTION_UP) {
                 if (y < event.y) {
+                    AnimationUtils.clickbl = true
                     AnimationUtils.slideToBottom(todayview)
                     AnimationUtils.animate(view2, params.topMargin, 0)
                 } else if (y > event.y) {
+                    AnimationUtils.clickbl = false
                     AnimationUtils.slideToTop(todayview, scrollbar)
                     AnimationUtils.animate(view2, params.topMargin, scrollbar.height)
                 }

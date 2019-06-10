@@ -91,20 +91,17 @@
                 android:layout_height="0dp">
         </androidx.recyclerview.widget.RecyclerView>
 
-        <com.google.android.gms.ads.AdView
-                xmlns:ads="http://schemas.android.com/apk/res-auto"
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/DetailAdview"
-                ads:layout_constraintBottom_toBottomOf="parent"
-                ads:layout_constraintLeft_toLeftOf="parent"
-                ads:layout_constraintEnd_toEndOf="parent"
-                ads:layout_constraintRight_toRightOf="parent"
-                ads:layout_constraintTop_toBottomOf="@+id/detailRecyclerview"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detailRecyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                ads:adSize="SMART_BANNER"
-                app:ConnectAdView="@{vm.useCase.activity}"
-                ads:adUnitId="@string/banner_ad_unit_id">
-        </com.google.android.gms.ads.AdView>
+                app:ConnectAdView="@{vm.useCase.activity}">
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

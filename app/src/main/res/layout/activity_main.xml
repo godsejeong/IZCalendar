@@ -45,7 +45,6 @@
                 android:id="@+id/calendarLayout"
                 android:layout_width="match_parent"
                 android:elevation="10dp"
-                android:onClick="@{null}"
                 app:layout_constraintDimensionRatio="H,5:3"
                 app:layout_constraintTop_toBottomOf="@+id/appbarLayout"
                 app:layout_constraintBottom_toTopOf="@+id/today_view"
@@ -188,22 +187,18 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.gms.ads.AdView
-                xmlns:ads="http://schemas.android.com/apk/res-auto"
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/mainAdview"
-                ads:layout_constraintBottom_toBottomOf="parent"
-                ads:layout_constraintLeft_toLeftOf="parent"
-                ads:layout_constraintRight_toRightOf="parent"
-                ads:layout_constraintTop_toBottomOf="@+id/main_recycler"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/main_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
-                ads:adSize="SMART_BANNER"
-                app:ConnectAdView="@{vm.useCase.activity}"
-                ads:adUnitId="@string/banner_ad_unit_id">
-        </com.google.android.gms.ads.AdView>
-
+                app:ConnectAdView="@{vm.useCase.activity}">
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
