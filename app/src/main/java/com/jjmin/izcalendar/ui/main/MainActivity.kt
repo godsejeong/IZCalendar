@@ -1,6 +1,7 @@
 package com.jjmin.izcalendar.ui.main
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -10,6 +11,7 @@ import com.jjmin.izcalendar.databinding.ActivityMainBinding
 import com.jjmin.izcalendar.ui.base.BaseActivity
 import com.jjmin.izcalendar.ui.setting.SettingActivity
 import com.jjmin.izcalendar.utils.SetTheme
+import org.jetbrains.anko.toast
 import org.koin.core.parameter.parametersOf
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -39,6 +41,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         viewModel.Plan()
         this.recreate()
     }
+//
+//    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//        when(requestCode){
+//            10-> {
+//                if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
+//                    //동의 했을 경우
+//                }else{
+//                    toast("기능 사용을 위한 권한 동의가 필요합니다.")
+//                    finish()
+//                }
+//            }
+//        }
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)

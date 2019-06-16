@@ -1,0 +1,41 @@
+{
+  "project_info": {
+    "project_number": "912282531814",
+    "firebase_url": "https://izcalendar.firebaseio.com",
+    "project_id": "izcalendar",
+    "storage_bucket": "izcalendar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912282531814:android:51afbcc94ba8eb82",
+        "android_client_info": {
+          "package_name": "com.jjmin.izcalendar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "912282531814-3tn66q8ik9047o668a9503uvk9j3o402.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPjn_pQwIuLoaqf7SoR439MMiHwiIuRKQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912282531814-3tn66q8ik9047o668a9503uvk9j3o402.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-8519715231292590~5431865550"
+    }
+  ],
+  "configuration_version": "1"
+}

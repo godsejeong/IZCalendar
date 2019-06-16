@@ -17,6 +17,7 @@ import com.jjmin.izcalendar.R
 import com.jjmin.izcalendar.data.ListDataInterface
 
 
+
 object BindAdapter {
     @JvmStatic
     @BindingAdapter(value = ["listItem", "viewModel"])
@@ -47,12 +48,20 @@ object BindAdapter {
             .addNetworkExtrasBundle(AdMobAdapter::class.java, extras)
             .build()
 
+
         AdView(activity).apply {
             adSize = AdSize.SMART_BANNER
-            adUnitId = context.getString(R.string.banner_ad_unit_id_test) or context.getString(R.string.banner_ad_unit_id)
+            adUnitId = context.getString(R.string.banner_ad_unit_id)
             view.addView(this)
             loadAd(adRequest)
         }
+
+//        AdView(activity).apply {
+//            adSize = AdSize.SMART_BANNER
+//            adUnitId = context.getString(R.string.banner_ad_unit_id_test) or context.getString(R.string.banner_ad_unit_id)
+//            view.addView(this)
+//            loadAd(adRequest)
+//        }
     }
 }
 
