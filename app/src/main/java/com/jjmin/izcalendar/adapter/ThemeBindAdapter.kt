@@ -14,13 +14,13 @@ import android.widget.GridView
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.jjmin.izcalendar.R
-import com.jjmin.izcalendar.data.ThemeItem
+import com.jjmin.izcalendar.data.model.ThemeItem
 
 
 object ThemeBindAdapter {
     @JvmStatic
     @BindingAdapter(value = ["setGridItem","OnClickItem"])
-    fun SetGridAdpater(view: GridView, item: ArrayList<ThemeItem>,listener:  AdapterView.OnItemClickListener) {
+    fun SetGridAdpater(view: GridView, item: ArrayList<ThemeItem>, listener:  AdapterView.OnItemClickListener) {
         view.animation = null
         view.adapter?.run {
             view.setLayerType(View.LAYER_TYPE_SOFTWARE, null)

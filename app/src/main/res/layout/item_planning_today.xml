@@ -11,7 +11,7 @@
                 name="theme"
                 type="com.jjmin.izcalendar.utils.SetTheme"/>
 
-        <variable name="item" type="com.jjmin.izcalendar.data.TodayItem"/>
+        <variable name="item" type="com.jjmin.izcalendar.data.model.TodayItem"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

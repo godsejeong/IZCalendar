@@ -28,6 +28,16 @@
                 android:name="com.google.android.gms.version"
                 android:value="@integer/google_play_services_version"/>
 
+        <receiver
+                android:name="com.inmobi.commons.core.utilities.uid.ImIdShareBroadCastReceiver"
+                android:enabled="true"
+                android:exported="true"
+                tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="com.inmobi.share.id"/>
+            </intent-filter>
+        </receiver>
+
         <activity android:name=".ui.tutorial.TutorialStartActivity">
         </activity>
         <activity android:name=".ui.tutorial.TutorialMainActivity">
@@ -66,8 +76,11 @@
         <activity
                 android:name="com.google.android.gms.ads.AdActivity"
                 android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-                android:theme="@android:style/Theme.Translucent"/>
+                android:theme="@android:style/Theme.Translucent">
 
+
+
+        </activity>
     </application>
 
 </manifest>

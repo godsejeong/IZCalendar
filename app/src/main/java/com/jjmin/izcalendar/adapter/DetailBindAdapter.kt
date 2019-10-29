@@ -6,7 +6,7 @@ import android.widget.Spinner
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.jjmin.izcalendar.data.TagSpinnerItem
+import com.jjmin.izcalendar.data.model.TagSpinnerItem
 import com.jjmin.izcalendar.ui.detailplan.DetailViewModel
 import com.jjmin.izcalendar.utils.AnimationUtils
 

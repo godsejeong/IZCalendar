@@ -2,7 +2,6 @@ package com.jjmin.izcalendar.adapter
 
 import android.app.Activity
 import android.os.Bundle
-import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.ViewModel
@@ -14,7 +13,7 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.jjmin.izcalendar.BuildConfig
 import com.jjmin.izcalendar.R
-import com.jjmin.izcalendar.data.ListDataInterface
+import com.jjmin.izcalendar.data.model.ListDataInterface
 
 
 
@@ -36,7 +35,6 @@ object BindAdapter {
 
     private infix fun String.or(that: String): String = if (BuildConfig.DEBUG) this else that
 
-
     @JvmStatic
     @BindingAdapter(value = ["ConnectAdView"])
     fun LoadAdView(view : ConstraintLayout, activity: Activity){
@@ -48,20 +46,19 @@ object BindAdapter {
             .addNetworkExtrasBundle(AdMobAdapter::class.java, extras)
             .build()
 
-
-        AdView(activity).apply {
-            adSize = AdSize.SMART_BANNER
-            adUnitId = context.getString(R.string.banner_ad_unit_id)
-            view.addView(this)
-            loadAd(adRequest)
-        }
-
 //        AdView(activity).apply {
 //            adSize = AdSize.SMART_BANNER
-//            adUnitId = context.getString(R.string.banner_ad_unit_id_test) or context.getString(R.string.banner_ad_unit_id)
+//            adUnitId = context.getString(R.string.banner_ad_unit_id)
 //            view.addView(this)
 //            loadAd(adRequest)
 //        }
+
+        AdView(activity).apply {
+            adSize = AdSize.SMART_BANNER
+            adUnitId = context.getString(R.string.banner_ad_unit_id_test) or context.getString(R.string.banner_ad_unit_id)
+            view.addView(this)
+            loadAd(adRequest)
+        }
     }
 }
 

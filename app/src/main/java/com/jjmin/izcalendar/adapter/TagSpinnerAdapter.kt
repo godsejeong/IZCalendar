@@ -1,6 +1,5 @@
 package com.jjmin.izcalendar.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,7 @@ import android.widget.BaseAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
 import com.jjmin.izcalendar.R
-import com.jjmin.izcalendar.data.TagSpinnerItem
+import com.jjmin.izcalendar.data.model.TagSpinnerItem
 import com.jjmin.izcalendar.databinding.ItemTagSpinnerDropdownBinding
 import com.jjmin.izcalendar.databinding.ItemTagSpinnerNormalBinding
 import com.jjmin.izcalendar.utils.SetTheme

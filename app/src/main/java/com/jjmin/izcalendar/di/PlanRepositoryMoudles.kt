@@ -1,7 +1,7 @@
 package com.jjmin.izcalendar.di
 
-import com.jjmin.izcalendar.ui.main.PlanRepository
-import com.jjmin.izcalendar.ui.main.PlanRepositoryImpl
+import com.jjmin.izcalendar.data.remote.PlanRepository
+import com.jjmin.izcalendar.data.remote.PlanRepositoryImpl
 import org.koin.dsl.module
 
 object PlanRepositoryMoudles{

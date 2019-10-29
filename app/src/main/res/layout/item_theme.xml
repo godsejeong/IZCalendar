@@ -8,7 +8,7 @@
 
         <variable
                 name="item"
-                type="com.jjmin.izcalendar.data.ThemeItem"/>
+                type="com.jjmin.izcalendar.data.model.ThemeItem"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

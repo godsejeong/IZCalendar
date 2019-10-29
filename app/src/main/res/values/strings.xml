@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">IZCalender</string>
-    <string name="banner_ad_unit_id">ca-app-pub-8519715231292590/2043284888</string>
+    <string name="banner_ad_unit_id">ca-app-pub-8519715231292590/7977633302</string>
+    <!--ca-app-pub-8519715231292590/2043284888-->
     <string name="banner_ad_unit_id_test">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="banner_ad_app_id">ca-app-pub-8519715231292590~5431865550</string>
+    <string name="banner_ad_app_id">ca-app-pub-8519715231292590~9482286663</string>
+    <!--ca-app-pub-8519715231292590~5431865550-->
 </resources>

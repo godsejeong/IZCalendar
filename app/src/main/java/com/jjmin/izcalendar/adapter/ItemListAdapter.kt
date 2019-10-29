@@ -1,15 +1,11 @@
 package com.jjmin.izcalendar.adapter
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.app.ActivityCompat.startActivityForResult
 
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
@@ -19,17 +15,15 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.jjmin.izcalendar.R
-import com.jjmin.izcalendar.data.DetailPlanItem
-import com.jjmin.izcalendar.data.ListDataInterface
-import com.jjmin.izcalendar.data.PlanningItem
-import com.jjmin.izcalendar.data.TodayItem
-import com.jjmin.izcalendar.ui.detailplan.DetailViewModel
+import com.jjmin.izcalendar.data.model.DetailPlanItem
+import com.jjmin.izcalendar.data.model.ListDataInterface
+import com.jjmin.izcalendar.data.model.PlanningItem
+import com.jjmin.izcalendar.data.model.TodayItem
 import com.jjmin.izcalendar.databinding.ItemDetailBinding
 import com.jjmin.izcalendar.databinding.ItemPlanningBinding
 import com.jjmin.izcalendar.databinding.ItemPlanningTodayBinding
 import com.jjmin.izcalendar.ui.detailplan.DetailPlanActivity
 import com.jjmin.izcalendar.utils.SetTheme
-import kotlin.reflect.KType
 
 
 class ItemListAdapter(private val vm: ViewModel,val activity: Activity?) :

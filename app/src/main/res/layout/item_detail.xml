@@ -9,7 +9,7 @@
 
         <variable
                 name="item"
-                type="com.jjmin.izcalendar.data.DetailPlanItem"/>
+                type="com.jjmin.izcalendar.data.model.DetailPlanItem"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             xmlns:android="http://schemas.android.com/apk/res/android"

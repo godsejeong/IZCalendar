@@ -12,9 +12,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
-import com.jjmin.izcalendar.data.ListDataInterface
-import com.jjmin.izcalendar.data.TodayItem
+import com.jjmin.izcalendar.data.model.ListDataInterface
+import com.jjmin.izcalendar.data.model.TodayItem
 import com.jjmin.izcalendar.ui.calendar.CalendarUtils
 import com.jjmin.izcalendar.ui.detailplan.DetailPlanActivity
 import com.jjmin.izcalendar.utils.AnimationUtils
@@ -23,7 +22,7 @@ object MainBindAdapter{
 
     @JvmStatic
     @BindingAdapter(value = ["MainlistItem", "MainviewModel","setActivity"])
-    fun MainListAdapter(view: RecyclerView, items: List<ListDataInterface>, vm: ViewModel,activity: Activity) {
+    fun MainListAdapter(view: RecyclerView, items: List<ListDataInterface>, vm: ViewModel, activity: Activity) {
         view.adapter?.run {
             if (this is ItemListAdapter) {
                 this.submitList(items)

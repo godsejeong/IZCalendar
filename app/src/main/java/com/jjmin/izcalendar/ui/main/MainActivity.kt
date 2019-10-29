@@ -41,20 +41,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         viewModel.Plan()
         this.recreate()
     }
-//
-//    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-//        when(requestCode){
-//            10-> {
-//                if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
-//                    //동의 했을 경우
-//                }else{
-//                    toast("기능 사용을 위한 권한 동의가 필요합니다.")
-//                    finish()
-//                }
-//            }
-//        }
-//    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)

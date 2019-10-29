@@ -4,14 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.RecyclerView
 import com.jjmin.izcalendar.R
-import com.jjmin.izcalendar.data.ThemeItem
+import com.jjmin.izcalendar.data.model.ThemeItem
 import com.jjmin.izcalendar.databinding.ItemThemeBinding
 
 class GridViewAdapter(item: ArrayList<ThemeItem>) : BaseAdapter() {

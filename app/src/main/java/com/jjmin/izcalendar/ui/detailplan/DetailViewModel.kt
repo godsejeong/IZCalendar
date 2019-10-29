@@ -1,15 +1,14 @@
 package com.jjmin.izcalendar.ui.detailplan
 
 import com.jjmin.izcalendar.R
-import com.jjmin.izcalendar.data.DetailPlanItem
-import com.jjmin.izcalendar.data.TagSpinnerItem
+import com.jjmin.izcalendar.data.model.DetailPlanItem
+import com.jjmin.izcalendar.data.model.TagSpinnerItem
 import android.widget.AdapterView
 import android.view.View
 import android.util.Log
 import androidx.lifecycle.*
-import androidx.lifecycle.ViewModel
+import com.jjmin.izcalendar.data.remote.DetailPlanRepository
 import com.jjmin.izcalendar.ui.base.DisposableViewModel
-import com.jjmin.izcalendar.ui.calendar.CalendarView
 import com.jjmin.izcalendar.utils.SetTheme
 import com.jjmin.izcalendar.utils.SharedPreprecncesUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -35,7 +34,7 @@ class DetailViewModel(var useCase : DetailUseCase,var detailPlanRepository: Deta
     }
 
     fun Detailplan(){
-        detailPlanRepository.DetailLink(useCase.date)
+        detailPlanRepository.detailLink(useCase.date)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -76,7 +75,7 @@ class DetailViewModel(var useCase : DetailUseCase,var detailPlanRepository: Deta
         return item
     }
 
-    fun getposion(): Int {
+    fun getPosion(): Int {
         return SharedPreprecncesUtils.getSpinnerPosition(useCase.position)
     }
 

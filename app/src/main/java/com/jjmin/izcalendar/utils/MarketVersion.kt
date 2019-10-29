@@ -34,7 +34,6 @@ class MarketVersion(internal var activity: Activity) : AsyncTask<Void, Void, Str
                 .get()
             val Version = doc.select("span.htlgb").eq(7)
 
-
             for (v in Version) {
                 marketVersion = v.text()
                 Log.e("text",v.text())
@@ -66,7 +65,7 @@ class MarketVersion(internal var activity: Activity) : AsyncTask<Void, Void, Str
         marketVersion = result
 
         if (verSion != marketVersion) {
-            mDialog?.setMessage("최신버전이 업데이트 되었습니다.\n업데이트 후 사용해주세요.")
+            mDialog?.setMessage("최신버전이 업데이트 되었습니다.\n업데이트 후 이용해주세요.")
                 .setCancelable(false)
                 .setPositiveButton(
                     "업데이트 바로가기"

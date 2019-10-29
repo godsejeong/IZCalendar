@@ -53,13 +53,11 @@ class SettingViewModel(private val useCase: SettingUseCase) : ViewModel() {
         useCase.activity.startActivity(chooser)
     }
 
-    fun RockBackgroundCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
+    fun rockBackgroundCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
         useCase.activity.applicationContext.toast("아직 지원하지 않는 기능입니다.")
     }
 
-    fun DarkThemeCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
-
-//        Thread(Runnable {
+    fun darkThemeCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
         if (isChecked) {
             SharedPreprecncesUtils.setDarkTheme(true)
             SetTheme().update()

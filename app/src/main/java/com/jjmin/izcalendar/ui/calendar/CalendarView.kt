@@ -6,12 +6,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
-import android.widget.GridView
 import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.jjmin.izcalendar.R
-import com.jjmin.izcalendar.data.PlanningItem
+import com.jjmin.izcalendar.data.model.PlanningItem
 import kotlinx.android.synthetic.main.calendar_view.view.*
 import java.util.*
 import kotlin.collections.ArrayList

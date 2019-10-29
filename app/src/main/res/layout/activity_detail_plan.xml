@@ -65,7 +65,7 @@
                     android:id="@+id/tagSpinner"
                     app:spinnerItem="@{vm.spinnerItems}"
                     app:viewModel="@{vm}"
-                    app:selection="@{vm.getposion()}"
+                    app:selection="@{vm.getPosion()}"
                     android:layout_width="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintDimensionRatio="5:1"

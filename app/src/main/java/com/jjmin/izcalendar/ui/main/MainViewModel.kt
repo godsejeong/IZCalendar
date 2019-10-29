@@ -1,13 +1,12 @@
 package com.jjmin.izcalendar.ui.main
 
-import android.Manifest
 import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.jjmin.izcalendar.data.AllPlan
-import com.jjmin.izcalendar.data.PlanningItem
-import com.jjmin.izcalendar.data.TodayItem
+import com.jjmin.izcalendar.data.model.AllPlan
+import com.jjmin.izcalendar.data.model.PlanningItem
+import com.jjmin.izcalendar.data.model.TodayItem
 import com.jjmin.izcalendar.ui.base.DisposableViewModel
 import com.jjmin.izcalendar.ui.calendar.CalendarUtils
 import com.jjmin.izcalendar.utils.DowChangeUtils
@@ -17,14 +16,7 @@ import com.jjmin.izcalendar.utils.SharedPreprecncesUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.*
-import android.Manifest.permission
-import android.Manifest.permission.ACCESS_COARSE_LOCATION
-import android.Manifest.permission.WRITE_CALENDAR
-import android.content.pm.PackageManager
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-
-
+import com.jjmin.izcalendar.data.remote.PlanRepository
 
 
 class MainViewModel(val useCase: MainUserCase, val planRepository: PlanRepository) : DisposableViewModel() {
@@ -42,16 +34,7 @@ class MainViewModel(val useCase: MainUserCase, val planRepository: PlanRepositor
     val claendarsetPlenlist: LiveData<ArrayList<String>> get() = _claendarsetPlenlist
     var today = ObservableField<String>()
 
-//    var permissionCheck = ContextCompat.checkSelfPermission(useCase.activity,ACCESS_COARSE_LOCATION)
-
     init {
-
-//        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-//                ActivityCompat.requestPermissions(useCase.activity,
-//                arrayOf(ACCESS_COARSE_LOCATION),
-//                10)
-//        }
-
         Plan()
         today.set(CalendarUtils.today)
         MarketVersion(useCase.activity).execute()
